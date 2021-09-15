@@ -17,7 +17,37 @@
 
     <section class="ftco-section">
         <div class="container">
-
+            <div class="row">
+                <div class="col-lg-6 col-md-4 offset-3">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="form-group mb-2 ml-2">
+                                <label>Type Your Name and Select Class</label>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <form class="form-inline">
+                                <div class="form-group mx-sm-3 mb-1">
+                                    <input type="text" class="form-control" placeholder="Full Name">
+                                </div>
+                                <div class="form-group mx-sm-3 mb-1">
+                                    <select class="custom-select">
+                                        <option selected>Select Class</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="card footer">
+                            <div class="col-lg-12 col-md-8 mt-2 text-right">
+                                <button type="submit" class="btn btn-primary mb-2">Get Your Result</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
