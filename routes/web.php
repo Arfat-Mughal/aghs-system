@@ -29,7 +29,10 @@ Route::group(['middleware' => ['auth'], 'namespace'=>'admin'], function() {
     $SC = StudentController::class;
     $SLC = SlipController::class;
     $RC = ResultController::class;
-    Route::get('dashboard',[$AC,'index'])->name('panel');
+    Route::get('/dashboard',[$AC,'index'])->name('panel');
+    Route::get('/students',[$SC,'index'])->name('students');
+    Route::get('/slips',[$SLC,'index'])->name('slips');
+    Route::get('/results',[$RC,'index'])->name('results');
 });
 //Route::get('/dashboard', function () {
 //    return view('admin.panel');

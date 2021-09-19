@@ -13,15 +13,15 @@
                         <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="{{route('students')}}">
                         <i class="fas fa-copy"></i>Students</a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="{{route('results')}}">
                         <i class="fas fa-chart-bar"></i>Results</a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="{{route('slips')}}">
                         <i class="fas fa-table"></i>Roll No Slip's</a>
                 </li>
             </ul>
