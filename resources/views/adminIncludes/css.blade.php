@@ -18,3 +18,4 @@
 
 <!-- Main CSS-->
 <link href="{{asset('admin_assets/css/theme.css')}}" rel="stylesheet" media="all">
+<link rel="stylesheet" type="text/css" href="{{asset('DataTables/datatables.min.css')}}"/>

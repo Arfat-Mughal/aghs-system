@@ -38,8 +38,8 @@
                                         <i class="zmdi zmdi-calendar-note"></i>
                                     </div>
                                     <div class="text">
-                                        <h2>Queries</h2>
-                                        <span>This year</span>
+                                        <h2>0</h2>
+                                        <span>Queries Year</span>
                                     </div>
                                 </div>
                                 <div class="overview-chart">
@@ -304,7 +304,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="copyright">
-                            <p>Copyright © 2018 Colorlib. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
+                            <p>Copyright © 2021. All rights reserved by <a href="#">AGHS</a>.</p>
                         </div>
                     </div>
                 </div>

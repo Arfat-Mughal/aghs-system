@@ -21,3 +21,9 @@
 
 <!-- Main JS-->
 <script src="{{asset('admin_assets/js/main.js')}}"></script>
+<script type="text/javascript" src="{{asset('DataTables/datatables.min.js')}}"></script>
+<script>
+    $(document).ready(function() {
+        $('#table').DataTable();
+    } );
+</script>
