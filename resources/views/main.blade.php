@@ -437,4 +437,37 @@
     </div>
 </section>
 
+<section class="ftco-section ftco-consult ftco-no-pt ftco-no-pb" style="background-image: url({{asset('web_assets/images/bg_5.jpg')}});" data-stellar-background-ratio="0.5">
+    <div class="container">
+        <div class="row justify-content-end">
+            <div class="col-md-6 py-5 px-md-5 bg-primary">
+                <div class="container">
+                    <!-- Trigger the modal with a button -->
+                    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal" role="dialog">
+                        <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Import Message By AGHS</p>
+                                </div>
+{{--                                <div class="modal-footer">--}}
+{{--                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--}}
+{{--                                </div>--}}
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 @endsection

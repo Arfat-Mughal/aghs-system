@@ -13,3 +13,9 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
 <script src="{{asset('web_assets/js/google-map.js')}}"></script>
 <script src="{{asset('web_assets/js/main.js')}}"></script>
+<script type="text/javascript">
+    $(window).load(function()
+    {
+        $('#myModal').modal('show');
+    });
+</script>
