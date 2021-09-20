@@ -31,6 +31,7 @@ Route::group(['middleware' => ['auth'], 'namespace'=>'admin'], function() {
     $RC = ResultController::class;
     Route::get('/dashboard',[$AC,'index'])->name('panel');
     Route::get('/students',[$SC,'index'])->name('students');
+    Route::get('/student/add',[$SC,'create'])->name('add_student');
     Route::get('/slips',[$SLC,'index'])->name('slips');
     Route::get('/results',[$RC,'index'])->name('results');
 });

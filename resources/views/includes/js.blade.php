@@ -18,4 +18,6 @@
     {
         $('#myModal').modal('show');
     });
+    $('#close_modal').onclick.modal('hide');
+
 </script>
