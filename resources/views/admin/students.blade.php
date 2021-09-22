@@ -18,30 +18,26 @@
                         <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">First</th>
-                            <th scope="col">Last</th>
-                            <th scope="col">Handle</th>
+                            <th scope="col">Roll NO</th>
+                            <th scope="col">Student Name</th>
+                            <th scope="col">Father Name</th>
+                            <th scope="col">Phone</th>
+                            <th scope="col">Cell</th>
+                            <th scope="col">Class</th>
                         </tr>
                         </thead>
                         <tbody>
+                        @foreach($students as $index => $student)
                         <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
+                            <th scope="row">{{$student->id}}</th>
+                            <td>{{$student->addmission_no}}</td>
+                            <td>{{$student->name}}</td>
+                            <td>{{$student->father_name}}</td>
+                            <td>{{$student->phone}}</td>
+                            <td>{{$student->cell}}</td>
+                            <td>{{$student->grade->name}}</td>
                         </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 20, 2021 at 10:22 PM
+-- Generation Time: Sep 22, 2021 at 10:37 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.9
 
@@ -153,11 +153,11 @@ CREATE TABLE `students` (
   `dob` date DEFAULT NULL,
   `email` varchar(150) DEFAULT NULL,
   `religion` varchar(150) DEFAULT NULL,
-  `b_form` int(20) DEFAULT NULL,
+  `b_form` varchar(30) DEFAULT NULL,
   `gender` varchar(20) DEFAULT NULL,
   `cnic` varchar(20) DEFAULT NULL,
   `occupation` varchar(255) DEFAULT NULL,
-  `quran` tinyint(1) DEFAULT 0,
+  `quran` varchar(11) DEFAULT NULL,
   `address` longtext DEFAULT NULL,
   `phone` varchar(50) DEFAULT NULL,
   `cell` varchar(50) DEFAULT NULL,
@@ -168,6 +168,15 @@ CREATE TABLE `students` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `students`
+--
+
+INSERT INTO `students` (`id`, `name`, `father_name`, `dob`, `email`, `religion`, `b_form`, `gender`, `cnic`, `occupation`, `quran`, `address`, `phone`, `cell`, `grade_id`, `addmission_no`, `date`, `path`, `created_at`, `updated_at`) VALUES
+(1, 'Yetta Valencia', 'Calvin Walters', '1987-06-20', 'pona@mailinator.com', 'Hinduism', '74', 'female', '25', 'Saepe voluptatem quo', '1', 'Ut est et iusto id i', '6', '32', 2, '90', '1978-03-18', NULL, '2021-09-22 15:11:16', '2021-09-22 15:11:16'),
+(2, 'Jamal Kennedy', 'Savannah Curtis', '2019-02-07', NULL, 'Islam', '49', 'female', '28', 'Aspernatur non asper', '1', 'Fugiat quo a dolore', '32', '67', 10, '28', '1990-07-15', NULL, '2021-09-22 15:22:03', '2021-09-22 15:22:03'),
+(3, 'Grady Crosby', 'Graiden Zimmerman', '1991-10-15', NULL, 'Christianity', '72', 'male', '30', 'Ea earum aute volupt', '0', 'Omnis ad commodi con', '56', '94', 12, '32', '1986-08-08', NULL, '2021-09-22 15:22:56', '2021-09-22 15:22:56');
 
 -- --------------------------------------------------------
 
@@ -320,7 +329,7 @@ ALTER TABLE `slips`
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `subjects`

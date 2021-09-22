@@ -13,7 +13,6 @@
     <title>AGHS ADMIN-PANEL</title>
 
    @include('adminIncludes.css')
-
 </head>
 
 <body class="animsition">
@@ -29,7 +28,7 @@
         <!-- END PAGE CONTAINER-->
     </div>
 </div>
-
+@include('sweetalert::alert')
 @include("adminIncludes.js")
 
 
