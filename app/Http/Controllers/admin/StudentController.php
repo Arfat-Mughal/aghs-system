@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Grade;
 use App\Models\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class StudentController extends Controller
@@ -27,6 +28,7 @@ class StudentController extends Controller
         $request->validate([
             'name' => 'required|max:255',
             'father_name' => 'required',
+            'image'  =>  'required|max:2048',
             'roll_no' => 'required|unique:students,addmission_no',
             'dob' => 'required',
             'cnic' => 'required',
@@ -34,11 +36,14 @@ class StudentController extends Controller
             'gender' => 'required',
             'address' => 'required',
             'grade_id' => 'required',
-            'email' => 'required|unique:students,email'
+            'email' => 'unique:students,email'
         ]);
 
         if ($request->addmission_no){
             $student = Student::find($request->roll_no);
+            if ($request->has('image')){
+                unlink("student_profile/".$student->path);
+            }
         }else{
             $student = new Student;
         }
@@ -58,8 +63,21 @@ class StudentController extends Controller
         $student->cell          =  $request->cell;
         $student->grade_id      =  $request->grade_id;
         $student->date          =  $request->date;
+        $student->path          =  $this->UserImageUpload($request->file('image'));
         $student->save();
         Alert::success('Student Added', 'Success Message');
         return redirect()->route('students');
+    }
+
+    private function UserImageUpload($query) // Taking input image as parameter
+    {
+        $image_name = Str::random(20);
+        $ext = strtolower($query->getClientOriginalExtension()); // You can use also getClientOriginalName()
+        $image_full_name = $image_name.'.'.$ext;
+        $upload_path = 'student_profile/';    //Creating Sub directory in Public folder to put image
+        $image_url = $upload_path.$image_full_name;
+        $query->move($upload_path,$image_full_name);
+
+        return $image_url; // Just return image
     }
 }

@@ -9,11 +9,11 @@
                     </div>
                     <div class="col-md pr-4 d-flex topper align-items-center">
                         <div class="icon bg-secondary mr-2 d-flex justify-content-center align-items-center"><span class="icon-paper-plane"></span></div>
-                        <span class="text">AGHS007@GMAIL.COM</span>
+                        <span class="text">AGHS9435@GMAIL.COM</span>
                     </div>
                     <div class="col-md pr-4 d-flex topper align-items-center">
                         <div class="icon bg-tertiary mr-2 d-flex justify-content-center align-items-center"><span class="icon-phone2"></span></div>
-                        <span class="text">0321-4960275, 0321-4669849, 042-37172294</span>
+                        <span class="text">0321-4960275, 0321-4969849, 042-37172294</span>
                     </div>
                 </div>
             </div>
@@ -21,8 +21,9 @@
     </div>
 </div>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark ftco_navbar ftco-navbar-light" id="ftco-navbar">
-    <div class="container d-flex align-items-center">
-        <a class="navbar-brand" href="#">Al-Falah Grammar High School & Academy</a>
+    <div class="container-fluid d-flex align-items-center">
+        <div class="icon"><img src="{{asset('web_assets/images/logo_header.png')}}" alt="" width="120px" height="80px"></div>
+        <a class="navbar-brand" href="#">AL-FALAH GRAMMAR HIGH SCHOOL & ACADEMY</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="oi oi-menu"></span> Menu
         </button>

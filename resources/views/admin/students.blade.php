@@ -18,6 +18,7 @@
                         <thead>
                         <tr>
                             <th scope="col">#</th>
+                            <th scope="col">Image</th>
                             <th scope="col">Roll NO</th>
                             <th scope="col">Student Name</th>
                             <th scope="col">Father Name</th>
@@ -30,6 +31,7 @@
                         @foreach($students as $index => $student)
                         <tr>
                             <th scope="row">{{$student->id}}</th>
+                            <td><img src="{{$student->path}}" alt="{{$student->name}}" height="40px" width="60px" class="rounded"></td>
                             <td>{{$student->addmission_no}}</td>
                             <td>{{$student->name}}</td>
                             <td>{{$student->father_name}}</td>

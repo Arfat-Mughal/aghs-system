@@ -26,7 +26,7 @@
                             <strong>Creating</strong>
                             <small>Profile</small>
                         </div>
-                        <form action="{{route('store_student')}}" method="post">
+                        <form action="{{route('store_datesheet')}}" method="post">
                             @csrf
                             <div class="card-body card-block">
                                 <div class="row">
@@ -50,13 +50,13 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-3">
+                                    <div class="col-2">
                                         <label for="x_card_code" class="control-label mb-1">Date of Birth</label>
                                         <div class="input-group">
                                             <input type="date" name="dob" class="form-control" value="{{ old('dob') }}">
                                         </div>
                                     </div>
-                                    <div class="col-3">
+                                    <div class="col-2">
                                         <label for="x_card_code" class="control-label mb-1">Religion</label>
                                         <select class="custom-select" name="religion">
                                             <option selected>Select option</option>
@@ -66,7 +66,7 @@
                                             <option value="Sikhism">Sikhism</option>
                                         </select>
                                     </div>
-                                    <div class="col-3">
+                                    <div class="col-2">
                                         <label for="x_card_code" class="control-label mb-1">Gender</label>
                                         <select class="custom-select" name="gender">
                                             <option selected>Select option</option>
@@ -74,13 +74,19 @@
                                             <option value="female">Female</option>
                                         </select>
                                     </div>
-                                    <div class="col-3">
+                                    <div class="col-2">
                                         <label for="x_card_code" class="control-label mb-1">Hafiz Quran</label>
                                         <select class="custom-select" name="quran">
                                             <option selected>Select option</option>
                                             <option value="1">Yes</option>
                                             <option value="0">No</option>
                                         </select>
+                                    </div>
+                                    <div class="col-2">
+                                        <label for="x_card_code" class="control-label mb-1">Student Image</label>
+                                        <div class="input-group">
+                                            <input type="file" name="image">
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row">

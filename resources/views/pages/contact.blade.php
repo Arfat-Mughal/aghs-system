@@ -2,7 +2,7 @@
 @section('content')
 
     @include('includes.header')
-    <section class="hero-wrap hero-wrap-2" style="background-image: url('{{asset('web_assets/images/bg_2.jpg')}}');">
+    <section class="hero-wrap hero-wrap-2" style="background-image: url('{{asset('web_assets/images/image_4.jpg')}}');">
         <div class="overlay"></div>
         <div class="container">
             <div class="row no-gutters slider-text align-items-center justify-content-center">
@@ -26,13 +26,13 @@
                 <div class="col-md-4 d-flex">
                     <div class="bg-light align-self-stretch box p-4 text-center">
                         <h3 class="mb-4">Contact Number</h3>
-                        <p><a href="#">0321-4960275,  0321-4669849,  042-37172294</a></p>
+                        <p><a href="#">0321-4960275,  0321-4969849,  042-37172294</a></p>
                     </div>
                 </div>
                 <div class="col-md-4 d-flex">
                     <div class="bg-light align-self-stretch box p-4 text-center">
                         <h3 class="mb-4">Email Address</h3>
-                        <p><a href="mailto:aghs007@gmail.com">AGHS007@GMAIL.COM</a></p>
+                        <p><a href="mailto:aghs9435@gmail.com">AGHS9435@GMAIL.COM</a></p>
                     </div>
                 </div>
 {{--                <div class="col-md-3 d-flex">--}}

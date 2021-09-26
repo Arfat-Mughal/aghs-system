@@ -31,9 +31,11 @@ Route::group(['middleware' => ['auth'], 'namespace'=>'admin'], function() {
     $RC = ResultController::class;
     Route::get('/dashboard',[$AC,'index'])->name('panel');
     Route::get('/students',[$SC,'index'])->name('students');
-    Route::get('/student/add',[$SC,'create'])->name('add_student');
-    Route::post('/student/add',[$SC,'store'])->name('store_student');
+    Route::get('/student/create',[$SC,'create'])->name('add_student');
+    Route::post('/student/create',[$SC,'store'])->name('store_student');
     Route::get('/slips',[$SLC,'index'])->name('slips');
+    Route::get('/slips/create',[$SLC,'create'])->name('add_datesheet');
+    Route::post('/slips/create',[$SLC,'store'])->name('store_datesheet');
     Route::get('/results',[$RC,'index'])->name('results');
 });
 //Route::get('/dashboard', function () {

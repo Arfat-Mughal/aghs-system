@@ -4,31 +4,31 @@
     @include('includes.header')
 
     <section class="home-slider owl-carousel">
-        <div class="slider-item" style="background-image:url({{asset('web_assets/images/bg_1.jpg')}});">
-            <div class="overlay"></div>
-            <div class="container">
-                <div class="row no-gutters slider-text align-items-center justify-content-center"
-                     data-scrollax-parent="true">
-                    <div class="col-md-8 text-center ftco-animate">
-                        <h1 class="mb-4">Kids Are The Best <span>Explorers In The World</span></h1>
-                        <p><a href="#" class="btn btn-secondary px-4 py-3 mt-3">Read More</a></p>
-                    </div>
-                </div>
-            </div>
+        <div class="slider-item" style="background-image:url({{asset('web_assets/images/bd_1.jpg')}});">
+{{--            <div class="overlay"></div>--}}
+{{--            <div class="container">--}}
+{{--                <div class="row no-gutters slider-text align-items-center justify-content-center"--}}
+{{--                     data-scrollax-parent="true">--}}
+{{--                    <div class="col-md-8 text-center ftco-animate">--}}
+{{--                        <h1 class="mb-4">Kids Are The Best <span>Explorers In The World</span></h1>--}}
+{{--                        <p><a href="#" class="btn btn-secondary px-4 py-3 mt-3">Read More</a></p>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
         </div>
 
-        <div class="slider-item" style="background-image:url({{asset('web_assets/images/bg_2.jpg')}});">
-            <div class="overlay"></div>
-            <div class="container">
-                <div class="row no-gutters slider-text align-items-center justify-content-center"
-                     data-scrollax-parent="true">
-                    <div class="col-md-8 text-center ftco-animate">
-                        <h1 class="mb-4">Perfect Learned<span> For Your Child</span></h1>
-                        <p><a href="#" class="btn btn-secondary px-4 py-3 mt-3">Read More</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
+{{--        <div class="slider-item" style="background-image:url({{asset('web_assets/images/bg_2.jpg')}});">--}}
+{{--            <div class="overlay"></div>--}}
+{{--            <div class="container">--}}
+{{--                <div class="row no-gutters slider-text align-items-center justify-content-center"--}}
+{{--                     data-scrollax-parent="true">--}}
+{{--                    <div class="col-md-8 text-center ftco-animate">--}}
+{{--                        <h1 class="mb-4">ned<span> For Your Child</span></h1>--}}
+{{--                        <p><a href="#" class="btn btn-secondary px-4 py-3 mt-3">Read More</a></p>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
     </section>
 
     <section class="ftco-services ftco-no-pb">
@@ -352,7 +352,7 @@
         <div class="container">
             <div class="row justify-content-center mb-5 pb-2">
                 <div class="col-md-8 text-center heading-section ftco-animate">
-                    <h2 class="mb-4"><span>Recent</span> Courses </h2>
+                    <h2 class="mb-4"><span>Recent</span> Classes </h2>
                     <p>learning programme that gives you combined content or specific skills in a short period of
                         time.</p>
                 </div>
@@ -369,7 +369,7 @@
                             </div>
                         </a>
                         <div class="text bg-white p-4">
-                            <h3 class="heading"><a href="#">Computer Courses (3-months)</a></h3>
+                            <h3 class="heading"><a href="#">Computer Classes (3-months)</a></h3>
                             <p>Short term courses have their way of offering skills to students; the courses are very
                                 efficient and effective as well</p>
                             {{--                        <div class="d-flex align-items-center mt-4">--}}
@@ -393,7 +393,7 @@
                             </div>
                         </a>
                         <div class="text bg-white p-4">
-                            <h3 class="heading"><a href="#">Computer Courses (6-months)</a></h3>
+                            <h3 class="heading"><a href="#">Computer Classes (6-months)</a></h3>
                             <p>Short term courses have their way of offering skills to students; the courses are very
                                 efficient and effective as well</p>
                             {{--                        <div class="d-flex align-items-center mt-4">--}}
@@ -439,7 +439,7 @@
         <div class="container-wrap">
             <div class="row no-gutters">
                 <div class="col-md-3 ftco-animate">
-                    <a href="{{asset('web_assets/images/image_1.jpg')}}"
+                    <a href="{{asset('web_assets/images/boys_1.jpg')}}"
                        class="gallery image-popup img d-flex align-items-center"
                        style="background-image: url({{asset('web_assets/images/course-1.jpg')}});">
                         <div class="icon mb-4 d-flex align-items-center justify-content-center">
@@ -448,7 +448,7 @@
                     </a>
                 </div>
                 <div class="col-md-3 ftco-animate">
-                    <a href="{{asset('web_assets/images/image_2.jpg')}}"
+                    <a href="{{asset('web_assets/images/girls.jpg')}}"
                        class="gallery image-popup img d-flex align-items-center"
                        style="background-image: url({{asset('web_assets/images/image_2.jpg')}});">
                         <div class="icon mb-4 d-flex align-items-center justify-content-center">
@@ -457,7 +457,7 @@
                     </a>
                 </div>
                 <div class="col-md-3 ftco-animate">
-                    <a href="{{asset('web_assets/images/image_3.jpg')}}"
+                    <a href="{{asset('web_assets/images/pic_3.jpg')}}"
                        class="gallery image-popup img d-flex align-items-center"
                        style="background-image: url({{asset('web_assets/images/image_3.jpg')}});">
                         <div class="icon mb-4 d-flex align-items-center justify-content-center">
@@ -466,7 +466,7 @@
                     </a>
                 </div>
                 <div class="col-md-3 ftco-animate">
-                    <a href="{{asset('web_assets/images/image_4.jpg')}}"
+                    <a href="{{asset('web_assets/images/pic_4.jpg')}}"
                        class="gallery image-popup img d-flex align-items-center"
                        style="background-image: url({{asset('web_assets/images/image_4.jpg')}});">
                         <div class="icon mb-4 d-flex align-items-center justify-content-center">

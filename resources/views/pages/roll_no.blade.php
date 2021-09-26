@@ -3,7 +3,7 @@
 
     @include('includes.header')
 
-    <section class="hero-wrap hero-wrap-2" style="background-image: url('{{asset('web_assets/images/bg_2.jpg')}}');">
+    <section class="hero-wrap hero-wrap-2" style="background-image: url('{{asset('web_assets/images/image_4.jpg')}}');">
         <div class="overlay"></div>
         <div class="container">
             <div class="row no-gutters slider-text align-items-center justify-content-center">
@@ -22,13 +22,13 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="form-group mb-2 ml-2">
-                                <label>Type Your Name and Select Class</label>
+                                <label>Type Your Roll No and Select Class</label>
                             </div>
                         </div>
                         <div class="card-body">
                             <form class="form-inline">
                                 <div class="form-group mx-sm-3 mb-1">
-                                    <input type="text" class="form-control" placeholder="Full Name">
+                                    <input type="text" class="form-control" placeholder="Roll No">
                                 </div>
                                 <div class="form-group mx-sm-3 mb-1">
                                     <select class="custom-select">

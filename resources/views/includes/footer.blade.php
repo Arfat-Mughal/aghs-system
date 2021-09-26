@@ -7,8 +7,8 @@
                     <div class="block-23 mb-3">
                         <ul>
                             <li><span class="icon icon-map-marker"></span><span class="text">VILLAGE BHANO CHAK P/O WAGHA TEHSIL SHALIMAR CANTT LAHORE</span></li>
-                            <li><a href="#"><span class="icon icon-phone"></span><span class="text">0321-4960275, 0321-4669849, 042-37172294</span></a></li>
-                            <li><a href="#"><span class="icon icon-envelope"></span><span class="text">AGHS007@GMAIL.COM</span></a></li>
+                            <li><a href="#"><span class="icon icon-phone"></span><span class="text">0321-4960275, 0321-4969849, 042-37172294</span></a></li>
+                            <li><a href="#"><span class="icon icon-envelope"></span><span class="text">AGHS9435@GMAIL.COM</span></a></li>
                         </ul>
                     </div>
                 </div>
@@ -44,11 +44,11 @@
                 <div class="ftco-footer-widget mb-5 ml-md-4">
                     <h2 class="ftco-heading-2">Links</h2>
                     <ul class="list-unstyled">
-                        <li><a href="#"><span class="ion-ios-arrow-round-forward mr-2"></span>Home</a></li>
-                        <li><a href="#"><span class="ion-ios-arrow-round-forward mr-2"></span>Roll No Slip</a></li>
-                        <li><a href="#"><span class="ion-ios-arrow-round-forward mr-2"></span>Result</a></li>
-                        <li><a href="#"><span class="ion-ios-arrow-round-forward mr-2"></span>Deparments</a></li>
-                        <li><a href="#"><span class="ion-ios-arrow-round-forward mr-2"></span>Contact</a></li>
+                        <li><a href="{{route('home')}}"><span class="ion-ios-arrow-round-forward mr-2"></span>Home</a></li>
+                        <li><a href="{{route('roll_no')}}"><span class="ion-ios-arrow-round-forward mr-2"></span>Roll No Slip</a></li>
+                        <li><a href="{{route('result')}}"><span class="ion-ios-arrow-round-forward mr-2"></span>Result</a></li>
+                        <li><a href="{{route('courses')}}"><span class="ion-ios-arrow-round-forward mr-2"></span>Courses</a></li>
+                        <li><a href="{{route('contact')}}"><span class="ion-ios-arrow-round-forward mr-2"></span>Contact</a></li>
                     </ul>
                 </div>
             </div>
