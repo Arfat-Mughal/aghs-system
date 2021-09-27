@@ -21,11 +21,6 @@
                     </div>
                 @endif
                 <div class="col-sm-8 col-md-10 col-lg-12 mt-5">
-                    <div class="card">
-                        <div class="card-header">
-                            <strong>Creating</strong>
-                            <small>Profile</small>
-                        </div>
                         <form action="{{route('store_datesheet')}}" method="post" name="add_name" id="add_name">
                             @csrf
                             <div class="card-body card-block">
@@ -63,14 +58,14 @@
                                                         @endforeach
                                                     </select>
                                                 </td>
-                                                <td><input type="date" name="grade_id[date]" placeholder="Enter your Name"
+                                                <td><input type="date" name="grade_id[0date]" placeholder="Enter your Name"
                                                            class="form-control name_list"/></td>
-                                                <td><input type="text" name="grade_id[reporting]"
+                                                <td><input type="text" name="grade_id[0reporting]"
                                                            placeholder="Enter reporting time"
                                                            class="form-control name_list"/></td>
-                                                <td><input type="text" name="grade_id[start_time]" placeholder="Enter start time"
+                                                <td><input type="text" name="grade_id[0start_time]" placeholder="Enter start time"
                                                            class="form-control name_list"/></td>
-                                                <td><input type="text" name="grade_id[end_time]" placeholder="Enter end time"
+                                                <td><input type="text" name="grade_id[0end_time]" placeholder="Enter end time"
                                                            class="form-control name_list"/></td>
                                                 <td>
                                                     <button type="button" name="add" id="add" class="btn btn-success">
@@ -82,11 +77,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="card-footer">
+                            <div>
                                 <button class="btn pull-right btn-primary" type="submit">Save</button>
                             </div>
                         </form>
-                    </div>
                 </div>
             </div>
         </div>
