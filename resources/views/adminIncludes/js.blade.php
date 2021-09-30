@@ -31,7 +31,7 @@
             i++;j++;
             $('#dynamic_field').append(
                 '<tr id="row'+i+'">' +
-                '<td><select class="custom-select" name="grade_id[]">'+
+                '<td><select class="custom-select" name="subject_id['+j+'][subject_id]">'+
                    ' <option selected="">Select option</option>'+
                     '<option value="1">science</option>'+
                     '<option value="2">islamiat</option>'+
@@ -42,10 +42,10 @@
                     '<option value="7">islamiat reading</option>'+
                     '<option value="8">table book</option>'+
                 '</select></td>' +
-                '<td><input type="date" name="grade_id['+j+'date]" placeholder="Enter your Name" class="form-control name_list" /></td>'+
-                '<td><input type="text" name="grade_id['+j+'reporting]" placeholder="Enter reporting time" class="form-control name_list" /></td>'+
-                '<td><input type="text" name="grade_id['+j+'start_time]" placeholder="Enter start time" class="form-control name_list" /></td>'+
-                ' <td><input type="text" name="grade_id['+j+'end_time]" placeholder="Enter end time" class="form-control name_list" /></td>'+
+                '<td><input type="date" name="subject_id['+j+'][date]" placeholder="Enter your Name" class="form-control name_list" /></td>'+
+                '<td><input type="time" name="subject_id['+j+'][reporting]" placeholder="Enter reporting time" class="form-control name_list" /></td>'+
+                '<td><input type="time" name="subject_id['+j+'][start_time]" placeholder="Enter start time" class="form-control name_list" /></td>'+
+                ' <td><input type="time" name="subject_id['+j+'][end_time]" placeholder="Enter end time" class="form-control name_list" /></td>'+
                 '<td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td>' +
                 '</tr>');
         });

@@ -4,14 +4,17 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Grade;
+use App\Models\Slip;
 use App\Models\Subject;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class SlipController extends Controller
 {
     public function index()
     {
-        return view('admin.slips');
+        $slips = Slip::with('grade')->get();
+        return view('admin.slips',compact('slips'));
     }
 
     public function create()
@@ -23,6 +26,28 @@ class SlipController extends Controller
 
     public function store(Request $request)
     {
-        dd($request->all());
+        $request->validate([
+            'grade_id' => 'required',
+            'term' => 'required',
+            'current_session' => 'required',
+        ]);
+
+        $slip = new Slip;
+        $slip->grade_id = $request->grade_id;
+        $slip->term = $request->term;
+        $slip->session = $request->current_session;
+        $slip->save();
+
+        foreach ($request->subject_id as $grade) {
+            $slip->datesheets()->create([
+                'subject_id'=> $grade['subject_id'],
+                'date'=> $grade['date'],
+                'reporting'=> $grade['reporting'],
+                'start_time'=> $grade['start_time'],
+                'end_time'=> $grade['end_time'],
+            ]);
+        }
+        Alert::success('Datesheets Added', 'Success Message');
+        return redirect()->route('slips');
     }
 }

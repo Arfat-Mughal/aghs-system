@@ -36,6 +36,7 @@ Route::group(['middleware' => ['auth'], 'namespace'=>'admin'], function() {
     Route::get('/slips',[$SLC,'index'])->name('slips');
     Route::get('/slips/create',[$SLC,'create'])->name('add_datesheet');
     Route::post('/slips/create',[$SLC,'store'])->name('store_datesheet');
+    Route::post('/slips/{slip_id}/change-slip-status',[$SLC,'changeSlipStatus'])->name('change_slip_status');
     Route::get('/results',[$RC,'index'])->name('results');
 });
 //Route::get('/dashboard', function () {

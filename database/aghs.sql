@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 22, 2021 at 10:37 PM
+-- Generation Time: Sep 30, 2021 at 10:50 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.9
 
@@ -20,6 +20,32 @@ SET time_zone = "+00:00";
 --
 -- Database: `aghs`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `datesheets`
+--
+
+CREATE TABLE `datesheets` (
+  `id` int(11) NOT NULL,
+  `slip_id` int(11) NOT NULL,
+  `subject_id` int(11) NOT NULL,
+  `date` varchar(150) NOT NULL,
+  `reporting` varchar(150) NOT NULL,
+  `start_time` varchar(150) NOT NULL,
+  `end_time` varchar(150) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `datesheets`
+--
+
+INSERT INTO `datesheets` (`id`, `slip_id`, `subject_id`, `date`, `reporting`, `start_time`, `end_time`, `created_at`, `updated_at`) VALUES
+(1, 1, 2, '2021-10-12', '03:57', '02:56', '02:56', '2021-09-30 14:53:31', '2021-09-30 14:53:31'),
+(2, 1, 2, '2021-09-27', '00:56', '02:55', '02:56', '2021-09-30 14:53:31', '2021-09-30 14:53:31');
 
 -- --------------------------------------------------------
 
@@ -129,16 +155,19 @@ CREATE TABLE `personal_access_tokens` (
 CREATE TABLE `slips` (
   `id` int(11) NOT NULL,
   `grade_id` int(11) NOT NULL,
-  `subject_id` int(11) NOT NULL,
-  `date` varchar(20) DEFAULT NULL,
-  `reporting` varchar(150) DEFAULT NULL,
-  `start_time` varchar(150) DEFAULT NULL,
-  `end_time` varchar(150) DEFAULT NULL,
   `term` varchar(150) DEFAULT NULL,
   `session` varchar(150) DEFAULT NULL,
+  `is_active` tinyint(1) NOT NULL DEFAULT 1,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `slips`
+--
+
+INSERT INTO `slips` (`id`, `grade_id`, `term`, `session`, `is_active`, `created_at`, `updated_at`) VALUES
+(1, 4, 'Mid Term', '2012', 0, '2021-09-30 14:53:31', '2021-09-30 14:53:31');
 
 -- --------------------------------------------------------
 
@@ -174,9 +203,7 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`id`, `name`, `father_name`, `dob`, `email`, `religion`, `b_form`, `gender`, `cnic`, `occupation`, `quran`, `address`, `phone`, `cell`, `grade_id`, `addmission_no`, `date`, `path`, `created_at`, `updated_at`) VALUES
-(1, 'Yetta Valencia', 'Calvin Walters', '1987-06-20', 'pona@mailinator.com', 'Hinduism', '74', 'female', '25', 'Saepe voluptatem quo', '1', 'Ut est et iusto id i', '6', '32', 2, '90', '1978-03-18', NULL, '2021-09-22 15:11:16', '2021-09-22 15:11:16'),
-(2, 'Jamal Kennedy', 'Savannah Curtis', '2019-02-07', NULL, 'Islam', '49', 'female', '28', 'Aspernatur non asper', '1', 'Fugiat quo a dolore', '32', '67', 10, '28', '1990-07-15', NULL, '2021-09-22 15:22:03', '2021-09-22 15:22:03'),
-(3, 'Grady Crosby', 'Graiden Zimmerman', '1991-10-15', NULL, 'Christianity', '72', 'male', '30', 'Ea earum aute volupt', '0', 'Omnis ad commodi con', '56', '94', 12, '32', '1986-08-08', NULL, '2021-09-22 15:22:56', '2021-09-22 15:22:56');
+(1, 'Keefe Pope', 'Destiny Coleman', '1975-07-02', NULL, 'Sikhism', '35', 'Select option', '1', 'Incidunt recusandae', '1', 'Do dolor cupidatat i', '97', '1', 4, '85', '1991-06-09', 'student_profile/wxfu4IgGzAx1CFh2tGdL.jpg', '2021-09-25 06:34:47', '2021-09-25 06:34:47');
 
 -- --------------------------------------------------------
 
@@ -227,11 +254,17 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'arfat', 'arfat.bjs@gmail.com', NULL, '$2y$10$NXhURdXj7Dswz9kWX8iege3sTWJz3uyu8AoPXHwYd2rpxIxcSWykG', NULL, '2021-08-29 03:33:10', '2021-08-29 03:33:10');
+(1, 'arfat', 'aghs9435@gmail.com', NULL, '$2y$10$NXhURdXj7Dswz9kWX8iege3sTWJz3uyu8AoPXHwYd2rpxIxcSWykG', 'F7QrBu3IhzfjjfSgvF4vuocnOtfWGFcmUfa7MTAkqJ9vS8kHXhmYzhgZC41i', '2021-08-29 03:33:10', '2021-08-29 03:33:10');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `datesheets`
+--
+ALTER TABLE `datesheets`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `failed_jobs`
@@ -296,6 +329,12 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `datesheets`
+--
+ALTER TABLE `datesheets`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -323,13 +362,13 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `slips`
 --
 ALTER TABLE `slips`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `subjects`

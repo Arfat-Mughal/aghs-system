@@ -8,4 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class Slip extends Model
 {
     use HasFactory;
+
+    protected $casts = [
+        'is_active' => 'boolean',
+    ];
+
+    public function grade()
+    {
+        return $this->belongsTo(Grade::class);
+    }
+
+    public function datesheets()
+    {
+        return $this->hasMany(Datesheet::class,'slip_id');
+    }
 }

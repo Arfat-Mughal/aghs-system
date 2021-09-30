@@ -8,7 +8,7 @@
                     <div class="col-md-12">
                         <div class="overview-wrap">
                             <h2 class="title-1">Slips</h2>
-                            <a href="{{route('add_datesheet')}}"  class="au-btn au-btn-icon au-btn--blue">
+                            <a href="{{route('add_datesheet')}}" class="au-btn au-btn-icon au-btn--blue">
                                 <i class="zmdi zmdi-plus"></i>create datesheets</a>
                         </div>
                     </div>
@@ -18,30 +18,36 @@
                         <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">First</th>
-                            <th scope="col">Last</th>
-                            <th scope="col">Handle</th>
+                            <th scope="col">CLass</th>
+                            <th scope="col">Term</th>
+                            <th scope="col">Session</th>
+                            <th scope="col">Action</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
+                        @foreach($slips as $slip)
+                            <tr>
+                                <th scope="row">{{$slip->id}}</th>
+                                <td>{{$slip->grade->name}}</td>
+                                <td>{{$slip->term}}</td>
+                                <td>{{$slip->session}}</td>
+                                @if($slip->is_active)
+                                    <td>
+                                        <form action="{{route('change_slip_status',$slip->id)}}" method="post">
+                                            @csrf
+                                            <button class="btn btn-success">Active</button>
+                                        </form>
+                                    </td>
+                                @else
+                                    <td>
+                                        <form action="{{route('change_slip_status',$slip->id)}}" method="post">
+                                            @csrf
+                                            <button class="btn btn-danger">Not Active</button>
+                                        </form>
+                                    </td>
+                                @endif
+                            </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>
