@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 30, 2021 at 10:50 PM
--- Server version: 10.4.20-MariaDB
--- PHP Version: 8.0.9
+-- Generation Time: Oct 01, 2021 at 08:16 PM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 7.4.23
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -149,6 +149,50 @@ CREATE TABLE `personal_access_tokens` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `recodes`
+--
+
+CREATE TABLE `recodes` (
+  `id` int(11) NOT NULL,
+  `grade_id` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `recodes`
+--
+
+INSERT INTO `recodes` (`id`, `grade_id`, `created_at`, `updated_at`) VALUES
+(1, 4, '2021-10-01 10:55:40', '2021-10-01 10:55:40');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `recode_marks`
+--
+
+CREATE TABLE `recode_marks` (
+  `id` int(11) NOT NULL,
+  `recode_id` int(11) NOT NULL,
+  `t_marks` varchar(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `subject_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `recode_marks`
+--
+
+INSERT INTO `recode_marks` (`id`, `recode_id`, `t_marks`, `created_at`, `updated_at`, `subject_id`) VALUES
+(1, 1, '50', '2021-10-01 16:17:23', '2021-10-01 10:55:40', 7),
+(2, 1, '50', '2021-10-01 16:17:28', '2021-10-01 10:55:40', 5),
+(3, 1, '50', '2021-10-01 16:17:32', '2021-10-01 10:55:40', 3);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `slips`
 --
 
@@ -167,7 +211,7 @@ CREATE TABLE `slips` (
 --
 
 INSERT INTO `slips` (`id`, `grade_id`, `term`, `session`, `is_active`, `created_at`, `updated_at`) VALUES
-(1, 4, 'Mid Term', '2012', 0, '2021-09-30 14:53:31', '2021-09-30 14:53:31');
+(1, 4, 'Mid Term', '2012', 0, '2021-09-30 14:53:31', '2021-10-01 08:39:57');
 
 -- --------------------------------------------------------
 
@@ -300,6 +344,18 @@ ALTER TABLE `personal_access_tokens`
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
 
 --
+-- Indexes for table `recodes`
+--
+ALTER TABLE `recodes`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `recode_marks`
+--
+ALTER TABLE `recode_marks`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `slips`
 --
 ALTER TABLE `slips`
@@ -357,6 +413,18 @@ ALTER TABLE `migrations`
 --
 ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `recodes`
+--
+ALTER TABLE `recodes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `recode_marks`
+--
+ALTER TABLE `recode_marks`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `slips`

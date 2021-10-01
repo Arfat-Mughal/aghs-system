@@ -50,4 +50,16 @@ class SlipController extends Controller
         Alert::success('Datesheets Added', 'Success Message');
         return redirect()->route('slips');
     }
+
+    public function changeSlipStatus($id)
+    {
+        $slip = Slip::find($id);
+        if ($slip->is_active){
+            $slip->is_active = false;
+        }else{
+            $slip->is_active = true;
+        }
+            $slip->save();
+        return redirect()->back();
+    }
 }

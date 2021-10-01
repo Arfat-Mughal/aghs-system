@@ -30,14 +30,20 @@ Route::group(['middleware' => ['auth'], 'namespace'=>'admin'], function() {
     $SLC = SlipController::class;
     $RC = ResultController::class;
     Route::get('/dashboard',[$AC,'index'])->name('panel');
+    //StudentController
     Route::get('/students',[$SC,'index'])->name('students');
     Route::get('/student/create',[$SC,'create'])->name('add_student');
     Route::post('/student/create',[$SC,'store'])->name('store_student');
+    //SlipController
     Route::get('/slips',[$SLC,'index'])->name('slips');
     Route::get('/slips/create',[$SLC,'create'])->name('add_datesheet');
     Route::post('/slips/create',[$SLC,'store'])->name('store_datesheet');
     Route::post('/slips/{slip_id}/change-slip-status',[$SLC,'changeSlipStatus'])->name('change_slip_status');
+    //ResultController
     Route::get('/results',[$RC,'index'])->name('results');
+    Route::get('/results/create',[$RC,'create'])->name('add_results');
+    Route::post('/results/create',[$RC,'store'])->name('store_results');
+    Route::get('/results/marks/{grade_id}/adding',[$RC,'addResultMarks'])->name('add_result_marks');
 });
 //Route::get('/dashboard', function () {
 //    return view('admin.panel');

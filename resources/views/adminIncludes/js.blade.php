@@ -49,7 +49,34 @@
                 '<td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td>' +
                 '</tr>');
         });
+
+        $('#addResult').click(function(){
+            i++;j++;
+            $('#dynamic_field_result').append(
+                '<tr id="row'+i+'">' +
+                '<td><select class="custom-select" name="subject_id['+j+'][subject_id]">'+
+                ' <option selected="">Select option</option>'+
+                '<option value="1">science</option>'+
+                '<option value="2">islamiat</option>'+
+                '<option value="3">english</option>'+
+                '<option value="4">mathematics</option>'+
+                '<option value="5">urdu</option>'+
+                '<option value="6">geography</option>'+
+                '<option value="7">islamiat reading</option>'+
+                '<option value="8">table book</option>'+
+                '</select></td>' +
+                '<td><input type="number" name="subject_id['+j+'][marks]" placeholder="Enter your Name" class="form-control name_list" /></td>'+
+                '<td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove_result">X</button></td>' +
+                '</tr>');
+        });
+
+
         $(document).on('click', '.btn_remove', function(){
+            var button_id = $(this).attr("id");
+            $('#row'+button_id+'').remove();
+        });
+
+        $(document).on('click', '.btn_remove_result', function(){
             var button_id = $(this).attr("id");
             $('#row'+button_id+'').remove();
         });

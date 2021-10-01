@@ -8,6 +8,8 @@
                     <div class="col-md-12">
                         <div class="overview-wrap">
                             <h2 class="title-1">Results</h2>
+                            <a href="{{route('add_results')}}" class="au-btn au-btn-icon au-btn--blue">
+                                <i class="zmdi zmdi-plus"></i>create results</a>
                         </div>
                     </div>
                 </div>
@@ -16,30 +18,22 @@
                         <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">First</th>
-                            <th scope="col">Last</th>
-                            <th scope="col">Handle</th>
+                            <th scope="col">Class</th>
+                            <th scope="col">No of Subjects</th>
+                            <th scope="col">Total Marks</th>
+                            <th scope="col">Action</th>
                         </tr>
                         </thead>
                         <tbody>
+                        @foreach($results as $result)
                         <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
+                            <th scope="row">{{$result->id}}</th>
+                            <td>{{$result->grade->name}}</td>
+                            <td>{{$result->marks->count('subject_id')}}</td>
+                            <td>{{$result->marks->sum('t_marks')}}</td>
+                            <td><a href="{{route('add_result_marks',$result->grade_id)}}" class="btn btn-info" role="button" aria-pressed="true">Students Marks</a></td>
                         </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>
