@@ -7,6 +7,7 @@ use App\Models\Grade;
 use App\Models\Recode;
 use App\Models\RecodeMark;
 use App\Models\Student;
+use App\Models\StudentRecodeCard;
 use App\Models\Subject;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -43,15 +44,29 @@ class ResultController extends Controller
 
     public function addResultMarks($id)
     {
-//        $grades = Grade::whereHas('recode',function ($q) use ($id){
-//            $q->where('grade_id',$id)->with('marks');
-//        })->with('students')->where('id',$id)->get();
-//        dd($grades);
         $students = Student::whereHas('grade',function ($q) use ($id){
             $q->where('id',$id);
         })->get();
         $recode = Recode::whereHas('marks')->where('grade_id',$id)->first();
         $subjects = RecodeMark::with('subject')->where('recode_id',$recode->id)->get();
-        return view('admin.results_marks_add',compact('students','subjects'));
+        return view('admin.results_marks_add',compact('students','recode','subjects','id'));
+    }
+
+    public function storeResultMarks(Request $request)
+    {
+        foreach ($request->students as $recodes){
+            foreach ($recodes as $recode){
+                $studentCard = new StudentRecodeCard;
+                $studentCard->student_id = $recode['student_id'];
+                $studentCard->subject_id = $recode['subject_id'];
+                $studentCard->recode_id = $request->recode_id;
+                $studentCard->o_marks = $recode['marks'];
+                $studentCard->remarks = $recode['remarks'];
+                $studentCard->save();
+            }
+        }
+        Alert::success('Added Successfully', 'Success Message');
+        return redirect()->route('results');
+
     }
 }

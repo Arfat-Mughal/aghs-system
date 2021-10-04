@@ -45,6 +45,7 @@
                                             <button class="btn btn-danger">Not Active</button>
                                         </form>
                                     </td>
+
                                 @endif
                             </tr>
                         @endforeach

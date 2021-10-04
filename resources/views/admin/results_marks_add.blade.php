@@ -21,38 +21,43 @@
                     </div>
                 @endif
                 <div class="col-sm-8 col-md-10 col-lg-12 mt-5">
-                    <form action="" method="post" name="add_name" id="add_name">
+                    <form action="{{route('store_result_marks',$id)}}" method="post" name="add_name" id="add_name">
                         @csrf
                         <div class="card-body card-block">
-                            <div class="row">
-                                <table class="table table-striped">
-                                    <thead class="thead-dark">
-                                    <tr>
-                                        <th>Name</th>
-                                        @foreach($subjects as $item)
-                                        <th>{{$item->subject->name}}</th>
-                                        @endforeach
-                                    </tr>
-                                    </thead>
-                                    <tr>
-                                        @foreach($students as $student)
+                            @foreach($students as $key => $student)
+                            <table class="table">
+                                <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">{{$key}}</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Subjects</th>
+                                    <th scope="col">Obtain Marks</th>
+                                    <th scope="col">Remarks</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <input type="hidden" name="recode_id" value="{{$recode->id}}">
+                                    @foreach($subjects as $sb => $item)
+                                        <tr>
+                                            <input type="hidden" name="students[{{$key}}][{{$sb}}][student_id]" value="{{$student->id}}">
+                                            <th scope="row">{{$student->id}}</th>
+                                            <td>{{$student->name}}</td>
                                         <td>
-                                            <input type="text" name="term"
-                                                   placeholder="Term"
-                                                   value="{{$student->name}}"
-                                                   class="form-control name_list" disabled/>
+                                            <input type="hidden" name="students[{{$key}}][{{$sb}}][subject_id]" value="{{$item->id}}">
+                                            {{$item->subject->name}}
                                         </td>
-                                            @foreach($subjects as $item)
-                                            <td>
-                                                <input type="number" name="marks"
-                                                       placeholder="Obtain Marks"
-                                                       class="form-control name_list"/>
-                                            </td>
-                                            @endforeach
-                                        @endforeach
+                                        <td><input type="number" name="students[{{$key}}][{{$sb}}][marks]" placeholder="Obtain Marks" class="form-control name_list"/></td>
+                                        <td>
+                                            <select type="text" name="students[{{$key}}][{{$sb}}][remarks]" class="form-control name_list">
+                                                <option value="Pass" selected>Pass</option>
+                                                <option value="Fail">Fail</option>
+                                            </select>
+                                        </td>
                                     </tr>
-                                </table>
-                            </div>
+                                @endforeach
+                                </tbody>
+                            </table>
+                            @endforeach
                         </div>
                         <div>
                             <button class="btn pull-right btn-primary" type="submit">Save</button>

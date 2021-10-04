@@ -16,36 +16,47 @@
     </section>
 
     <section class="ftco-section">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-4 offset-3">
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="form-group mb-2 ml-2">
-                                <label>Type Your Roll No and Select Class</label>
+                    <form action="{{route('get_roll_no')}}" method="get">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="form-group mb-2 ml-2">
+                                    <label>Type Your Full Name and Select Class</label>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <form class="form-inline">
+                                    <div class="form-group mx-sm-3 mb-1">
+                                        <input type="text" class="form-control" placeholder="Full Name" name="full_name">
+                                    </div>
+                                    <div class="form-group mx-sm-3 mb-1">
+                                        <select class="custom-select" name="class">
+                                            <option value="" selected>Select Class</option>
+                                            @foreach($grades as $grade)
+                                                <option value="{{$grade->id}}">{{$grade->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="card footer">
+                                <div class="col-lg-12 col-md-8 mt-2 text-right">
+                                    <button type="submit" class="btn btn-primary mb-2">Get Your Slip</button>
+                                </div>
                             </div>
                         </div>
-                        <div class="card-body">
-                            <form class="form-inline">
-                                <div class="form-group mx-sm-3 mb-1">
-                                    <input type="text" class="form-control" placeholder="Roll No">
-                                </div>
-                                <div class="form-group mx-sm-3 mb-1">
-                                    <select class="custom-select">
-                                        <option value="" selected>Select Class</option>
-                                        @foreach($grades as $grade)
-                                            <option value="{{$grade->id}}">{{$grade->name}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="card footer">
-                            <div class="col-lg-12 col-md-8 mt-2 text-right">
-                                <button type="submit" class="btn btn-primary mb-2">Get Your Slip</button>
-                            </div>
-                        </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>

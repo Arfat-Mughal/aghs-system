@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 01, 2021 at 08:16 PM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 7.4.23
+-- Generation Time: Oct 04, 2021 at 11:21 PM
+-- Server version: 10.4.20-MariaDB
+-- PHP Version: 8.0.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -45,7 +45,9 @@ CREATE TABLE `datesheets` (
 
 INSERT INTO `datesheets` (`id`, `slip_id`, `subject_id`, `date`, `reporting`, `start_time`, `end_time`, `created_at`, `updated_at`) VALUES
 (1, 1, 2, '2021-10-12', '03:57', '02:56', '02:56', '2021-09-30 14:53:31', '2021-09-30 14:53:31'),
-(2, 1, 2, '2021-09-27', '00:56', '02:55', '02:56', '2021-09-30 14:53:31', '2021-09-30 14:53:31');
+(2, 1, 3, '2021-09-27', '00:56', '02:55', '02:56', '2021-09-30 14:53:31', '2021-09-30 14:53:31'),
+(3, 2, 1, '2021-10-19', '12:35', '12:35', '23:37', '2021-10-02 11:34:25', '2021-10-02 11:34:25'),
+(4, 2, 4, '2021-10-14', '23:38', '12:38', '23:37', '2021-10-02 11:34:25', '2021-10-02 11:34:25');
 
 -- --------------------------------------------------------
 
@@ -211,7 +213,8 @@ CREATE TABLE `slips` (
 --
 
 INSERT INTO `slips` (`id`, `grade_id`, `term`, `session`, `is_active`, `created_at`, `updated_at`) VALUES
-(1, 4, 'Mid Term', '2012', 0, '2021-09-30 14:53:31', '2021-10-01 08:39:57');
+(1, 4, 'Mid Term', '2012', 0, '2021-09-30 14:53:31', '2021-10-01 08:39:57'),
+(2, 5, '1 Term', '2022', 1, '2021-10-02 11:34:25', '2021-10-02 11:34:25');
 
 -- --------------------------------------------------------
 
@@ -247,7 +250,37 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`id`, `name`, `father_name`, `dob`, `email`, `religion`, `b_form`, `gender`, `cnic`, `occupation`, `quran`, `address`, `phone`, `cell`, `grade_id`, `addmission_no`, `date`, `path`, `created_at`, `updated_at`) VALUES
-(1, 'Keefe Pope', 'Destiny Coleman', '1975-07-02', NULL, 'Sikhism', '35', 'Select option', '1', 'Incidunt recusandae', '1', 'Do dolor cupidatat i', '97', '1', 4, '85', '1991-06-09', 'student_profile/wxfu4IgGzAx1CFh2tGdL.jpg', '2021-09-25 06:34:47', '2021-09-25 06:34:47');
+(1, 'arfat', 'mughal', '1975-07-02', NULL, 'Sikhism', '35', 'Select option', '1', 'Incidunt recusandae', '1', 'Do dolor cupidatat i', '97', '1', 4, '85', '1991-06-09', 'student_profile/wxfu4IgGzAx1CFh2tGdL.jpg', '2021-09-25 06:34:47', '2021-09-25 06:34:47'),
+(2, 'Bevis Good', 'Hunter Mueller', '2020-12-28', NULL, 'Islam', '39', 'male', '100', 'Pariatur Expedita i', '0', 'Illo expedita quia m', '52', '93', 4, '24', '1978-11-28', 'student_profile/HHGNchKGIZz6FX8bJJiG.jpg', '2021-10-04 13:56:56', '2021-10-04 13:56:56');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `student_recode_cards`
+--
+
+CREATE TABLE `student_recode_cards` (
+  `id` int(11) NOT NULL,
+  `student_id` int(11) NOT NULL,
+  `recode_id` int(11) NOT NULL,
+  `subject_id` int(11) NOT NULL,
+  `o_marks` varchar(11) NOT NULL,
+  `remarks` varchar(50) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `student_recode_cards`
+--
+
+INSERT INTO `student_recode_cards` (`id`, `student_id`, `recode_id`, `subject_id`, `o_marks`, `remarks`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 1, '12', 'Pass', '2021-10-04 14:53:42', '2021-10-04 14:53:42'),
+(2, 1, 1, 2, '12', 'Pass', '2021-10-04 14:53:42', '2021-10-04 14:53:42'),
+(3, 1, 1, 3, '12', 'Pass', '2021-10-04 14:53:42', '2021-10-04 14:53:42'),
+(4, 2, 1, 1, '23', 'Pass', '2021-10-04 14:53:42', '2021-10-04 14:53:42'),
+(5, 2, 1, 2, '23', 'Pass', '2021-10-04 14:53:42', '2021-10-04 14:53:42'),
+(6, 2, 1, 3, '23', 'Pass', '2021-10-04 14:53:42', '2021-10-04 14:53:42');
 
 -- --------------------------------------------------------
 
@@ -298,7 +331,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'arfat', 'aghs9435@gmail.com', NULL, '$2y$10$NXhURdXj7Dswz9kWX8iege3sTWJz3uyu8AoPXHwYd2rpxIxcSWykG', 'F7QrBu3IhzfjjfSgvF4vuocnOtfWGFcmUfa7MTAkqJ9vS8kHXhmYzhgZC41i', '2021-08-29 03:33:10', '2021-08-29 03:33:10');
+(1, 'arfat', 'aghs9435@gmail.com', NULL, '$2y$10$NXhURdXj7Dswz9kWX8iege3sTWJz3uyu8AoPXHwYd2rpxIxcSWykG', '4wag2jsqDsd9zEArQ36agjsL81EL3COL2GxemfwWBqJ7G38K3rmGJT2yE34A', '2021-08-29 03:33:10', '2021-08-29 03:33:10');
 
 --
 -- Indexes for dumped tables
@@ -368,6 +401,12 @@ ALTER TABLE `students`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `student_recode_cards`
+--
+ALTER TABLE `student_recode_cards`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `subjects`
 --
 ALTER TABLE `subjects`
@@ -388,7 +427,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `datesheets`
 --
 ALTER TABLE `datesheets`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -430,13 +469,19 @@ ALTER TABLE `recode_marks`
 -- AUTO_INCREMENT for table `slips`
 --
 ALTER TABLE `slips`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `student_recode_cards`
+--
+ALTER TABLE `student_recode_cards`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `subjects`

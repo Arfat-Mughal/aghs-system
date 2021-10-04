@@ -22,6 +22,7 @@ Route::get('/', [$HC,'home'])->name('home');
 Route::get('/contact', [$HC,'contact'])->name('contact');
 Route::get('/courses', [$HC,'courses'])->name('courses');
 Route::get('/roll_no', [$HC,'roll_no'])->name('roll_no');
+Route::get('/roll_no_slip', [$HC,'getRollNumberSlip'])->name('get_roll_no');
 Route::get('/result', [$HC,'result'])->name('result');
 
 Route::group(['middleware' => ['auth'], 'namespace'=>'admin'], function() {
@@ -44,6 +45,7 @@ Route::group(['middleware' => ['auth'], 'namespace'=>'admin'], function() {
     Route::get('/results/create',[$RC,'create'])->name('add_results');
     Route::post('/results/create',[$RC,'store'])->name('store_results');
     Route::get('/results/marks/{grade_id}/adding',[$RC,'addResultMarks'])->name('add_result_marks');
+    Route::post('/results/marks/{grade_id}/adding',[$RC,'storeResultMarks'])->name('store_result_marks');
 });
 //Route::get('/dashboard', function () {
 //    return view('admin.panel');

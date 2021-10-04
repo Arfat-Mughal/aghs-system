@@ -26,7 +26,7 @@
                             <strong>Creating</strong>
                             <small>Profile</small>
                         </div>
-                        <form action="{{route('store_datesheet')}}" method="post">
+                        <form action="{{route('store_student')}}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="card-body card-block">
                                 <div class="row">
