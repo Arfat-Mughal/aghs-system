@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Datesheet;
 use App\Models\Grade;
+use App\Models\Recode;
+use App\Models\Slip;
 use App\Models\Student;
-use Barryvdh\DomPDF\PDF;
-use Dompdf\Dompdf;
+use PDF;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\View;
 
 class HomeController extends Controller
 {
@@ -45,17 +45,27 @@ class HomeController extends Controller
     public function getRollNumberSlip(Request $request)
     {
         $student = Student::where(['name'=>$request->full_name,'grade_id'=>$request->class])->first();
+        $slip = Slip::with('grade')->where(['grade_id'=>$student->grade_id,'is_active'=>1])->first();
+        $dataSheets = Datesheet::with('subject')->whereIn('slip_id',[$slip->id])->get();
         if ($student){
-//            $pdf = new Dompdf();
-//            $html = View::make('pdf.roll_no_slip',compact('student'))->render();
-//            $pdf->loadHtml($html, 'UTF-8');
-//            $pdf->render();
-//            $filename = "Hi!";
-//            return $pdf->stream($filename);
-
-            $pdf = (new \Barryvdh\DomPDF\PDF)->loadView('pdf.roll_no_slip', compact('student'));
-
-            return $pdf->download('disney.pdf');
+            if (!$slip || !$dataSheets){
+                return redirect()->back()->withErrors(['errors'=>"Date sheet is not published yet"]);
+            }
+            return view('pdf.roll_no_slip',compact('student','slip','dataSheets'));
         }
+        return redirect()->back()->withErrors(['errors'=>"No Recode Found"]);
+    }
+
+    public function getMaksSheet(Request $request)
+    {
+        $student = Student::where('addmission_no',$request->roll_no)->first();
+        if ($student){
+            $slip = Slip::with('grade')->where(['grade_id'=>$student->grade_id,'is_active'=>1])->first();
+            if (!$slip){
+                return redirect()->back()->withErrors(['errors'=>"Result is not published yet"]);
+            }
+            return view('pdf.mark_sheet',compact('student','slip'));
+        }
+        return redirect()->back()->withErrors(['errors'=>"No Recode Found"]);
     }
 }

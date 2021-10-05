@@ -24,6 +24,7 @@ Route::get('/courses', [$HC,'courses'])->name('courses');
 Route::get('/roll_no', [$HC,'roll_no'])->name('roll_no');
 Route::get('/roll_no_slip', [$HC,'getRollNumberSlip'])->name('get_roll_no');
 Route::get('/result', [$HC,'result'])->name('result');
+Route::get('/result_sheet', [$HC,'getMaksSheet'])->name('result_catd');
 
 Route::group(['middleware' => ['auth'], 'namespace'=>'admin'], function() {
     $AC = AdminController::class;

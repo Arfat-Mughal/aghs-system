@@ -22,7 +22,7 @@
 </div>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark ftco_navbar ftco-navbar-light" id="ftco-navbar">
     <div class="container-fluid d-flex align-items-center">
-        <div class="icon"><img src="{{asset('web_assets/images/logo_header.png')}}" alt="" width="120px" height="80px"></div>
+        <div class="icon"><img src="{{asset('web_assets/images/logo_header.png')}}" alt="" width="90px" height="80px"></div>
         <a class="navbar-brand" href="#">AL-FALAH GRAMMAR HIGH SCHOOL & ACADEMY</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="oi oi-menu"></span> Menu
