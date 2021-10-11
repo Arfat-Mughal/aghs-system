@@ -32,6 +32,8 @@ Route::group(['middleware' => ['auth'], 'namespace'=>'admin'], function() {
     $SLC = SlipController::class;
     $RC = ResultController::class;
     Route::get('/dashboard',[$AC,'index'])->name('panel');
+    Route::get('/certificate-of-merit',[$AC,'certificateMerit'])->name('certificate_merit');
+    Route::get('/get-certificate-of-merit',[$AC,'get_certificateMerit'])->name('get_certificate_merit');
     //StudentController
     Route::get('/students',[$SC,'index'])->name('students');
     Route::get('/student/create',[$SC,'create'])->name('add_student');
