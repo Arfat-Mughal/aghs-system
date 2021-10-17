@@ -10,11 +10,19 @@
                             <div class="card-header">Credit Card</div>
                             <div class="card-body">
                                 <div class="card-title">
-                                    <h3 class="text-center title-2">Pay Invoice</h3>
+                                    <h3 class="text-center title-2">Certificate Of Merit</h3>
                                 </div>
                                 <hr>
+                                @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
                                 <form action="{{route('get_certificate_merit')}}" novalidate="novalidate">
-                                    @csrf
                                     <div class="row">
                                         <div class="col-3">
                                             <label for="x_card_code" class="control-label mb-1">Ref No</label>

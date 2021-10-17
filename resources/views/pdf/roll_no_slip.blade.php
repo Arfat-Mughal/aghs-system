@@ -7,6 +7,7 @@
             width: 100%;
             text-align: center;
         }
+
         #for1 th, #for1 td {
             border-bottom: 1px solid #000;
             border-right: 1px solid #000;
@@ -14,17 +15,21 @@
             padding-bottom: 5px;
             font-family: heletica;
         }
+
         #for1 td {
             padding: 3px 0;
         }
+
         .clearfix {
             content: '';
             display: table;
             clear: both;
         }
+
         #rollNo th, #rollNo td {
             padding: 4px;
         }
+
         #rollNo th {
             font-size: 20px;
         }
@@ -33,7 +38,8 @@
 <body style="width: 1000px; height:2480px; margin: auto; font-family: Arial, Helvetica, sans-serif;">
 <div class="container">
     <div class="row">
-        <h3 style="text-align: center;text-shadow: 2px 0px 0px #8a8080;font-size: 25px;">AL-FALAH GRAMMAR HIGH SCHOOL AND
+        <h3 style="text-align: center;text-shadow: 2px 0px 0px #8a8080;font-size: 25px;">AL-FALAH GRAMMAR HIGH SCHOOL
+            AND
             ACADEMY
         </h3>
     </div>
@@ -65,7 +71,8 @@
             <h4 style="font-weight:400;">{{$student->dob}}</h4>
             <h4 style="font-weight:350;">AL-FALAH GRAMMAR HIGH SCHOOL AND ACADEMY ,BHANO CHOK</h4>
         </div>
-        <div style="display: inline-block;width: 16%;border: 2px solid #000000;border-radius: 34px;height: 200px;float: right;">
+        <div
+            style="display: inline-block;width: 16%;border: 2px solid #000000;border-radius: 34px;height: 200px;float: right;">
             <img src="{{$student->path}}" style="width: 161px; height: 200px; border-radius: 17%;"/>
         </div>
     </div>
@@ -91,166 +98,29 @@
                 TIMINGS
             </th>
         </tr>
-        <tr>
-            <td>
-                1
-            </td>
-            <td>
-                SCIENCE
-            </td>
-            <td>
-                16/08/2021
-            </td>
-            <td>
-                MONDAY
-            </td>
-            <td>
-                8:30 AM
-            </td>
-            <td style="border-right: none;">
-                09:00 AM to 11:00 AM
-            </td>
-        </tr>
-        <tr>
-            <td>
-                2
-            </td>
-            <td>
-                ISLAMIYAT
-            </td>
-            <td>
-                17/08/2021
-            </td>
-            <td>
-                TUESDAY
-            </td>
-            <td>
-                8:30 AM
-            </td>
-            <td style="border-right: none;">
-                09:00 AM to 11:00 AM
-            </td>
-        </tr>
-        <tr>
-            <td>
-                3
-            </td>
-            <td>
-                ENGLISH
-            </td>
-            <td>
-                18/08/2021
-            </td>
-            <td>
-                WEDNESDAY
-            </td>
-            <td>
-                8:30 AM
-            </td>
-            <td style="border-right: none;">
-                09:00 AM to 11:00 AM
-            </td>
-        </tr>
-        <tr>
-            <td>
-                4
-            </td>
-            <td>
-                MATH
-            </td>
-            <td>
-                19/08/2021
-            </td>
-            <td>
-                THURSDAY
-            </td>
-            <td>
-                8:30 AM
-            </td>
-            <td style="border-right: none;">
-                09:00 AM to 11:00 AM
-            </td>
-        </tr>
-        <tr>
-            <td>
-                5
-            </td>
-            <td>
-                URDU
-            </td>
-            <td>
-                20/08/2021
-            </td>
-            <td>
-                FRIDAY
-            </td>
-            <td>
-                8:30 AM
-            </td>
-            <td style="border-right: none;">
-                09:00 AM to 11:00 AM
-            </td>
-        </tr>
-        <tr>
-            <td>
-                6
-            </td>
-            <td>
-                GEOGRAPHY
-            </td>
-            <td>
-                21/08/2021
-            </td>
-            <td>
-                SATURDAY
-            </td>
-            <td>
-                8:30 AM
-            </td>
-            <td style="border-right: none;">
-                09:00 AM to 11:00 AM
-            </td>
-        </tr>
-        <tr>
-            <td>
-                7
-            </td>
-            <td>
-                ISLAMIYAT
-            </td>
-            <td>
-                23/08/2021
-            </td>
-            <td>
-                MONDAY
-            </td>
-            <td>
-                8:30 AM
-            </td>
-            <td style="border-right: none;">
-                09:00 AM to 11:00 AM
-            </td>
-        </tr>
-        <tr>
-            <td>
-                8
-            </td>
-            <td>
-                TABLE BOOK
-            </td>
-            <td>
-                24/08/2021
-            </td>
-            <td>
-                TUESDAY
-            </td>
-            <td>
-                8:30 AM
-            </td>
-            <td style="border-right: none;">
-                09:00 AM to 11:00 AM
-            </td>
-        </tr>
+        @foreach($dataSheets as $index => $data)
+            <tr>
+                <td>
+                    {{$index}}
+                </td>
+                <td>
+                    {{ucfirst($data->subject->name)}}
+                </td>
+                <td>
+                    {{ \Carbon\Carbon::parse($data->date)->format('d/m/Y')}}
+                </td>
+                <td>
+                    {{ \Carbon\Carbon::parse($data->date)->format('l')}}
+                </td>
+                <td>
+                    {{ \Carbon\Carbon::parse($data->reporting)->format('h:i A')}}
+                </td>
+                <td style="border-right: none;">
+                    {{ \Carbon\Carbon::parse($data->start_time)->format('h:i A')}}
+                    To {{ \Carbon\Carbon::parse($data->end_time)->format('h:i A')}}
+                </td>
+            </tr>
+        @endforeach
     </table>
     <div style="text-align: center;">
         <h5 style="font-weight: 500;display: inline-block;">Signature of Candidate:</h5>
@@ -260,150 +130,341 @@
         <input type="text" name="text"
                style="border-top:0;border-left:0;border-right:0;border-bottom: 1px solid #000; width: 180px;background: transparent;">
     </div>
-    <h5 style="margin:0;font-weight: 500;">*NOTE:Any error found in the subject/s,date,time & photograph, must be eported to
+    <h5 style="margin:0;font-weight: 500;">*NOTE:Any error found in the subject/s,date,time & photograph, must be
+        eported to
         the AL-FALAH ADMISSION OFFICE for correction before the commencement of the examination.
     </h5>
     <h5>Tabular Name Bilal SHAHID,FormNo:786786, Center No:AL-FALAH GRAMMAR HIGH SCHOOL</h5>
     <table id="rollNo">
         <tr>
             <th>
-                7
+                {{$student->addmission_no[0]}}
             </th>
-            <th>
+            @if($student->addmission_no[1])
+                <th>
+                    {{$student->addmission_no[1]}}
+                </th>
+            @endif
+            @if($student->addmission_no[2])
+                <th>
+                    {{$student->addmission_no[2]}}
+                </th>
+            @endif
+            @if($student->addmission_no[3])
+                <th>
+                    {{$student->addmission_no[3]}}
+                </th>
+            @endif
+            @if($student->addmission_no[4])
+                <th>
+                    {{$student->addmission_no[4]}}
+                </th>
+            @endif
+            @if(!empty($student->addmission_no[5]))
+                <th>
+                    {{$student->addmission_no[5]}}
+                </th>
+            @endif
+        </tr>
+        <tr>
+            <td>
+                0
+            </td>
+            @if(!empty($student->addmission_no[1]))
+                <td>
+                    0
+                </td>
+            @endif
+            @if(!empty($student->addmission_no[2]))
+                <td>
+                    0
+                </td>
+            @endif
+            @if(!empty($student->addmission_no[3]))
+                <td>
+                    0
+                </td>
+            @endif
+            @if(!empty($student->addmission_no[4]))
+                <td>
+                    0
+                </td>
+            @endif
+            @if(!empty($student->addmission_no[5]))
+                <td>
+                    0
+                </td>
+            @endif
+        </tr>
+        <tr>
+            <td>
+                1
+            </td>
+            @if(!empty($student->addmission_no[1]))
+                <td>
+                    1
+                </td>
+            @endif
+            @if(!empty($student->addmission_no[2]))
+                <td>
+                    1
+                </td>
+            @endif
+            @if(!empty($student->addmission_no[3]))
+                <td>
+                    1
+                </td>
+            @endif
+            @if(!empty($student->addmission_no[4]))
+                <td>
+                    1
+                </td>
+            @endif
+            @if(!empty($student->addmission_no[5]))
+                <td>
+                    1
+                </td>
+            @endif
+        </tr>
+        <tr>
+            <td>
+                2
+            </td>
+            @if(!empty($student->addmission_no[1]))
+                <td>
+                    2
+                </td>
+            @endif
+            @if(!empty($student->addmission_no[2]))
+                <td>
+                    2
+                </td>
+            @endif
+            @if(!empty($student->addmission_no[3]))
+                <td>
+                    2
+                </td>
+            @endif
+            @if(!empty($student->addmission_no[4]))
+                <td>
+                    2
+                </td>
+            @endif
+            @if(!empty($student->addmission_no[5]))
+                <td>
+                    2
+                </td>
+            @endif
+        </tr>
+        <tr>
+            <td>
+                    3
+            </td>
+            @if(!empty($student->addmission_no[1]))
+                <td>
+                    3
+                </td>
+            @endif
+            @if(!empty($student->addmission_no[2]))
+                <td>
+                    3
+                </td>
+            @endif
+            @if(!empty($student->addmission_no[3]))
+                <td>
+                    3
+                </td>
+            @endif
+            @if(!empty($student->addmission_no[4]))
+                <td>
+                    3
+                </td>
+            @endif
+            @if(!empty($student->addmission_no[5]))
+                <td>
+                    3
+                </td>
+            @endif
+        </tr>
+        <tr>
+            <td>
+                    4
+            </td>
+            @if(!empty($student->addmission_no[1]))
+                <td>
+                    4
+                </td>
+            @endif
+            @if(!empty($student->addmission_no[2]))
+                <td>
+                    4
+                </td>
+            @endif
+            @if(!empty($student->addmission_no[3]))
+                <td>
+                    4
+                </td>
+            @endif
+            @if(!empty($student->addmission_no[4]))
+                <td>
+                    4
+                </td>
+            @endif
+            @if(!empty($student->addmission_no[5]))
+                <td>
+                    4
+                </td>
+            @endif
+        </tr>
+        <tr>
+            <td>
+                    5
+            </td>
+            @if(!empty($student->addmission_no[1]))
+                <td>
+                    5
+                </td>
+            @endif
+            @if(!empty($student->addmission_no[2]))
+                <td>
+                    5
+                </td>
+            @endif
+            @if(!empty($student->addmission_no[3]))
+                <td>
+                    5
+                </td>
+            @endif
+            @if(!empty($student->addmission_no[4]))
+                <td>
+                    5
+                </td>
+            @endif
+            @if(!empty($student->addmission_no[5]))
+                <td>
+                    5
+                </td>
+            @endif
+        </tr>
+        <tr>
+            <td>
+                    6
+            </td>
+            @if(!empty($student->addmission_no[1]))
+                <td>
+                    6
+                </td>
+            @endif
+            @if(!empty($student->addmission_no[2]))
+                <td>
+                    6
+                </td>
+            @endif
+            @if(!empty($student->addmission_no[3]))
+                <td>
+                    6
+                </td>
+            @endif
+            @if(!empty($student->addmission_no[4]))
+                <td>
+                    6
+                </td>
+            @endif
+            @if(!empty($student->addmission_no[5]))
+                <td>
+                    6
+                </td>
+            @endif
+        </tr>
+        <tr>
+            <td>
+                7
+            </td>
+            @if(!empty($student->addmission_no[1]))
+                <td>
+                    7
+                </td>
+            @endif
+            @if(!empty($student->addmission_no[2]))
+                <td>
+                    7
+                </td>
+            @endif
+            @if(!empty($student->addmission_no[3]))
+                <td>
+                    7
+                </td>
+            @endif
+            @if(!empty($student->addmission_no[4]))
+                <td>
+                    7
+                </td>
+            @endif
+            @if(!empty($student->addmission_no[5]))
+                <td>
+                    7
+                </td>
+            @endif
+        </tr>
+        <tr>
+            <td>
                 8
-            </th>
-            <th>
-                6
-            </th>
-            <th>
-                7
-            </th>
-            <th>
-                0
-            </th>
-            <th>
-                1
-            </th>
+            </td>
+            @if(!empty($student->addmission_no[1]))
+                <td>
+                    8
+                </td>
+            @endif
+            @if(!empty($student->addmission_no[2]))
+                <td>
+                    8
+                </td>
+            @endif
+            @if(!empty($student->addmission_no[3]))
+                <td>
+                    8
+                </td>
+            @endif
+            @if(!empty($student->addmission_no[4]))
+                <td>
+                    8
+                </td>
+            @endif
+            @if(!empty($student->addmission_no[5]))
+                <td>
+                    8
+                </td>
+            @endif
         </tr>
         <tr>
             <td>
-                0
+                9
             </td>
-            <td>
-                0
-            </td>
-            <td>
-                0
-            </td>
-            <td>
-                0
-            </td>
-            <td>
-                0
-            </td>
-            <td>
-                0
-            </td>
-        </tr>
-        <tr>
-            <td>
-                1
-            </td>
-            <td>
-                1
-            </td>
-            <td>
-                1
-            </td>
-            <td>
-                1
-            </td>
-            <td>
-                1
-            </td>
-            <td>
-                1
-            </td>
-        </tr>
-        <tr>
-            <td>
-                2
-            </td>
-            <td>
-                2
-            </td>
-            <td>
-                2
-            </td>
-            <td>
-                2
-            </td>
-            <td>
-                2
-            </td>
-            <td>
-                2
-            </td>
-        </tr>
-        <tr>
-            <td>
-                3
-            </td>
-            <td>
-                3
-            </td>
-            <td>
-                3
-            </td>
-            <td>
-                3
-            </td>
-            <td>
-                3
-            </td>
-            <td>
-                3
-            </td>
-        </tr>
-        <tr>
-            <td>
-                4
-            </td>
-            <td>
-                4
-            </td>
-            <td>
-                4
-            </td>
-            <td>
-                4
-            </td>
-            <td>
-                4
-            </td>
-            <td>
-                4
-            </td>
-        </tr>
-        <tr>
-            <td>
-                5
-            </td>
-            <td>
-                5
-            </td>
-            <td>
-                5
-            </td>
-            <td>
-                5
-            </td>
-            <td>
-                5
-            </td>
-            <td>
-                5
-            </td>
+            @if(!empty($student->addmission_no[1]))
+                <td>
+                    9
+                </td>
+            @endif
+            @if(!empty($student->addmission_no[2]))
+                <td>
+                    9
+                </td>
+            @endif
+            @if(!empty($student->addmission_no[3]))
+                <td>
+                    9
+                </td>
+            @endif
+            @if(!empty($student->addmission_no[4]))
+                <td>
+                    9
+                </td>
+            @endif
+            @if(!empty($student->addmission_no[5]))
+                <td>
+                    9
+                </td>
+            @endif
         </tr>
     </table>
 </div>
