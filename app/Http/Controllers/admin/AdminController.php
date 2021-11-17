@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -10,7 +11,8 @@ class AdminController extends Controller
 {
     public function index()
     {
-        return view('admin.panel');
+        $student_count = Student::all()->count();
+        return view('admin.panel',compact('student_count'));
     }
 
     public function certificateMerit()

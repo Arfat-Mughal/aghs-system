@@ -34,7 +34,7 @@
                 <li class="nav-item"><a href="{{route('result')}}" class="nav-link">Result</a></li>
 {{--                <li class="nav-item"><a href="#" class="nav-link">Courses</a></li>--}}
 {{--                <li class="nav-item"><a href="#" class="nav-link">Pricing</a></li>--}}
-                <li class="nav-item"><a href="{{route('courses')}}" class="nav-link">Short Courses</a></li>
+{{--                <li class="nav-item"><a href="{{route('courses')}}" class="nav-link">Short Courses</a></li>--}}
                 <li class="nav-item"><a href="{{route('contact')}}" class="nav-link">Contact Us</a></li>
                 @if (Route::has('login'))
                         @auth
