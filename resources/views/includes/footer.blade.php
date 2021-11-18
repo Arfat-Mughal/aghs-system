@@ -8,7 +8,7 @@
                         <ul>
                             <li><span class="icon icon-map-marker"></span><span class="text">VILLAGE BHANO CHAK P/O WAGHA TEHSIL SHALIMAR CANTT LAHORE</span></li>
                             <li><a href="#"><span class="icon icon-phone"></span><span class="text">0321-4960275, 0321-4969849, 042-37172294</span></a></li>
-                            <li><a href="#"><span class="icon icon-envelope"></span><span class="text">AGHS9435@GMAIL.COM</span></a></li>
+                            <li><a href="#"><span class="icon icon-envelope"></span><span class="text">info@aghslahore.com</span></a></li>
                         </ul>
                     </div>
                 </div>

@@ -25,6 +25,7 @@
                             <th scope="col">Phone</th>
                             <th scope="col">Cell</th>
                             <th scope="col">Class</th>
+                            <th scope="col">Actions</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -38,6 +39,15 @@
                             <td>{{$student->phone}}</td>
                             <td>{{$student->cell}}</td>
                             <td>{{$student->grade->name}}</td>
+                            <td><div class="btn-group" role="group">
+                                    <button id="btnGroupDrop1" type="button" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Actions
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                        <a class="dropdown-item" href="{{route('update_student',$student->addmission_no)}}">Update</a>
+                                    </div>
+                                </div>
+                            </td>
                         </tr>
                         @endforeach
                         </tbody>
