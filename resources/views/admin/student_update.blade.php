@@ -34,6 +34,7 @@
                                         <div class="form-group">
                                             <label for="cc-exp" class="control-label mb-1">Student Name</label>
                                             <input type="text" name="name" class="form-control" value="{{$student->name}}">
+                                            <input type="hidden" name="id" value="{{$student->id}}">
                                         </div>
                                     </div>
                                     <div class="col-4">

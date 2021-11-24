@@ -26,7 +26,7 @@ class StudentController extends Controller
     public function update($student_id)
     {
         $grades = Grade::all('id', 'name');
-        $student = Student::where('addmission_no', $student_id)->first();
+        $student = Student::where('id', $student_id)->first();
         return view('admin.student_update', compact('grades', 'student_id', 'student'));
     }
 
@@ -87,7 +87,7 @@ class StudentController extends Controller
             'grade_id' => 'required',
         ]);
 
-        $student = Student::where('addmission_no', $request->roll_no)->first();
+        $student = Student::where('id', $request->id)->first();
         $student->addmission_no = $request->roll_no;
         $student->name = $request->name;
         $student->father_name = $request->father_name;

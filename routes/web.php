@@ -38,7 +38,7 @@ Route::group(['middleware' => ['auth'], 'namespace'=>'admin'], function() {
     Route::get('/students',[$SC,'index'])->name('students');
     Route::get('/student/create',[$SC,'create'])->name('add_student');
     Route::post('/student/create',[$SC,'store'])->name('store_student');
-    Route::get('/student/{addmission_no}/update',[$SC,'update'])->name('update_student');
+    Route::get('/student/{id}/update',[$SC,'update'])->name('update_student');
     Route::post('/student/update',[$SC,'update_store'])->name('store_update_student');
     Route::get('/student/view',[$SC,'view'])->name('view_student');
     //SlipController
