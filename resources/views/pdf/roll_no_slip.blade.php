@@ -69,7 +69,7 @@
             <h4 style="font-weight:400;">{{$student->name}}</h4>
             <h4 style="font-weight:400;">{{$student->father_name}}</h4>
             <h4 style="font-weight:400;">{{$student->dob}}</h4>
-            <h4 style="font-weight:350;">AL-FALAH GRAMMAR HIGH SCHOOL AND ACADEMY ,BHANO CHOK</h4>
+            <h4 style="font-weight:350;">AL-FALAH GRAMMAR HIGH SCHOOL AND ACADEMY ,BHANO CHAK</h4>
         </div>
         <div
             style="display: inline-block;width: 16%;border: 2px solid #000000;border-radius: 34px;height: 200px;float: right;">

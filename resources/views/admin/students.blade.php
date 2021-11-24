@@ -44,6 +44,7 @@
                                         Actions
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                        <a class="dropdown-item" href="{{route('view_student')}}" target="_blank">View</a>
                                         <a class="dropdown-item" href="{{route('update_student',$student->addmission_no)}}">Update</a>
                                     </div>
                                 </div>

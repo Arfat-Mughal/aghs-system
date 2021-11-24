@@ -30,6 +30,11 @@ class StudentController extends Controller
         return view('admin.student_update', compact('grades', 'student_id', 'student'));
     }
 
+    public function view()
+    {
+        return view('admin.student_view');
+    }
+
     public function store(Request $request)
     {
         $request->validate([
@@ -76,7 +81,6 @@ class StudentController extends Controller
             'father_name' => 'required',
             'dob' => 'required',
             'cnic' => 'required',
-            'image' => 'required|max:2048',
             'religion' => 'required',
             'gender' => 'required',
             'address' => 'required',
