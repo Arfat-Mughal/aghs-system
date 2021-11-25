@@ -41,7 +41,8 @@ Route::group(['middleware' => ['auth'], 'namespace'=>'admin'], function() {
     Route::get('/student/{id}/update',[$SC,'update'])->name('update_student');
     Route::post('/student/update',[$SC,'update_store'])->name('store_update_student');
     Route::get('/student/{id}/view',[$SC,'view'])->name('view_student');
-    Route::post('/student/{id}/delete',[$SC,'destrop'])->name('delete_student');
+    Route::post('/student/{id}/delete',[$SC,'destroy'])->name('delete_student');
+    Route::get('/student/{id}/class',[$SC,'getStudentsViewByClasses'])->name('getStudentsViewByClasses');
     //SlipController
     Route::get('/slips',[$SLC,'index'])->name('slips');
     Route::get('/slips/create',[$SLC,'create'])->name('add_datesheet');

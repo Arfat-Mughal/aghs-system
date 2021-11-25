@@ -6,8 +6,18 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="overview-wrap">
-                            <h2 class="title-1">Students</h2>
+                        <h2 class="title-1">Students</h2>
+                        <div class="text-right">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    PRINT
+                                </button>
+                                <div class="dropdown-menu">
+                                    @foreach($grades as $grade)
+                                    <a class="dropdown-item" href="{{route('getStudentsViewByClasses',$grade->id)}}" target="_blank">{{$grade->name}}</a>
+                                    @endforeach
+                                </div>
+                            </div>
                             <a href="{{route('add_student')}}"  class="au-btn au-btn-icon au-btn--blue">
                                 <i class="zmdi zmdi-plus"></i>add student</a>
                         </div>
@@ -22,7 +32,7 @@
                             <th scope="col">Roll NO</th>
                             <th scope="col">Student Name</th>
                             <th scope="col">Father Name</th>
-                            <th scope="col">Phone</th>
+                            <th scope="col">Cnic</th>
                             <th scope="col">Cell</th>
                             <th scope="col">Class</th>
                             <th scope="col">Actions</th>
@@ -36,7 +46,7 @@
                             <td>{{$student->addmission_no}}</td>
                             <td>{{$student->name}}</td>
                             <td>{{$student->father_name}}</td>
-                            <td>{{$student->phone}}</td>
+                            <td>{{$student->b_form}}</td>
                             <td>{{$student->cell}}</td>
                             <td>{{$student->grade->name}}</td>
                             <td><div class="btn-group" role="group">

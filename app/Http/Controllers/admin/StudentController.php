@@ -13,8 +13,10 @@ class StudentController extends Controller
 {
     public function index()
     {
+        $classes = [];
         $students = Student::with('grade')->get();
-        return view('admin.students', compact('students'));
+        $grades = Grade::whereHas('students')->get();
+        return view('admin.students', compact('students','grades'));
     }
 
     public function create()
@@ -36,7 +38,7 @@ class StudentController extends Controller
         return view('admin.student_view', compact('student'));
     }
 
-    public function destrop(Request $request)
+    public function destroy(Request $request)
     {
         $student = Student::where('id', $request->id)->first();
         if (count($student->studentRecodeCards) > 0) {
@@ -139,5 +141,12 @@ class StudentController extends Controller
         $query->move($upload_path, $image_full_name);
 
         return $image_url; // Just return image
+    }
+
+    public function getStudentsViewByClasses($id)
+    {
+        $students = Student::where('grade_id',$id)->get();
+        return view('admin.studentPdfByClass',compact('students'));
+
     }
 }
