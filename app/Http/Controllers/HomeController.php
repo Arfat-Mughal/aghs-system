@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contact;
 use App\Models\Datesheet;
 use App\Models\Grade;
 use App\Models\Recode;
@@ -11,6 +12,7 @@ use App\Models\Student;
 use App\Models\StudentRecodeCard;
 use PDF;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class HomeController extends Controller
 {
@@ -27,6 +29,24 @@ class HomeController extends Controller
     public function contact()
     {
         return view('pages.contact');
+    }
+
+    public function contactStore(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|max:150',
+            'email' => 'required|max:150',
+            'subject' => 'required|max:150',
+        ]);
+
+        $contact = new Contact;
+        $contact->name = $request->name;
+        $contact->email = $request->email;
+        $contact->subject = $request->subject;
+        $contact->message = $request->message;
+        $contact->save();
+
+        return redirect()->route('contact')->with(['message',"your message is received"]);
     }
 
     public function courses()
