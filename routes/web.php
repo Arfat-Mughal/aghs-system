@@ -43,6 +43,7 @@ Route::group(['middleware' => ['auth'], 'namespace'=>'admin'], function() {
     Route::get('/student/{id}/view',[$SC,'view'])->name('view_student');
     Route::post('/student/{id}/delete',[$SC,'destroy'])->name('delete_student');
     Route::get('/student/{id}/class',[$SC,'getStudentsViewByClasses'])->name('getStudentsViewByClasses');
+    Route::get('/student/{id}/changeStatus',[$SC,'changeStudentStatus'])->name('change_Student_Status');
     //SlipController
     Route::get('/slips',[$SLC,'index'])->name('slips');
     Route::get('/slips/create',[$SLC,'create'])->name('add_datesheet');

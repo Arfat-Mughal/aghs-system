@@ -6,6 +6,8 @@
 
 <!-- Bootstrap CSS-->
 <link href="{{asset('admin_assets/vendor/bootstrap-4.1/bootstrap.min.css')}}" rel="stylesheet" media="all">
+<link href="{{asset('admin_assets/vendor/bootstrap-4.1/bootstrap4-toggle.css')}}" rel="stylesheet" media="all">
+
 
 <!-- Vendor CSS-->
 <link href="{{asset('admin_assets/vendor/animsition/animsition.min.css')}}" rel="stylesheet" media="all">
@@ -19,3 +21,6 @@
 <!-- Main CSS-->
 <link href="{{asset('admin_assets/css/theme.css')}}" rel="stylesheet" media="all">
 <link rel="stylesheet" type="text/css" href="{{asset('DataTables/datatables.min.css')}}"/>
+
+{{--CDN--}}
+

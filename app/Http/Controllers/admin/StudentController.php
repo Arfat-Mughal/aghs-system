@@ -13,8 +13,8 @@ class StudentController extends Controller
 {
     public function index()
     {
-        $classes = [];
         $students = Student::with('grade')->get();
+
         $grades = Grade::whereHas('students')->get();
         return view('admin.students', compact('students','grades'));
     }
@@ -49,6 +49,19 @@ class StudentController extends Controller
         unlink($student->path);
         $student->delete();
         Alert::success('Student Deleted', 'Success Message');
+        return redirect()->route('students');
+    }
+
+    public function changeStudentStatus($id)
+    {
+        $student = Student::find($id);
+        if($student->is_active){
+            $student->is_active = 0;
+        }else{
+            $student->is_active = 1;
+        }
+        $student->save();
+        Alert::success('Student status updated', 'Success Message');
         return redirect()->route('students');
     }
 

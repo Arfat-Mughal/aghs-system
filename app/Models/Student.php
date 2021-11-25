@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Student extends Model
 {
+    protected $casts = [
+        'is_active' => 'boolean',
+    ];
+
     use HasFactory;
 
     public function grade()

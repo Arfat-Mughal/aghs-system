@@ -3,6 +3,7 @@
 <!-- Bootstrap JS-->
 <script src="{{asset('admin_assets/vendor/bootstrap-4.1/popper.min.js')}}"></script>
 <script src="{{asset('admin_assets/vendor/bootstrap-4.1/bootstrap.min.js')}}"></script>
+<script src="{{asset('admin_assets/vendor/bootstrap-4.1/bootstrap4-toggle.js')}}"></script>
 <!-- Vendor JS       -->
 <script src="{{asset('admin_assets/vendor/slick/slick.min.js')}}">
 </script>

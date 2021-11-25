@@ -35,6 +35,7 @@
                             <th scope="col">Cnic</th>
                             <th scope="col">Cell</th>
                             <th scope="col">Class</th>
+                            <th scope="col">Status</th>
                             <th scope="col">Actions</th>
                         </tr>
                         </thead>
@@ -49,7 +50,15 @@
                             <td>{{$student->b_form}}</td>
                             <td>{{$student->cell}}</td>
                             <td>{{$student->grade->name}}</td>
-                            <td><div class="btn-group" role="group">
+                            <td>
+                                @if($student->is_active)
+                                <a href="{{ route('change_Student_Status', [ 'id'=> $student->id ]) }}" class="btn btn-success btn-sm" role="button" aria-pressed="true">Active</a>
+                                @else
+                                    <a href="{{ route('change_Student_Status', [ 'id'=> $student->id ]) }}" class="btn btn-danger btn-sm" role="button" aria-pressed="true">Blocked</a>
+                                    @endif
+                            </td>
+                            <td>
+                                <div class="btn-group" role="group">
                                     <button id="btnGroupDrop1" type="button" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Actions
                                     </button>
