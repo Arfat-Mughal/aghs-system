@@ -44,8 +44,14 @@
                                         Actions
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-{{--                                        <a class="dropdown-item" href="{{route('view_student')}}" target="_blank">View</a>--}}
+                                        <a class="dropdown-item" href="{{route('view_student',$student->id)}}" target="_blank">View</a>
                                         <a class="dropdown-item" href="{{route('update_student',$student->id)}}">Update</a>
+                                        <form method="POST" action="{{ route('delete_student', [ 'id'=> $student->id ]) }}">
+                                            @csrf
+                                            <input type="hidden" name="id" value={{$student->id}}>
+                                            <button type="submit" class="dropdown-item">Delete
+                                            </button>
+                                        </form>
                                     </div>
                                 </div>
                             </td>

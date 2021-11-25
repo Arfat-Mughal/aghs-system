@@ -14,6 +14,11 @@ class Student extends Model
         return $this->belongsTo(Grade::class,'grade_id');
     }
 
+    public function studentRecodeCards()
+    {
+        return $this->hasMany(StudentRecodeCard::class,'student_id');
+    }
+
     public function getFullNameAttribute()
     {
         return "{$this->name} {$this->father_name}";

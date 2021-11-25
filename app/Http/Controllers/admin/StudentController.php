@@ -30,9 +30,24 @@ class StudentController extends Controller
         return view('admin.student_update', compact('grades', 'student_id', 'student'));
     }
 
-    public function view()
+    public function view($id)
     {
-        return view('admin.student_view');
+        $student = Student::with('grade')->find($id);
+        return view('admin.student_view', compact('student'));
+    }
+
+    public function destrop(Request $request)
+    {
+        $student = Student::where('id', $request->id)->first();
+        if (count($student->studentRecodeCards) > 0) {
+            foreach ($student->studentRecodeCards as $studentCard) {
+                $studentCard->delete();
+            }
+        }
+        unlink($student->path);
+        $student->delete();
+        Alert::success('Student Deleted', 'Success Message');
+        return redirect()->route('students');
     }
 
     public function store(Request $request)
@@ -104,7 +119,7 @@ class StudentController extends Controller
         $student->cell = $request->cell;
         $student->grade_id = $request->grade_id;
         $student->date = $request->date;
-        if ($request->hasFile('image')){
+        if ($request->hasFile('image')) {
 //            unlink("student_profile/".$student->path);
             $student->path = $this->UserImageUpload($request->file('image'));
         }
