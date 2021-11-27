@@ -67,6 +67,18 @@ class ResultController extends Controller
         }
         Alert::success('Added Successfully', 'Success Message');
         return redirect()->route('results');
+    }
 
+    public function deleteResultMarks($id)
+    {
+        $recode = Recode::find($id);
+        if ($recode->marks){
+            foreach ($recode->marks as $mark){
+                $mark->delete();
+            }
+        }
+        $recode->delete();
+        Alert::success('Deleted Successfully', 'Success Message');
+        return redirect()->route('results');
     }
 }

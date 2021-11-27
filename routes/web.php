@@ -51,12 +51,14 @@ Route::group(['middleware' => ['auth'], 'namespace'=>'admin'], function() {
     Route::get('/slips/create',[$SLC,'create'])->name('add_datesheet');
     Route::post('/slips/create',[$SLC,'store'])->name('store_datesheet');
     Route::post('/slips/{slip_id}/change-slip-status',[$SLC,'changeSlipStatus'])->name('change_slip_status');
+    Route::get('/slips/{id}/deleting',[$SLC,'deleteSlip'])->name('delete_slips_marks');
     //ResultController
     Route::get('/results',[$RC,'index'])->name('results');
     Route::get('/results/create',[$RC,'create'])->name('add_results');
     Route::post('/results/create',[$RC,'store'])->name('store_results');
     Route::get('/results/marks/{grade_id}/adding',[$RC,'addResultMarks'])->name('add_result_marks');
     Route::post('/results/marks/{grade_id}/adding',[$RC,'storeResultMarks'])->name('store_result_marks');
+    Route::get('/results/marks/{grade_id}/deleting',[$RC,'deleteResultMarks'])->name('delete_result_marks');
 });
 //Route::get('/dashboard', function () {
 //    return view('admin.panel');

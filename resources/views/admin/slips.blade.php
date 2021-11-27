@@ -39,11 +39,12 @@
                                         </form>
                                     </td>
                                 @else
-                                    <td>
+                                    <td class="d-flex">
                                         <form action="{{route('change_slip_status',$slip->id)}}" method="post">
                                             @csrf
                                             <button class="btn btn-danger">Not Active</button>
                                         </form>
+                                        <a href="{{route('delete_slips_marks',$slip->id)}}" class="btn btn-danger ml-2" role="button" aria-pressed="true">Delete</a>
                                     </td>
 
                                 @endif

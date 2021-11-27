@@ -31,7 +31,10 @@
                             <td>{{$result->grade->name}}</td>
                             <td>{{$result->marks->count('subject_id')}}</td>
                             <td>{{$result->marks->sum('t_marks')}}</td>
-                            <td><a href="{{route('add_result_marks',$result->grade_id)}}" class="btn btn-info" role="button" aria-pressed="true">Students Marks</a></td>
+                            <td>
+                                <a href="{{route('add_result_marks',$result->grade_id)}}" class="btn btn-info" role="button" aria-pressed="true">Add Marks</a>
+                                <a href="{{route('delete_result_marks',$result->id)}}" class="btn btn-danger" role="button" aria-pressed="true">Delete</a>
+                            </td>
                         </tr>
                         @endforeach
                         </tbody>

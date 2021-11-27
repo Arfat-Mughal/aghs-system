@@ -62,4 +62,17 @@ class SlipController extends Controller
             $slip->save();
         return redirect()->back();
     }
+
+    public function deleteSlip($id)
+    {
+        $slips = Slip::find($id);
+        if ($slips->datesheets){
+            foreach ($slips->datesheets as $slip){
+                $slip->delete();
+            }
+        }
+        $slips->delete();
+        Alert::success('Deleted', 'Success Message');
+        return redirect()->route('slips');
+    }
 }
