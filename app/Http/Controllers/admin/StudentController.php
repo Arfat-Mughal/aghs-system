@@ -13,8 +13,17 @@ class StudentController extends Controller
 {
     public function index()
     {
-        $students = Student::with('grade')->get();
-
+        $students = Student::with('grade')->select(
+            'id',
+            'path',
+            'addmission_no',
+            'name',
+            'father_name',
+            'b_form',
+            'cell',
+            'grade_id',
+            'is_active'
+        )->paginate(10);
         $grades = Grade::whereHas('students')->get();
         return view('admin.students', compact('students','grades'));
     }

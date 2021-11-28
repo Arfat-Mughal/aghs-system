@@ -10,7 +10,13 @@
         <div class="container">
             <div class="card">
                 <div class="card-header d-flex" style="background-color:rgba(192,192,192,0.3)">
-                    <b>{{$student->name}}</b> &nbsp; S/O &nbsp; <b>{{$student->father_name}}</b>
+                    <b>{{$student->name}}</b> &nbsp;
+                    @if($student->gender === "male")
+                        S/O
+                    @else
+                        D/O
+                    @endif
+                    &nbsp; <b>{{$student->father_name}}</b>
                     <div class="offset-5">
                         <b>Class</b> : {{$student->grade->name}}
                     </div>

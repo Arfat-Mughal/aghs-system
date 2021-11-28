@@ -24,7 +24,7 @@
                     </div>
                 </div>
                 <div class="mt-2">
-                    <table class="table table-striped" id="table">
+                    <table class="table table-striped" id="">
                         <thead>
                         <tr>
                             <th scope="col">#</th>
@@ -78,6 +78,9 @@
                         @endforeach
                         </tbody>
                     </table>
+                </div>
+                <div class="d-flex justify-content-end">
+                    {{ $students->links('vendor.pagination.bootstrap-4') }}
                 </div>
             </div>
         </div>

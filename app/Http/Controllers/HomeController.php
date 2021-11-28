@@ -6,13 +6,11 @@ use App\Models\Contact;
 use App\Models\Datesheet;
 use App\Models\Grade;
 use App\Models\Recode;
-use App\Models\RecodeMark;
 use App\Models\Slip;
 use App\Models\Student;
 use App\Models\StudentRecodeCard;
-use PDF;
 use Illuminate\Http\Request;
-use RealRashid\SweetAlert\Facades\Alert;
+use Artesaos\SEOTools\Facades\SEOMeta;
 
 class HomeController extends Controller
 {
@@ -23,11 +21,18 @@ class HomeController extends Controller
 
     public function home()
     {
+        SEOMeta::setTitle('AGHS-Home');
+        SEOMeta::setTitleDefault('AL-FALAH GRAMMAR HIGH SCHOOL & ACADEMY');
+        SEOMeta::setDescription('Student teaching experience, and have passed additional state-mandated teaching examinations.');
+        SEOMeta::setCanonical('https://aghslahore.com');
         return view('main');
     }
 
     public function contact()
     {
+        SEOMeta::setTitle('AGHS-Contacts');
+        SEOMeta::setDescription('VILLAGE BHANO CHAK P/O WAGHA TEHSIL SHALIMAR CANTT LAHORE');
+        SEOMeta::setCanonical('https://aghslahore.com/contact');
         return view('pages.contact');
     }
 
@@ -56,17 +61,26 @@ class HomeController extends Controller
 
     public function roll_no()
     {
+        SEOMeta::setTitle('Roll Number Slips');
+        SEOMeta::setDescription('Type your name and select class');
+        SEOMeta::setCanonical('https://aghslahore.com/roll_no');
         return view('pages.roll_no')->with('grades',$this->grades);
     }
 
     public function result()
     {
+        SEOMeta::setTitle('Result Cards');
+        SEOMeta::setDescription('Type your roll number to get your result');
+        SEOMeta::setCanonical('https://aghslahore.com/result');
         return view('pages.result')->with('grades',$this->grades);
     }
 
     public function getRollNumberSlip(Request $request)
     {
         $student = Student::where(['name'=>$request->full_name,'grade_id'=>$request->class])->first();
+        if (!$student->is_active){
+            return redirect()->back()->withErrors(['errors'=>"Over Duties please clear your dues first"]);
+        }
         $slip = Slip::with('grade')->where(['grade_id'=>$student->grade_id,'is_active'=>1])->first();
         $dataSheets = Datesheet::with('subject')->whereIn('slip_id',[$slip->id])->get();
         if ($student){
@@ -81,6 +95,9 @@ class HomeController extends Controller
     public function getMaksSheet(Request $request)
     {
         $student = Student::where('addmission_no',$request->roll_no)->first();
+        if (!$student->is_active){
+            return redirect()->back()->withErrors(['errors'=>"Over Dues!! please clear your dues first"]);
+        }
         if ($student){
             $slip = Slip::with('grade')->where(['grade_id'=>$student->grade_id,'is_active'=>1])->first();
             if (!$slip){
