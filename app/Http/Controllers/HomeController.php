@@ -81,7 +81,10 @@ class HomeController extends Controller
         if (!$student->is_active){
             return redirect()->back()->withErrors(['errors'=>"Over Duties please clear your dues first"]);
         }
-        $slip = Slip::with('grade')->where(['grade_id'=>$student->grade_id,'is_active'=>1])->first();
+        $slip = Slip::with('grade')->where('grade_id',$student->grade_id)->first();
+        if (!$slip->is_active){
+            return redirect()->back()->withErrors(['errors'=>"Date sheet is not published yet"]);
+        }
         $dataSheets = Datesheet::with('subject')->whereIn('slip_id',[$slip->id])->get();
         if ($student){
             if (!$slip || !$dataSheets){
