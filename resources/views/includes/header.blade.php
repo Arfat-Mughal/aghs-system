@@ -30,6 +30,7 @@
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active"><a href="{{route('home')}}" class="nav-link pl-0">Home</a></li>
+                <li class="nav-item "><a href="{{route('notice')}}" class="nav-link pl-0">Notice</a></li>
                 <li class="nav-item"><a href="{{route('roll_no')}}" class="nav-link">Roll No Slip</a></li>
                 <li class="nav-item"><a href="{{route('result')}}" class="nav-link">Result</a></li>
 {{--                <li class="nav-item"><a href="#" class="nav-link">Courses</a></li>--}}

@@ -67,6 +67,11 @@ class HomeController extends Controller
         return view('pages.roll_no')->with('grades',$this->grades);
     }
 
+    public function notice()
+    {
+        return view('pages.notic');
+    }
+
     public function result()
     {
         SEOMeta::setTitle('Result Cards');
