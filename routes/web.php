@@ -52,6 +52,7 @@ Route::group(['middleware' => ['auth'], 'namespace'=>'admin'], function() {
     Route::get('/get-certificate-of-merit',[$AC,'get_certificateMerit'])->name('get_certificate_merit');
     //StudentController
     Route::get('/students',[$SC,'index'])->name('students');
+    Route::post('/students',[$SC,'searchStudent'])->name('searchStudent');
     Route::get('/student/create',[$SC,'create'])->name('add_student');
     Route::post('/student/create',[$SC,'store'])->name('store_student');
     Route::get('/student/{id}/update',[$SC,'update'])->name('update_student');

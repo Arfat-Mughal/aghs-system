@@ -84,7 +84,7 @@ class HomeController extends Controller
     {
         $student = Student::where(['name'=>$request->full_name,'grade_id'=>$request->class])->first();
         if (!$student->is_active){
-            return redirect()->back()->withErrors(['errors'=>"Over Duties please clear your dues first"]);
+            return redirect()->back()->withErrors(['errors'=>"Over Dues!! please clear your dues first"]);
         }
         $slip = Slip::with('grade')->where('grade_id',$student->grade_id)->first();
         if (!$slip->is_active){

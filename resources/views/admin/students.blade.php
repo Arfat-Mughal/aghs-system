@@ -23,6 +23,16 @@
                         </div>
                     </div>
                 </div>
+                <div class="row justify-content-end">
+                    <div class="col-md-4 ">
+                        <form action="{{route('searchStudent')}}" method="post" class="mt-4 d-flex">
+                            @csrf
+                            <label for="search" class="mr-3 mt-1">Search</label>
+                            <input type="text" name="search" id="search" maxlength="25" class="form-control">
+                            <button type="submit" class="btn btn-primary btn-sm ml-3">Search</button>
+                        </form>
+                    </div>
+                </div>
                 <div class="mt-2">
                     <table class="table table-striped" id="">
                         <thead>

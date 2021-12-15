@@ -28,6 +28,20 @@ class StudentController extends Controller
         return view('admin.students', compact('students','grades'));
     }
 
+    public function searchStudent(Request $request)
+    {
+        $students = Student::query()
+            ->where('name','like',$request->search.'%')
+            ->orWhere('addmission_no','like',$request->search.'%')
+            ->orWhere('father_name','like',$request->search.'%')
+            ->orWhereHas('grade',function ($q) use ($request){
+                $q->where('name','like',$request->search.'%');
+            })
+            ->orWhere('b_form','like',$request->search.'%')->with('grade')->paginate(10);
+        $grades = Grade::whereHas('students')->get();
+        return view('admin.students', compact('students','grades'));
+    }
+
     public function create()
     {
         $grades = Grade::all('id', 'name');
