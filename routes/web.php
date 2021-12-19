@@ -40,6 +40,7 @@ Route::get('/roll_no_slip', [$HC,'getRollNumberSlip'])->name('get_roll_no');
 Route::get('/result', [$HC,'result'])->name('result');
 Route::get('/result_sheet', [$HC,'getMaksSheet'])->name('result_catd');
 Route::get('/notice', [$HC,'notice'])->name('notice');
+Route::get('/about-us', [$HC,'about'])->name('about');
 
 
 Route::group(['middleware' => ['auth'], 'namespace'=>'admin'], function() {

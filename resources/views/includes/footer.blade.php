@@ -47,8 +47,9 @@
                         <li><a href="{{route('home')}}"><span class="ion-ios-arrow-round-forward mr-2"></span>Home</a></li>
                         <li><a href="{{route('roll_no')}}"><span class="ion-ios-arrow-round-forward mr-2"></span>Roll No Slip</a></li>
                         <li><a href="{{route('result')}}"><span class="ion-ios-arrow-round-forward mr-2"></span>Result</a></li>
-                        <li><a href="{{route('courses')}}"><span class="ion-ios-arrow-round-forward mr-2"></span>Courses</a></li>
-                        <li><a href="{{route('contact')}}"><span class="ion-ios-arrow-round-forward mr-2"></span>Contact</a></li>
+{{--                        <li><a href="{{route('courses')}}"><span class="ion-ios-arrow-round-forward mr-2"></span>Courses</a></li>--}}
+                        <li><a href="{{route('contact')}}"><span class="ion-ios-arrow-round-forward mr-2"></span>Contact Us</a></li>
+                        <li><a href="{{route('about')}}"><span class="ion-ios-arrow-round-forward mr-2"></span>About</a></li>
                     </ul>
                 </div>
             </div>

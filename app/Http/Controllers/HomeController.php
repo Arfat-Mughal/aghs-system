@@ -83,6 +83,14 @@ class HomeController extends Controller
         return view('pages.result')->with('grades',$this->grades);
     }
 
+    public function about()
+    {
+        SEOMeta::setTitle('AGHS-LAHORE | About Us');
+        SEOMeta::setDescription('Message from the Head of School');
+        SEOMeta::setCanonical('https://aghslahore.com/result');
+        return view('pages.about');
+    }
+
     public function getRollNumberSlip(Request $request)
     {
         $student = Student::where(['name'=>$request->full_name,'grade_id'=>$request->class])->first();
