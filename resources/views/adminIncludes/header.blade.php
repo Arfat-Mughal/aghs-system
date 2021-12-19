@@ -23,7 +23,7 @@
                                         <h5 class="name">
                                             <a href="#">Muhammad Bilal</a>
                                         </h5>
-                                        <span class="email">johndoe@example.com</span>
+                                        <span class="email">Bilalmayo077@gmail.com</span>
                                     </div>
                                 </div>
                                 <div class="account-dropdown__body">

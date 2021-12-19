@@ -21,16 +21,16 @@ class HomeController extends Controller
 
     public function home()
     {
-        SEOMeta::setTitle('AGHS-Home');
+        SEOMeta::setTitle('AGHS-LAHORE');
         SEOMeta::setTitleDefault('AL-FALAH GRAMMAR HIGH SCHOOL & ACADEMY');
-        SEOMeta::setDescription('Student teaching experience, and have passed additional state-mandated teaching examinations.');
+        SEOMeta::setDescription('Home page');
         SEOMeta::setCanonical('https://aghslahore.com');
         return view('main');
     }
 
     public function contact()
     {
-        SEOMeta::setTitle('AGHS-Contacts');
+        SEOMeta::setTitle('AGHS-LAHORE | Contacts');
         SEOMeta::setDescription('VILLAGE BHANO CHAK P/O WAGHA TEHSIL SHALIMAR CANTT LAHORE');
         SEOMeta::setCanonical('https://aghslahore.com/contact');
         return view('pages.contact');
@@ -61,7 +61,7 @@ class HomeController extends Controller
 
     public function roll_no()
     {
-        SEOMeta::setTitle('Roll Number Slips');
+        SEOMeta::setTitle('AGHS-LAHORE | Roll Number Slips');
         SEOMeta::setDescription('Type your name and select class');
         SEOMeta::setCanonical('https://aghslahore.com/roll_no');
         return view('pages.roll_no')->with('grades',$this->grades);
@@ -69,12 +69,15 @@ class HomeController extends Controller
 
     public function notice()
     {
+        SEOMeta::setTitle('AGHS-LAHORE | Notifications');
+        SEOMeta::setDescription('See All upcoming notifications');
+        SEOMeta::setCanonical('https://aghslahore.com/notice');
         return view('pages.notic');
     }
 
     public function result()
     {
-        SEOMeta::setTitle('Result Cards');
+        SEOMeta::setTitle('AGHS-LAHORE | Result Cards');
         SEOMeta::setDescription('Type your roll number to get your result');
         SEOMeta::setCanonical('https://aghslahore.com/result');
         return view('pages.result')->with('grades',$this->grades);

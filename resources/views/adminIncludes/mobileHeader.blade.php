@@ -4,7 +4,7 @@
         <div class="container-fluid">
             <div class="header-mobile-inner">
                 <a class="logo" href="#">
-                    <img src="{{asset('admin_assets/images/logo_header.jpg')}}" alt="AGHS" width="80px" height="80px"/>
+                    <img src="{{asset('admin_assets/images/logo_header.png')}}" alt="AGHS" width="80px" height="80px"/>
                 </a>
                 <button class="hamburger hamburger--slider" type="button">
                             <span class="hamburger-box">

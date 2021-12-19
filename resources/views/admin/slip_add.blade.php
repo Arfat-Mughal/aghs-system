@@ -3,6 +3,7 @@
     <!-- MAIN CONTENT-->
     <div class="main-content">
         <div class="section__content section__content--p30">
+            <!-- Bootstrap DatePicker -->
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-sm-8 col-md-10 col-lg-12">
@@ -28,8 +29,8 @@
                                 <div class="col-4">
                                     <label for="x_card_code" class="control-label mb-1">Class</label>
                                     <div class="input-group">
-                                        <select class="custom-select" name="grade_id">
-                                            <option selected>Select option</option>
+                                        <select class="custom-select" name="grade_id" required>
+                                            <option selected value="">Select option</option>
                                             @foreach($grades as $grade)
                                                 <option value="{{$grade->id}}">{{$grade->name}}</option>
                                             @endforeach
@@ -41,7 +42,7 @@
                                     <div class="input-group">
                                         <input type="text" name="term"
                                                placeholder="Term"
-                                               class="form-control name_list"/>
+                                               class="form-control name_list" required/>
                                     </div>
                                 </div>
                                 <div class="col-4">
@@ -49,7 +50,7 @@
                                     <div class="input-group">
                                         <input type="text" name="current_session"
                                                placeholder="Current Session"
-                                               class="form-control name_list"/>
+                                               class="form-control name_list" required/>
                                     </div>
                                 </div>
                             </div>

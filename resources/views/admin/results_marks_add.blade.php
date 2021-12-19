@@ -28,7 +28,7 @@
                             <table class="table">
                                 <thead class="thead-dark">
                                 <tr>
-                                    <th scope="col">{{$key}}</th>
+                                    <th scope="col">{{$loop->iteration}}</th>
                                     <th scope="col">Name</th>
                                     <th scope="col">Subjects</th>
                                     <th scope="col">Obtain Marks</th>
