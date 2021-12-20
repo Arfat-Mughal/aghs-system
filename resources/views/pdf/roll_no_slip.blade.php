@@ -56,7 +56,7 @@
 {{--        </h3>--}}
 {{--    </div>--}}
     <div style="width:150px;margin:auto;position: relative;bottom: 0px;">
-        <img src="{{asset('web_assets/images/logo_header.png')}}" style="width: 150px; height: 150px;"/>
+        <img src="{{asset('web_assets/images/logo_header.jpg')}}" style="width: 150px; height: 150px;"/>
     </div>
     <div style="width: 100%;" class="clearfix">
         <div style="float: left;width: 15%;">
