@@ -50,11 +50,11 @@
     </h4>
     <h3 style="text-align: center;">ROLL NUMBER SLIP "{{$slip->term}}" (CLASS {{$slip->grade->name}})</h3>
     <h4 style="text-align: center;">( Academic Session {{$slip->session}} )</h4>
-    <div>
-        <h3 style="text-align: center;margin-bottom:10px;text-decoration: underline;">
-            SCHOOL CERTIFICATE ( {{$slip->term}} ) EXAMINATION {{$slip->session}}
-        </h3>
-    </div>
+{{--    <div>--}}
+{{--        <h3 style="text-align: center;margin-bottom:10px;text-decoration: underline;">--}}
+{{--            SCHOOL CERTIFICATE ( {{$slip->term}} ) EXAMINATION {{$slip->session}}--}}
+{{--        </h3>--}}
+{{--    </div>--}}
     <div style="width:150px;margin:auto;position: relative;bottom: 0px;">
         <img src="{{asset('web_assets/images/logo_header.png')}}" style="width: 150px; height: 150px;"/>
     </div>
@@ -136,9 +136,9 @@
         eported to
         the AL-FALAH ADMISSION OFFICE for correction before the commencement of the examination.
     </h5>
-    <h5>Tabular Name Bilal SHAHID,FormNo:786786, Center No:AL-FALAH GRAMMAR HIGH SCHOOL</h5>
+    <h5>Tabulator Name Bilal SHAHID,FormNo:786786, Center No:AL-FALAH GRAMMAR HIGH SCHOOL</h5>
     <div  style="
-        background-image: url('{{asset('web_assets/images/inst.png')}}');
+        background-image: url('{{asset('web_assets/images/notics.png')}}');
         background-repeat: no-repeat;
         background-position: right;
         height: 100%;

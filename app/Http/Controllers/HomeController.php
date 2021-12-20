@@ -21,7 +21,7 @@ class HomeController extends Controller
 
     public function home()
     {
-        SEOMeta::setTitle('AGHS-LAHORE');
+        SEOMeta::setTitle('AGHS-LAHORE | Home');
         SEOMeta::setTitleDefault('AL-FALAH GRAMMAR HIGH SCHOOL & ACADEMY');
         SEOMeta::setDescription('Home page');
         SEOMeta::setCanonical('https://aghslahore.com');
