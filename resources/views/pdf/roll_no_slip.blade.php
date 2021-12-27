@@ -138,10 +138,10 @@
     </h5>
     <h5>Tabulator Name Bilal SHAHID,FormNo:786786, Center No:AL-FALAH GRAMMAR HIGH SCHOOL</h5>
     <div  style="
-        background-image: url('{{asset('web_assets/images/notics.png')}}');
+        background-image: url('{{asset('web_assets/images/inst2.jpg')}}');
         background-repeat: no-repeat;
         background-position: right;
-        height: 100%;
+        background-size: 60% 100%;
         ">
         <table id="rollNo">
             <tr>
@@ -445,6 +445,35 @@
                 @endif
             </tr>
             <tr>
+                <td>
+                    9
+                </td>
+                @if(isset($student->addmission_no[1]))
+                    <td>
+                        9
+                    </td>
+                @endif
+                @if(isset($student->addmission_no[2]))
+                    <td>
+                        9
+                    </td>
+                @endif
+                @if(isset($student->addmission_no[3]))
+                    <td>
+                        9
+                    </td>
+                @endif
+                @if(isset($student->addmission_no[4]))
+                    <td>
+                        9
+                    </td>
+                @endif
+                @if(isset($student->addmission_no[5]))
+                    <td>
+                        9
+                    </td>
+                @endif
+            </tr><tr>
                 <td>
                     9
                 </td>
