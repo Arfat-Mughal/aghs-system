@@ -60,6 +60,7 @@
                     '<option value="24">PUNJABI</option>'+
                     '<option value="25">CIVICS</option>'+
                     '<option value="26">G.K</option>'+
+                    '<option value="27">BIOLOGY/COMPUTER</option>'+
                 '</select></td>' +
                 '<td><input type="date" name="subject_id['+j+'][date]" placeholder="Enter your Name" class="form-control name_list" /></td>'+
                 '<td><input type="time" name="subject_id['+j+'][reporting]" placeholder="Enter reporting time" class="form-control name_list" /></td>'+
@@ -102,6 +103,7 @@
                 '<option value="24">PUNJABI</option>'+
                 '<option value="25">CIVICS</option>'+
                 '<option value="26">G.K</option>'+
+                '<option value="27">BIOLOGY/COMPUTER</option>'+
                 '</select></td>' +
                 '<td><input type="number" name="subject_id['+j+'][marks]" placeholder="Enter your Name" class="form-control name_list" /></td>'+
                 '<td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove_result">X</button></td>' +
