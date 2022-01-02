@@ -45,6 +45,7 @@
                                             <button class="btn btn-danger">Not Active</button>
                                         </form>
                                         <a href="{{route('delete_slips_marks',$slip->id)}}" class="btn btn-danger ml-2" role="button" aria-pressed="true">Delete</a>
+                                        <a href="{{route('update_slips_marks',$slip->id)}}" class="btn btn-info ml-2" role="button" aria-pressed="true">Update</a>
                                     </td>
 
                                 @endif

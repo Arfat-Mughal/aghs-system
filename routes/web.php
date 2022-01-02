@@ -68,6 +68,8 @@ Route::group(['middleware' => ['auth'], 'namespace'=>'admin'], function() {
     Route::post('/slips/create',[$SLC,'store'])->name('store_datesheet');
     Route::post('/slips/{slip_id}/change-slip-status',[$SLC,'changeSlipStatus'])->name('change_slip_status');
     Route::get('/slips/{id}/deleting',[$SLC,'deleteSlip'])->name('delete_slips_marks');
+    Route::get('/slips/{id}/update',[$SLC,'updateSlip'])->name('update_slips_marks');
+    Route::post('/slips/{id}/update',[$SLC,'update_slip'])->name('update_slips_marks_store');
     //ResultController
     Route::get('/results',[$RC,'index'])->name('results');
     Route::get('/results/create',[$RC,'create'])->name('add_results');

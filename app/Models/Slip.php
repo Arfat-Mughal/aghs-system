@@ -13,6 +13,8 @@ class Slip extends Model
         'is_active' => 'boolean',
     ];
 
+    protected $fillable = ['grade_id','term','session'];
+
     public function grade()
     {
         return $this->belongsTo(Grade::class);

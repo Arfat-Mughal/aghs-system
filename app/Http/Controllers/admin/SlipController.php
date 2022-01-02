@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Datesheet;
 use App\Models\Grade;
 use App\Models\Slip;
 use App\Models\Subject;
@@ -22,6 +23,52 @@ class SlipController extends Controller
         $grades = Grade::all('id','name');
         $subjects = Subject::all('id','name');
         return view('admin.slip_add',compact('grades','subjects'));
+    }
+
+    public function updateSlip($id)
+    {
+        $slip = Slip::with('datesheets')->find($id);
+        $grades = Grade::all('id','name');
+        $subjects = Subject::all('id','name');
+        return view('admin.slip_update',compact('grades','subjects','slip'));
+    }
+
+    public function update_slip(Request $request, $id)
+    {
+        $request->validate([
+            'term' => 'required',
+            'current_session' => 'required',
+        ]);
+
+        $slip = Slip::find($id);
+        if ($slip) {
+            $slip->update([
+                "grade_id" => $request->grade_id,
+                "term" => $request->term,
+                "session" => $request->current_session
+            ]);
+
+            foreach ($request->recode as $recode) {
+                 Datesheet::find($recode['data_id'])->update([
+                    'subject_id' => $recode['subject_id'],
+                    'date' => $recode['date'],
+                    'reporting' => $recode['reporting'],
+                    'start_time' => $recode['start_time'],
+                    'end_time' => $recode['end_time']
+                ]);
+//                $slip->datesheets()->update([
+//                    'subject_id' => $grade['subject_id'],
+//                    'date' => $grade['date'],
+//                    'reporting' => $grade['reporting'],
+//                    'start_time' => $grade['start_time'],
+//                    'end_time' => $grade['end_time'],
+//                ]);
+            }
+            Alert::success('Datesheets Updated', 'Success Message');
+            return redirect()->route('slips');
+        }
+        Alert::error('No Recode Found', 'Error Message');
+        return redirect()->route('slips');
     }
 
     public function store(Request $request)
