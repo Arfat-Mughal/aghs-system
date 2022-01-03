@@ -104,7 +104,7 @@ class HomeController extends Controller
         $dataSheets = Datesheet::with('subject')->whereIn('slip_id',[$slip->id])->get();
         if ($student){
             if (!$slip || !$dataSheets){
-                return redirect()->back()->withErrors(['errors'=>"Date sheet is not published yet"]);
+                return redirect()->back()->withErrors(['errors'=>"Roll No Slip is not Published yet"]);
             }
             return view('pdf.roll_no_slip',compact('student','slip','dataSheets'));
         }

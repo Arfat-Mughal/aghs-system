@@ -138,7 +138,7 @@
     </h5>
     <h5>Tabulator Name Bilal SHAHID,FormNo:786786, Center No:AL-FALAH GRAMMAR HIGH SCHOOL</h5>
     <div  style="
-        background-image: url('{{asset('web_assets/images/inst2.jpg')}}');
+        background-image: url('{{asset('web_assets/images/notics.jpg')}}');
         background-repeat: no-repeat;
         background-position: right;
         background-size: 60% 100%;
