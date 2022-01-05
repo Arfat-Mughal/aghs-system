@@ -33,9 +33,22 @@
         #rollNo th {
             font-size: 20px;
         }
+
+
+        @page {
+            size: A4;
+            margin: 0.5cm;
+        }
+
         @media print {
             * {
                 -webkit-print-color-adjust: exact;
+            }
+            body{
+                width: 21cm;
+                height: 29.7cm;
+                margin: 30mm 45mm 30mm 45mm;
+                /* change the margins as you want them to be. */
             }
         }
     </style>
@@ -158,7 +171,7 @@
                         {{$student->addmission_no[2]}}
                     </th>
                 @endif
-                @if($student->addmission_no[3])
+                @if(isset($student->addmission_no[3]))
                     <th>
                         {{$student->addmission_no[3]}}
                     </th>
@@ -504,8 +517,10 @@
                 @endif
             </tr>
         </table>
+        <div style="margin-top: 20px">
+            <button style="color: red" id="print-window" onclick="window.print();">Print</button>
+        </div>
     </div>
 </div>
-
 </body>
 </html>

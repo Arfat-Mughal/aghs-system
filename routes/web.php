@@ -29,7 +29,6 @@ Route::get('/clear&optimize', function() {
     return '<h1>All cleared</h1>';
 });
 
-
 $HC = HomeController::class;
 Route::get('/', [$HC,'home'])->name('home');
 Route::get('/contact', [$HC,'contact'])->name('contact');
@@ -41,7 +40,6 @@ Route::get('/result', [$HC,'result'])->name('result');
 Route::get('/result_sheet', [$HC,'getMaksSheet'])->name('result_catd');
 Route::get('/notice', [$HC,'notice'])->name('notice');
 Route::get('/about-us', [$HC,'about'])->name('about');
-
 
 Route::group(['middleware' => ['auth'], 'namespace'=>'admin'], function() {
     $AC = AdminController::class;

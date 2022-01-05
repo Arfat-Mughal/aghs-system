@@ -94,17 +94,14 @@ class HomeController extends Controller
     public function getRollNumberSlip(Request $request)
     {
         $student = Student::where(['name'=>$request->full_name,'grade_id'=>$request->class])->first();
-        if (!$student->is_active){
-            return redirect()->back()->withErrors(['errors'=>"Over Dues!! please clear your dues first"]);
-        }
-        $slip = Slip::with('grade')->where('grade_id',$student->grade_id)->first();
-        if (!$slip->is_active){
-            return redirect()->back()->withErrors(['errors'=>"Date sheet is not published yet"]);
-        }
-        $dataSheets = Datesheet::with('subject')->whereIn('slip_id',[$slip->id])->get();
         if ($student){
-            if (!$slip || !$dataSheets){
-                return redirect()->back()->withErrors(['errors'=>"Roll No Slip is not Published yet"]);
+            if (!$student->is_active){
+                return redirect()->back()->withErrors(['errors'=>"Over Dues!! please clear your dues first"]);
+            }
+            $slip = Slip::with('grade')->where('grade_id',$student->grade_id)->first();
+            $dataSheets = Datesheet::with('subject')->whereIn('slip_id',[$slip->id])->get();
+            if (!$slip || !$dataSheets || !$slip->is_active){
+                return redirect()->back()->withErrors(['errors'=>"Roll No Slip is not published yet"]);
             }
             return view('pdf.roll_no_slip',compact('student','slip','dataSheets'));
         }
