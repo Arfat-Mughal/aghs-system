@@ -28,8 +28,7 @@
     </style>
 </head>
 <body style="width: 1000px; height:2480px; margin: auto;">
-<h3 style="text-align: center;">AL-FALAH GRAMMAR HIGH SCHOOL $ ACADEMY <span
-        style="margin-left:20px;">(P.G To MATRIC)</span></h3>
+<h1 style="text-align: center;">AL-FALAH GRAMMAR HIGH SCHOOL AND ACADEMY</h1>
 <h4 style="text-align: center;">VILLAGE BHANO CHAI LAHORE CANTT <span style="margin-left:50px;">CELL # 0321-4960275,PHONE # 042-37172294</span>
 </h4>
 <div style="width: 100%;" class="clearfix row">
@@ -42,7 +41,7 @@
     </div>
     <div style="float: right;margin-top: 10px;">
         <h4>CLASS:<span style="font-weight:400;"> {{$student->grade->name}}</span></h4>
-        <h4>POSITION:<span style="font-weight:400;"> 1st</span></h4>
+{{--        <h4>POSITION:<span style="font-weight:400;"> 1st</span></h4>--}}
     </div>
 </div>
 <h3 style="text-align: center;margin-bottom
@@ -87,7 +86,7 @@
                     {{$marks->subject->name}}
                 </td>
                 <td>
-                    100
+                    {{$marks->total_marks}}
                 </td>
                 <td>
                     {{$marks->o_marks}}
@@ -102,15 +101,14 @@
             TOTAL
         </td>
         <td style="font-weight: bold;">
-            350
+            {{$totalMarks}}
         </td>
         <td style="border-right: none;font-weight: bold;" colspan="2">
-            MARKS OBTAINED:323
+            MARKS OBTAINED:{{$obtainMarks}}
         </td>
     </tr>
 </table>
-<h5 style="margin-bottom: 0px;margin-top: 10px;">The Candidate has Passed and obtained Marks Three Hundred and Twenty
-    Three.</h5>
+<h5 style="margin-bottom: 0px;margin-top: 10px;">The Candidate has Passed and obtained Marks {{ucfirst($numberToWord)}}.</h5>
 <h4 style="margin:0;">NOTE:</h4>
 <p style="margin: 2px 0; font-size: 20px;">
     (i)This provisional result intimation is issued as a notice only . Errors and omissions excepted <span

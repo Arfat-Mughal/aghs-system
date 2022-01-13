@@ -16,7 +16,7 @@ class ResultController extends Controller
 {
     public function index()
     {
-        $results = Recode::with('marks','grade')->get();
+        $results = Recode::whereDoesntHave('studentsRecodeCards')->with('marks','grade')->get();
         return view('admin.results',compact('results'));
     }
 
@@ -47,7 +47,7 @@ class ResultController extends Controller
         $students = Student::whereHas('grade',function ($q) use ($id){
             $q->where('id',$id);
         })->get();
-        $recode = Recode::whereHas('marks')->where('grade_id',$id)->first();
+        $recode = Recode::whereHas('marks')->with('marks')->where('grade_id',$id)->first();
         $subjects = RecodeMark::with('subject')->where('recode_id',$recode->id)->get();
         return view('admin.results_marks_add',compact('students','recode','subjects','id'));
     }
@@ -59,6 +59,7 @@ class ResultController extends Controller
                 $studentCard = new StudentRecodeCard;
                 $studentCard->student_id = $recode['student_id'];
                 $studentCard->subject_id = $recode['subject_id'];
+                $studentCard->total_marks = $recode['total_marks'];
                 $studentCard->recode_id = $request->recode_id;
                 $studentCard->o_marks = $recode['marks'];
                 $studentCard->remarks = $recode['remarks'];
@@ -75,6 +76,11 @@ class ResultController extends Controller
         if ($recode->marks){
             foreach ($recode->marks as $mark){
                 $mark->delete();
+            }
+        }
+        if ($recode->studentsRecodeCards){
+            foreach ($recode->studentsRecodeCards as $card){
+                $card->delete();
             }
         }
         $recode->delete();

@@ -18,4 +18,9 @@ class Recode extends Model
     {
         return $this->belongsTo(Grade::class);
     }
+
+    public function studentsRecodeCards()
+    {
+        return $this->hasMany(StudentRecodeCard::class,'recode_id');
+    }
 }

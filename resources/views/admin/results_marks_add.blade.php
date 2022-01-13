@@ -31,6 +31,7 @@
                                     <th scope="col">{{$loop->iteration}}</th>
                                     <th scope="col">Name</th>
                                     <th scope="col">Subjects</th>
+                                    <th scope="col">Total Marks</th>
                                     <th scope="col">Obtain Marks</th>
                                     <th scope="col">Remarks</th>
                                 </tr>
@@ -43,8 +44,12 @@
                                             <th scope="row">{{$student->id}}</th>
                                             <td>{{$student->name}}</td>
                                         <td>
-                                            <input type="hidden" name="students[{{$key}}][{{$sb}}][subject_id]" value="{{$item->id}}">
+                                            <input type="hidden" name="students[{{$key}}][{{$sb}}][subject_id]" value="{{$item->subject->id}}">
                                             {{$item->subject->name}}
+                                        </td>
+                                            <td>
+                                            <input type="hidden" name="students[{{$key}}][{{$sb}}][total_marks]" value="{{$item->t_marks}}">
+                                            {{$item->t_marks}}
                                         </td>
                                         <td><input type="number" name="students[{{$key}}][{{$sb}}][marks]" placeholder="Obtain Marks" class="form-control name_list"/></td>
                                         <td>

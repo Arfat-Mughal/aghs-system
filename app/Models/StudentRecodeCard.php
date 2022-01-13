@@ -11,11 +11,11 @@ class StudentRecodeCard extends Model
 
     public function subject()
     {
-        return $this->belongsTo(Subject::class);
+        return $this->belongsTo(Subject::class,'subject_id');
     }
 
     public function recode()
     {
-        return $this->belongsTo(Recode::class);
+        return $this->belongsTo(Recode::class,'recode_id');
     }
 }
