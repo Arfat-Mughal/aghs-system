@@ -18,4 +18,9 @@ class StudentRecodeCard extends Model
     {
         return $this->belongsTo(Recode::class,'recode_id');
     }
+
+    public function students()
+    {
+        return $this->belongsTo(Student::class,'student_id');
+    }
 }

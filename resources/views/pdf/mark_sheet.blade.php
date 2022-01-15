@@ -34,10 +34,16 @@
 <div style="width: 100%;" class="clearfix row">
     <div style="float: left;margin-top: 10px;">
         <h4>ROLL NO:<span style="font-weight:400;"> {{$student->addmission_no}} </span></h4>
-        <h4>RESULT:<span style="font-weight:400;"> PASS</span></h4>
+        <h4>RESULT:<span style="font-weight:400;">
+                @if($vals['Fail'] > 2)
+                    FAIL
+                @else
+                    PASS
+                @endif
+            </span></h4>
     </div>
     <div style="display: inline-block;width: 700px;text-align: center;margin:auto">
-        <img src="{{asset('web_assets/images/logo.png')}}" style="width: 150px; height: 150px;"/>
+        <img src="{{asset('web_assets/images/logo_header.jpg')}}" style="width: 150px; height: 150px;"/>
     </div>
     <div style="float: right;margin-top: 10px;">
         <h4>CLASS:<span style="font-weight:400;"> {{$student->grade->name}}</span></h4>
@@ -104,11 +110,23 @@
             {{$totalMarks}}
         </td>
         <td style="border-right: none;font-weight: bold;" colspan="2">
-            MARKS OBTAINED:{{$obtainMarks}}
+            MARKS OBTAINED:
+            @if($vals['Fail'] > 2)
+                Fail
+            @else
+                {{$obtainMarks}}
+            @endif
+
         </td>
     </tr>
 </table>
-<h5 style="margin-bottom: 0px;margin-top: 10px;">The Candidate has Passed and obtained Marks {{ucfirst($numberToWord)}}.</h5>
+<h5 style="margin-bottom: 0px;margin-top: 10px;">The Candidate has Passed and obtained Marks
+    @if($vals['Fail'] > 2)
+        Candidate has failed in {{$vals['Fail']}} subjects
+    @else
+        {{ucfirst($numberToWord)}}
+    @endif
+</h5>
 <h4 style="margin:0;">NOTE:</h4>
 <p style="margin: 2px 0; font-size: 20px;">
     (i)This provisional result intimation is issued as a notice only . Errors and omissions excepted <span
@@ -122,6 +140,9 @@
     be obtained within the schedule for submission of admission form and fee for the next immediate examination provided
     he/she has the chance/s to re-appear as a compartment candidate in the said examination.
 </p>
+<div style="margin-top: 20px">
+    <button style="color: red" id="print-window" onclick="window.print();">Print</button>
+</div>
 
 </body>
 </html>

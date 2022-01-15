@@ -73,6 +73,8 @@ Route::group(['middleware' => ['auth'], 'namespace'=>'admin'], function() {
     Route::get('/results/create',[$RC,'create'])->name('add_results');
     Route::post('/results/create',[$RC,'store'])->name('store_results');
     Route::get('/results/marks/{grade_id}/adding',[$RC,'addResultMarks'])->name('add_result_marks');
+    Route::get('/results/marks/{id}/update',[$RC,'updateResultMarks'])->name('update_result_marks');
+    Route::post('/results/marks/{id}/update',[$RC,'storeUpdateResultMarks'])->name('store_update_result_marks');
     Route::post('/results/marks/{grade_id}/adding',[$RC,'storeResultMarks'])->name('store_result_marks');
     Route::get('/results/marks/{grade_id}/deleting',[$RC,'deleteResultMarks'])->name('delete_result_marks');
 });

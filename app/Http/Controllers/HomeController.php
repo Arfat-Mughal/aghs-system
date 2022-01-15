@@ -113,6 +113,8 @@ class HomeController extends Controller
 
     public function getMaksSheet(Request $request)
     {
+        $array = [];
+        $passOrFail = "";
         $student = Student::where('addmission_no',$request->roll_no)->first();
         if ($student){
             if (!$student->is_active){
@@ -127,6 +129,11 @@ class HomeController extends Controller
                 return redirect()->back()->withErrors(['errors'=>"Result is not published yet"]);
             }
             $recode_marks = StudentRecodeCard::with('subject','recode')->where(['student_id'=>$student->id,'recode_id'=>$recode->id])->get();
+            foreach ($recode_marks as $status){
+                $array[] =  $status->remarks;
+            }
+
+            $vals = array_count_values($array);
             if (empty($recode_marks)){
                 return redirect()->back()->withErrors(['errors'=>"Result is not Added Yet"]);
             }
@@ -135,7 +142,7 @@ class HomeController extends Controller
             $numberTransformer = $numberToWords->getNumberTransformer('en');
             $numberToWord = $numberTransformer->toWords($obtainMarks);
             $totalMarks = $recode->marks->sum('t_marks');
-            return view('pdf.mark_sheet',compact('student','recode','slip','recode_marks','totalMarks','obtainMarks','numberToWord'));
+            return view('pdf.mark_sheet',compact('student','recode','slip','recode_marks','totalMarks','obtainMarks','numberToWord','vals'));
         }
         return redirect()->back()->withErrors(['errors'=>"No Recode Found"]);
     }

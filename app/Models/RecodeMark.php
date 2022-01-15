@@ -19,4 +19,9 @@ class RecodeMark extends Model
     {
         return $this->belongsTo(Subject::class);
     }
+
+    public function studentsRecodeCards()
+    {
+        return $this->hasMany(StudentRecodeCard::class,'recode_id');
+    }
 }

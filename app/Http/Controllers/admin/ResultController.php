@@ -16,7 +16,7 @@ class ResultController extends Controller
 {
     public function index()
     {
-        $results = Recode::whereDoesntHave('studentsRecodeCards')->with('marks','grade')->get();
+        $results = Recode::with('marks','grade','studentsRecodeCards')->get();
         return view('admin.results',compact('results'));
     }
 
@@ -52,6 +52,27 @@ class ResultController extends Controller
         return view('admin.results_marks_add',compact('students','recode','subjects','id'));
     }
 
+    public function updateResultMarks($id)
+    {
+        $students = Student::whereHas('grade',function ($q) use ($id){
+            $q->where('id',$id);
+        })->pluck('id')->Toarray();
+        $recode = StudentRecodeCard::with('students','subject')->whereIn('student_id',$students)->get();
+        return view('admin.results_marks_update',compact('recode','id'));
+    }
+
+    public function storeUpdateResultMarks(Request $request)
+    {
+        foreach ($request->students as $recode){
+            $studentRecodeCard = StudentRecodeCard::where('student_id',$recode['student_id'])->first();
+            $studentRecodeCard->o_marks = $recode['marks'];
+            $studentRecodeCard->remarks = $recode['remarks'];
+            $studentRecodeCard->save();
+        }
+        Alert::success('Updated Successfully', 'Success Message');
+        return redirect()->route('results');
+    }
+
     public function storeResultMarks(Request $request)
     {
         foreach ($request->students as $recodes){
@@ -61,8 +82,8 @@ class ResultController extends Controller
                 $studentCard->subject_id = $recode['subject_id'];
                 $studentCard->total_marks = $recode['total_marks'];
                 $studentCard->recode_id = $request->recode_id;
-                $studentCard->o_marks = $recode['marks'];
-                $studentCard->remarks = $recode['remarks'];
+                $studentCard->o_marks = $recode['marks'] ?? 0;
+                $studentCard->remarks = $recode['remarks'] ?? 'Fail';
                 $studentCard->save();
             }
         }

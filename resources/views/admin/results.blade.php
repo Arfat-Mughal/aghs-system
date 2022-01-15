@@ -32,7 +32,11 @@
                             <td>{{$result->marks->count('subject_id')}}</td>
                             <td>{{$result->marks->sum('t_marks')}}</td>
                             <td>
-                                <a href="{{route('add_result_marks',$result->grade_id)}}" class="btn btn-info" role="button" aria-pressed="true">Add Marks</a>
+                                @if(count($result->studentsRecodeCards) >= 1)
+                                    <a href="{{route('update_result_marks',['id'=>$result->grade_id,'recode_id'=>$result->id])}}" class="btn btn-warning" role="button" aria-pressed="true">Update Marks</a>
+                                @else
+                                    <a href="{{route('add_result_marks',$result->grade_id)}}" class="btn btn-info" role="button" aria-pressed="true">Add Marks</a>
+                                @endif
                                 <a href="{{route('delete_result_marks',$result->id)}}" class="btn btn-danger" role="button" aria-pressed="true">Delete</a>
                             </td>
                         </tr>
