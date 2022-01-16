@@ -111,7 +111,7 @@
         </td>
         <td style="border-right: none;font-weight: bold;" colspan="2">
             MARKS OBTAINED:
-            @if($vals['Fail'] > 2)
+            @if($vals['Fail'] && $vals['Fail'] > 2)
                 Fail
             @else
                 {{$obtainMarks}}
@@ -121,7 +121,7 @@
     </tr>
 </table>
 <h5 style="margin-bottom: 0px;margin-top: 10px;">The Candidate has Passed and obtained Marks
-    @if($vals['Fail'] > 2)
+    @if($vals['Fail'] && $vals['Fail'] > 2)
         Candidate has failed in {{$vals['Fail']}} subjects
     @else
         {{ucfirst($numberToWord)}}
