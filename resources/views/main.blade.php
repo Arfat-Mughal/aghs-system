@@ -514,25 +514,25 @@
         </div>
     </section>
 
-    <section>
-        <div class="container">
-            <!-- Modal -->
-            <div class="row">
-                <div class="col-md-6 col-md-8 col-lg-12">
-                    <div class="modal fade" id="myModal" role="dialog">
-                        <div class="modal-dialog">
-                            <!-- Modal content-->
-                            <div class="modal-content">
-                                <div class="modal-body">
-                                    <img src="{{asset('web_assets/images/banner.png')}}" alt="" width="100%"
-                                         height="100%">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+{{--    <section>--}}
+{{--        <div class="container">--}}
+{{--            <!-- Modal -->--}}
+{{--            <div class="row">--}}
+{{--                <div class="col-md-6 col-md-8 col-lg-12">--}}
+{{--                    <div class="modal fade" id="myModal" role="dialog">--}}
+{{--                        <div class="modal-dialog">--}}
+{{--                            <!-- Modal content-->--}}
+{{--                            <div class="modal-content">--}}
+{{--                                <div class="modal-body">--}}
+{{--                                    <img src="{{asset('web_assets/images/banner.png')}}" alt="" width="100%"--}}
+{{--                                         height="100%">--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </section>--}}
 
 @endsection

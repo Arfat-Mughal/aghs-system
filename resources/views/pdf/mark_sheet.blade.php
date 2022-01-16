@@ -29,7 +29,7 @@
 </head>
 <body style="width: 1000px; height:2480px; margin: auto;">
 <h1 style="text-align: center;">AL-FALAH GRAMMAR HIGH SCHOOL AND ACADEMY</h1>
-<h4 style="text-align: center;">VILLAGE BHANO CHAI LAHORE CANTT <span style="margin-left:50px;">CELL # 0321-4960275,PHONE # 042-37172294</span>
+<h4 style="text-align: center;">VILLAGE BHANO CHAK LAHORE CANTT <span style="margin-left:50px;">CELL # 0321-4960275,PHONE # 042-37172294</span>
 </h4>
 <div style="width: 100%;" class="clearfix row">
     <div style="float: left;margin-top: 10px;">
@@ -51,7 +51,7 @@
     </div>
 </div>
 <h3 style="text-align: center;margin-bottom
-    :40px;text-decoration: underline;">SHOOL CERTIFICATE ( {{$slip->term}} ) EXAMINATION {{$slip->session}}</h3>
+    :40px;text-decoration: underline;">SCHOOL CERTIFICATE ( {{$slip->term}} ) EXAMINATION {{$slip->session}}</h3>
 <div style="width: 100%;" class="clearfix">
     <div style="float: left;width: 30%;text-align: center;">
         <h4>Student Name:</h4>
@@ -68,7 +68,7 @@
     </div>
 </div>
 <div class="clearfix">
-    <h5 style="margin-bottom: 0px;">He/She obtained the marks as following:-</h5>
+    <h4 style="margin-bottom: 0px;">He/She obtained the marks as following:-</h4>
 
 </div>
 <table id="for1" style="width: 100%;border: 2px solid #000;border-spacing: 0px">
@@ -110,24 +110,23 @@
             {{$totalMarks}}
         </td>
         <td style="border-right: none;font-weight: bold;" colspan="2">
-            MARKS OBTAINED:
             @if(isset($vals['Fail']) && $vals['Fail'] > 2)
-                Fail
+                FAIL
             @else
-                {{$obtainMarks}}
+                MARKS OBTAINED: {{$obtainMarks}}
             @endif
 
         </td>
     </tr>
 </table>
-<h5 style="margin-bottom: 0px;margin-top: 10px;">The Candidate has Passed and obtained Marks
+<h4 style="margin-bottom: 0px;margin-top: 10px;">
     @if(isset($vals['Fail']) && $vals['Fail'] > 2)
-        Candidate has failed in {{$vals['Fail']}} subjects
+        The Candidate has failed in {{$vals['Fail']}} subjects
     @else
-        {{ucfirst($numberToWord)}}
+        The Candidate has Passed and obtained Marks {{ucfirst($numberToWord)}}
     @endif
-</h5>
-<h4 style="margin:0;">NOTE:</h4>
+</h4>
+<h4 style="margin:0; margin-top: 10px">NOTE:</h4>
 <p style="margin: 2px 0; font-size: 20px;">
     (i)This provisional result intimation is issued as a notice only . Errors and omissions excepted <span
         style="text-decoration: underline;">If a candidate finds any discrepancy in the Result lntimation or desires correction in any of the particulars, he/she may contact the AL-FALAH SCHOOL within 5 days after declaration of the result.</span>
