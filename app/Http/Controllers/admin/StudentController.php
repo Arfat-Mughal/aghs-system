@@ -121,6 +121,7 @@ class StudentController extends Controller
         $student->cell = $request->cell;
         $student->grade_id = $request->grade_id;
         $student->date = $request->date;
+        $student->position = $request->position;
         $student->path = $this->UserImageUpload($request->file('image'));
         $student->save();
         Alert::success('Student Added', 'Success Message');
@@ -157,6 +158,7 @@ class StudentController extends Controller
         $student->cell = $request->cell;
         $student->grade_id = $request->grade_id;
         $student->date = $request->date;
+        $student->position = $request->position;
         if ($request->hasFile('image')) {
 //            unlink("student_profile/".$student->path);
             $student->path = $this->UserImageUpload($request->file('image'));

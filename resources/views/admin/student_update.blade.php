@@ -30,23 +30,29 @@
                             @csrf
                             <div class="card-body card-block">
                                 <div class="row">
-                                    <div class="col-4">
+                                    <div class="col-3">
                                         <div class="form-group">
                                             <label for="cc-exp" class="control-label mb-1">Student Name</label>
                                             <input type="text" name="name" class="form-control" value="{{$student->name}}">
                                             <input type="hidden" name="id" value="{{$student->id}}">
                                         </div>
                                     </div>
-                                    <div class="col-4">
+                                    <div class="col-3">
                                         <label for="x_card_code" class="control-label mb-1">Father Name</label>
                                         <div class="input-group">
                                             <input type="text" name="father_name" class="form-control"  value="{{ $student->father_name }}">
                                         </div>
                                     </div>
-                                    <div class="col-4">
+                                    <div class="col-3">
                                         <label for="x_card_code" class="control-label mb-1">Roll No</label>
                                         <div class="input-group">
                                             <input type="number" name="roll_no" class="form-control"  value="{{$student->addmission_no}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <label for="x_card_code" class="control-label mb-1">Position</label>
+                                        <div class="input-group">
+                                            <input type="text" name="position" class="form-control"  value="{{ $student->position }}">
                                         </div>
                                     </div>
                                 </div>

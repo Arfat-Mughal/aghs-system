@@ -25,6 +25,10 @@
             display: table;
             clear: both;
         }
+
+        h1 {
+            font-size: 36px;
+        }
     </style>
 </head>
 <body style="width: 1000px; height:2480px; margin: auto;">
@@ -47,7 +51,7 @@
     </div>
     <div style="float: right;margin-top: 10px;">
         <h4>CLASS:<span style="font-weight:400;"> {{$student->grade->name}}</span></h4>
-{{--        <h4>POSITION:<span style="font-weight:400;"> 1st</span></h4>--}}
+        <h4>POSITION:<span style="font-weight:400;"> {{ $student->position }} </span></h4>
     </div>
 </div>
 <h3 style="text-align: center;margin-bottom
@@ -104,18 +108,17 @@
     @endforeach
     <tr style="font-size: 18px">
         <td style="font-weight: bold;">
-            TOTAL
+            TOTAL MARKS
         </td>
         <td style="font-weight: bold;">
             {{$totalMarks}}
         </td>
         <td style="border-right: none;font-weight: bold;" colspan="2">
             @if(isset($vals['Fail']) && $vals['Fail'] > 2)
-                FAIL
+                RESULT:--
             @else
                 MARKS OBTAINED: {{$obtainMarks}}
             @endif
-
         </td>
     </tr>
 </table>
