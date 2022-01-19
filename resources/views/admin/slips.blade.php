@@ -8,8 +8,18 @@
                     <div class="col-md-12">
                         <div class="overview-wrap">
                             <h2 class="title-1">Slips</h2>
-                            <a href="{{route('add_datesheet')}}" class="au-btn au-btn-icon au-btn--blue">
-                                <i class="zmdi zmdi-plus"></i>create datesheets</a>
+                            <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                                <a type="button" href="{{route('add_datesheet')}}" class="au-btn au-btn-icon au-btn--blue" ><i class="zmdi zmdi-plus"></i> Create datesheets</a>
+                                <div class="btn-group" role="group">
+                                    <button id="btnGroupDrop1" type="button" class="btn btn-info dropdown-toggle au-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Update Status
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                        <a class="dropdown-item" href="{{route('update_all_slips_status',1)}}">Activate All</a>
+                                        <a class="dropdown-item" href="{{route('update_all_slips_status',0)}}">Deactivate All</a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

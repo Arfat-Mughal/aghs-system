@@ -8,18 +8,28 @@
                     <div class="col-md-12">
                         <h2 class="title-1">Students</h2>
                         <div class="text-right">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    PRINT
-                                </button>
-                                <div class="dropdown-menu">
-                                    @foreach($grades as $grade)
-                                    <a class="dropdown-item" href="{{route('getStudentsViewByClasses',$grade->id)}}" target="_blank">{{$grade->name}}</a>
-                                    @endforeach
+                            <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                                <a type="button" href="{{route('add_student')}}" class="au-btn au-btn-icon au-btn--blue" ><i class="zmdi zmdi-plus"></i> Add Student</a>
+                                <div class="btn-group" role="group">
+                                    <button id="btnGroupDrop1" type="button" class="btn btn-info dropdown-toggle au-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Update Status
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                            <a class="dropdown-item" href="{{route('update_all_students_status',1)}}">Activate All</a>
+                                            <a class="dropdown-item" href="{{route('update_all_students_status',0)}}">Deactivate All</a>
+                                    </div>
+                                </div>
+                                <div class="btn-group" role="group">
+                                    <button id="btnGroupDrop2" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        PRINT
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop2">
+                                        @foreach($grades as $grade)
+                                            <a class="dropdown-item" href="{{route('getStudentsViewByClasses',$grade->id)}}" target="_blank">{{$grade->name}}</a>
+                                        @endforeach
+                                    </div>
                                 </div>
                             </div>
-                            <a href="{{route('add_student')}}"  class="au-btn au-btn-icon au-btn--blue">
-                                <i class="zmdi zmdi-plus"></i>add student</a>
                         </div>
                     </div>
                 </div>

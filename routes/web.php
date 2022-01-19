@@ -52,6 +52,7 @@ Route::group(['middleware' => ['auth'], 'namespace'=>'admin'], function() {
     //StudentController
     Route::get('/students',[$SC,'index'])->name('students');
     Route::post('/students',[$SC,'searchStudent'])->name('searchStudent');
+    Route::get('/students/{action}/update-all',[$SC,'updateAllStatus'])->name('update_all_students_status');
     Route::get('/student/create',[$SC,'create'])->name('add_student');
     Route::post('/student/create',[$SC,'store'])->name('store_student');
     Route::get('/student/{id}/update',[$SC,'update'])->name('update_student');
@@ -68,6 +69,7 @@ Route::group(['middleware' => ['auth'], 'namespace'=>'admin'], function() {
     Route::get('/slips/{id}/deleting',[$SLC,'deleteSlip'])->name('delete_slips_marks');
     Route::get('/slips/{id}/update',[$SLC,'updateSlip'])->name('update_slips_marks');
     Route::post('/slips/{id}/update',[$SLC,'update_slip'])->name('update_slips_marks_store');
+    Route::get('/slips/{action}/update-all',[$SLC,'updateAllSlipStatus'])->name('update_all_slips_status');
     //ResultController
     Route::get('/results',[$RC,'index'])->name('results');
     Route::get('/results/create',[$RC,'create'])->name('add_results');

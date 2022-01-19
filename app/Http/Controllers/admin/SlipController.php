@@ -122,4 +122,15 @@ class SlipController extends Controller
         Alert::success('Deleted', 'Success Message');
         return redirect()->route('slips');
     }
+
+    public function updateAllSlipStatus($action)
+    {
+        if ($action){
+            Slip::where('is_active',false)->update(['is_active' => true]);
+        }else{
+            Slip::where('is_active',true)->update(['is_active' => false]);
+        }
+        Alert::success('All Slip Status Updated', 'Success Message');
+        return redirect()->route('slips');
+    }
 }

@@ -185,6 +185,16 @@ class StudentController extends Controller
     {
         $students = Student::where('grade_id',$id)->get();
         return view('admin.studentPdfByClass',compact('students'));
+    }
 
+    public function updateAllStatus($action)
+    {
+        if ($action){
+            Student::where('is_active',false)->update(['is_active' => true]);
+        }else{
+            Student::where('is_active',true)->update(['is_active' => false]);
+        }
+        Alert::success('All Students Status Updated', 'Success Message');
+        return redirect()->route('students');
     }
 }

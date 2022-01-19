@@ -114,7 +114,9 @@
             {{$totalMarks}}
         </td>
         <td style="border-right: none;font-weight: bold;" colspan="2">
-            @if(isset($vals['Fail']) && $vals['Fail'] > 2)
+            @if(isset($vals['Fail'])  && $vals['Fail'] > 2)
+                Fail
+            @elseif(isset($vals['Fail']) && $vals['Fail'] < 2)
                 RESULT:--
             @else
                 MARKS OBTAINED: {{$obtainMarks}}
