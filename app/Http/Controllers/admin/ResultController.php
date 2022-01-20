@@ -63,13 +63,17 @@ class ResultController extends Controller
 
     public function storeUpdateResultMarks(Request $request)
     {
-        foreach ($request->students as $recode){
-            $studentRecodeCard = StudentRecodeCard::where('student_id',$recode['student_id'])->first();
-            $studentRecodeCard->o_marks = $recode['marks'];
-            $studentRecodeCard->remarks = $recode['remarks'];
-            $studentRecodeCard->save();
+        foreach ($request->students as $recode)
+        {
+             StudentRecodeCard::where([
+                 'student_id'=>$recode['student_id'],
+                 'subject_id'=>$recode['subject_id']
+             ])->update([
+                'o_marks'=>$recode['marks'],
+                'remarks'=>$recode['remarks']
+            ]);
         }
-        Alert::success('Updated Successfully', 'Success Message');
+        Alert::success('DateSheet Updated Successfully', 'Success Message');
         return redirect()->route('results');
     }
 

@@ -39,10 +39,12 @@
     <div style="float: left;margin-top: 10px;">
         <h4>ROLL NO:<span style="font-weight:400;"> {{$student->addmission_no}} </span></h4>
         <h4>RESULT:<span style="font-weight:400;">
-                @if(isset($vals['Fail']) && $vals['Fail'] > 2)
-                    FAIL
+                @if(isset($vals['Fail'])  && $vals['Fail'] > 2)
+                    Fail
+                @elseif(isset($vals['Fail']) && $vals['Fail'] < 2)
+                    RESULT:--
                 @else
-                    PASS
+                    Pass
                 @endif
             </span></h4>
     </div>
@@ -92,7 +94,7 @@
     </tr>
     @foreach($recode_marks as $marks)
             <tr style="font-size: 18px">
-                <td style="font-weight: bold;">
+                <td style="font-weight: normal;">
                     {{$marks->subject->name}}
                 </td>
                 <td>
@@ -125,7 +127,9 @@
     </tr>
 </table>
 <h4 style="margin-bottom: 0px;margin-top: 10px;">
-    @if(isset($vals['Fail']) && $vals['Fail'] > 2)
+    @if(isset($vals['Fail'])  && $vals['Fail'] > 2)
+        The Candidate has failed in {{$vals['Fail']}} subjects
+    @elseif(isset($vals['Fail']) && $vals['Fail'] < 2)
         The Candidate has failed in {{$vals['Fail']}} subjects
     @else
         The Candidate has Passed and obtained Marks {{ucfirst($numberToWord)}}
