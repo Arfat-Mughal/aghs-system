@@ -65,7 +65,7 @@ class ResultController extends Controller
     {
         foreach ($request->students as $recode)
         {
-             StudentRecodeCard::where([
+            StudentRecodeCard::where([
                  'student_id'=>$recode['student_id'],
                  'subject_id'=>$recode['subject_id']
              ])->update([
@@ -73,6 +73,11 @@ class ResultController extends Controller
                 'remarks'=>$recode['remarks']
             ]);
         }
+        foreach ($request->students as $recode){
+            $found = StudentRecodeCard::where(['student_id'=>$recode['student_id']])->sum('o_marks');
+            Student::where('id',$recode['student_id'])->update(['o_marks'=>$found]);
+        }
+
         Alert::success('DateSheet Updated Successfully', 'Success Message');
         return redirect()->route('results');
     }
