@@ -28,6 +28,32 @@ class StudentController extends Controller
         return view('admin.students', compact('students','grades'));
     }
 
+    public function addStudentPositions(Request $request)
+    {
+        $students = Student::where('grade_id',$request->grade)->select('id','o_marks','position')->orderBy('o_marks', 'DESC')->get();
+        if ($students){
+            foreach ($students as $key => $student){
+                $position = $key+1;
+                $rank = $position;
+                if ($position === 1){
+                    $rank = $position."st";
+                }elseif ($position === 2){
+                    $rank = $position."nd";
+                }elseif ($position === 3){
+                    $rank = $position."rd";
+                }else{
+                    $rank = $position."th";
+                }
+                $student->position = $rank;
+                $student->save();
+            }
+            Alert::success('Class Position Updated', 'Success Message');
+            return redirect()->route('students');
+        }
+        Alert::error('No Class Found', 'No Record');
+        return redirect()->route('students');
+    }
+
     public function searchStudent(Request $request)
     {
         $students = Student::query()

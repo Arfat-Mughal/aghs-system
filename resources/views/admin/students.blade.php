@@ -10,6 +10,20 @@
                         <div class="text-right">
                             <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
                                 <a type="button" href="{{route('add_student')}}" class="au-btn au-btn-icon au-btn--blue" ><i class="zmdi zmdi-plus"></i> Add Student</a>
+
+                                <button id="btnGroupDrop3" type="button" class="au-btn au-btn-icon au-btn--green dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Update Positions
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="btnGroupDrop3">
+                                    @foreach($grades as $grade)
+                                        <form method="POST" action="{{ route('add_student_positions') }}">
+                                            @csrf
+                                            <button type="submit" class="dropdown-item" name="grade" value="{{$grade->id}}">
+                                                {{$grade->name}}
+                                            </button>
+                                        </form>
+                                    @endforeach
+                                </div>
                                 <div class="btn-group" role="group">
                                     <button id="btnGroupDrop1" type="button" class="btn btn-info dropdown-toggle au-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Update Status
@@ -21,7 +35,7 @@
                                 </div>
                                 <div class="btn-group" role="group">
                                     <button id="btnGroupDrop2" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        PRINT
+                                        PRINT RECORD
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="btnGroupDrop2">
                                         @foreach($grades as $grade)

@@ -12,7 +12,6 @@ use App\Models\Student;
 use App\Models\StudentRecodeCard;
 use Illuminate\Http\Request;
 use Artesaos\SEOTools\Facades\SEOMeta;
-use NumberFormatter;
 use NumberToWords\NumberToWords;
 
 class HomeController extends Controller
