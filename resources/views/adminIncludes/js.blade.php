@@ -120,5 +120,23 @@
             var button_id = $(this).attr("id");
             $('#row'+button_id+'').remove();
         });
+
+        $(function() {
+            $('.toggle-class').change(function() {
+                var status = $(this).prop('checked') == true;
+                var user_id = $(this).data('id');
+
+                $.ajax({
+                    type: "GET",
+                    dataType: "json",
+                    url: '/student/changeStatus',
+                    data: {'is_active': status, 'id': user_id},
+                    success: function(data){
+                        console.log(data.success)
+                    }
+                });
+            })
+        })
+
     } );
 </script>

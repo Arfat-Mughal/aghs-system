@@ -85,15 +85,16 @@
                             <td>{{$student->cell}}</td>
                             <td>{{$student->grade->name}}</td>
                             <td>
-                                @if($student->is_active)
-                                <a href="{{ route('change_Student_Status', [ 'id'=> $student->id ]) }}" class="btn btn-success btn-sm" role="button" aria-pressed="true">Active</a>
-                                @else
-                                    <a href="{{ route('change_Student_Status', [ 'id'=> $student->id ]) }}" class="btn btn-danger btn-sm" role="button" aria-pressed="true">Blocked</a>
-                                    @endif
+{{--                                @if($student->is_active)--}}
+{{--                                <a href="{{ route('change_Student_Status', [ 'id'=> $student->id ]) }}" class="btn btn-success btn-sm" role="button" aria-pressed="true">Active</a>--}}
+{{--                                @else--}}
+{{--                                    <a href="{{ route('change_Student_Status', [ 'id'=> $student->id ]) }}" class="btn btn-danger btn-sm" role="button" aria-pressed="true">Blocked</a>--}}
+{{--                                    @endif--}}
+                                    <input data-id="{{$student->id}}" class="toggle-class" size="mini" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="InActive" {{ $student->is_active ? 'checked' : '' }}>
                             </td>
                             <td>
                                 <div class="btn-group" role="group">
-                                    <button id="btnGroupDrop1" type="button" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <button id="btnGroupDrop1" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Actions
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">

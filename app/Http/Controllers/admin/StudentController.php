@@ -223,4 +223,21 @@ class StudentController extends Controller
         Alert::success('All Students Status Updated', 'Success Message');
         return redirect()->route('students');
     }
+
+    public function changeUserStatus(Request $request)
+    {
+        if($request->ajax()){
+            $student = Student::find($request->id);
+            if ($student){
+                $student->update([
+                    'is_active' => filter_var($request->is_active, FILTER_VALIDATE_BOOLEAN) ? 1:0
+                ]);
+                return response()->json(['success'=>'Student status updated']);
+            }else{
+                return response()->json(['error'=>'Student status not updated error']);
+            }
+        }
+        return response()->json(['error'=>'Invalid Request']);
+
+    }
 }
