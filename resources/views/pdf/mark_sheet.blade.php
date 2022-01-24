@@ -41,8 +41,8 @@
         <h4>RESULT:<span style="font-weight:400;">
                 @if(isset($vals['Fail'])  && $vals['Fail'] > 2)
                     Fail
-                @elseif(isset($vals['Fail']) && $vals['Fail'] < 2)
-                    RESULT:--
+                @elseif(isset($vals['Fail']) && $vals['Fail'] <= 2)
+                    Fail
                 @else
                     Pass
                 @endif
@@ -53,7 +53,15 @@
     </div>
     <div style="float: right;margin-top: 10px;">
         <h4>CLASS:<span style="font-weight:400;"> {{$student->grade->name}}</span></h4>
-        <h4>POSITION:<span style="font-weight:400;"> {{ $student->position }} </span></h4>
+        <h4>POSITION:<span style="font-weight:400;">
+                 @if(isset($vals['Fail'])  && $vals['Fail'] > 2)
+                    Fail
+                @elseif(isset($vals['Fail']) && $vals['Fail'] <= 2)
+                    Fail
+                @else
+                    {{ $student->position }}
+                @endif
+            </span></h4>
     </div>
 </div>
 <h3 style="text-align: center;margin-bottom
@@ -118,7 +126,7 @@
         <td style="border-right: none;font-weight: bold;" colspan="2">
             @if(isset($vals['Fail'])  && $vals['Fail'] > 2)
                 Fail
-            @elseif(isset($vals['Fail']) && $vals['Fail'] < 2)
+            @elseif(isset($vals['Fail']) && $vals['Fail'] <= 2)
                 RESULT:--
             @else
                 MARKS OBTAINED: {{$obtainMarks}}
@@ -129,7 +137,7 @@
 <h4 style="margin-bottom: 0px;margin-top: 10px;">
     @if(isset($vals['Fail'])  && $vals['Fail'] > 2)
         The Candidate has failed in {{$vals['Fail']}} subjects
-    @elseif(isset($vals['Fail']) && $vals['Fail'] < 2)
+    @elseif(isset($vals['Fail']) && $vals['Fail'] <= 2)
         The Candidate has failed in {{$vals['Fail']}} subjects
     @else
         The Candidate has Passed and obtained Marks {{ucfirst($numberToWord)}}
