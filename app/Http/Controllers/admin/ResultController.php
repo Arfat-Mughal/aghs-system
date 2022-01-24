@@ -20,6 +20,30 @@ class ResultController extends Controller
         return view('admin.results',compact('results'));
     }
 
+    public function changeResultsStatus($id)
+    {
+        $student = Recode::find($id);
+        if($student->is_active){
+            $student->is_active = 0;
+        }else{
+            $student->is_active = 1;
+        }
+        $student->save();
+        Alert::success('Result status updated', 'Success Message');
+        return redirect()->route('results');
+    }
+
+    public function updateAllResultsStatus($action)
+    {
+        if ($action){
+            Recode::where('is_active',false)->update(['is_active' => true]);
+        }else{
+            Recode::where('is_active',true)->update(['is_active' => false]);
+        }
+        Alert::success('All Results Status Updated', 'Success Message');
+        return redirect()->route('results');
+    }
+
     public function create()
     {
         $grades = Grade::all('id','name');

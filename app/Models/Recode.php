@@ -9,6 +9,10 @@ class Recode extends Model
 {
     use HasFactory;
 
+    protected $casts = [
+        'is_active' => 'boolean',
+    ];
+
     public function marks()
     {
         return $this->hasMany(RecodeMark::class,'recode_id');

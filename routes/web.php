@@ -71,6 +71,7 @@ Route::group(['middleware' => ['auth'], 'namespace'=>'admin'], function() {
     Route::get('/slips/{id}/update',[$SLC,'updateSlip'])->name('update_slips_marks');
     Route::post('/slips/{id}/update',[$SLC,'update_slip'])->name('update_slips_marks_store');
     Route::get('/slips/{action}/update-all',[$SLC,'updateAllSlipStatus'])->name('update_all_slips_status');
+
     //ResultController
     Route::get('/results',[$RC,'index'])->name('results');
     Route::get('/results/create',[$RC,'create'])->name('add_results');
@@ -80,6 +81,8 @@ Route::group(['middleware' => ['auth'], 'namespace'=>'admin'], function() {
     Route::post('/results/marks/{id}/update',[$RC,'storeUpdateResultMarks'])->name('store_update_result_marks');
     Route::post('/results/marks/{grade_id}/adding',[$RC,'storeResultMarks'])->name('store_result_marks');
     Route::get('/results/marks/{grade_id}/deleting',[$RC,'deleteResultMarks'])->name('delete_result_marks');
+    Route::get('/results/{id}/changeStatus',[$RC,'changeResultsStatus'])->name('change_result_status');
+    Route::get('/results/{action}/update-all-results',[$RC,'updateAllResultsStatus'])->name('update_all_results_status');
 });
 //Route::get('/dashboard', function () {
 //    return view('admin.panel');

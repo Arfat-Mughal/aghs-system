@@ -8,8 +8,18 @@
                     <div class="col-md-12">
                         <div class="overview-wrap">
                             <h2 class="title-1">Results</h2>
-                            <a href="{{route('add_results')}}" class="au-btn au-btn-icon au-btn--blue">
-                                <i class="zmdi zmdi-plus"></i>create results</a>
+                            <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                                <a href="{{route('add_results')}}" class="au-btn au-btn-icon au-btn--blue"><i class="zmdi zmdi-plus"></i>create results</a>
+                                <div class="btn-group" role="group">
+                                    <button id="btnGroupDrop4" type="button" class="btn btn-info dropdown-toggle au-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Update Status
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop4">
+                                        <a class="dropdown-item" href="{{route('update_all_results_status',1)}}">Activate All</a>
+                                        <a class="dropdown-item" href="{{route('update_all_results_status',0)}}">Deactivate All</a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -33,11 +43,16 @@
                             <td>{{$result->marks->sum('t_marks')}}</td>
                             <td>
                                 @if(count($result->studentsRecodeCards) >= 1)
-                                    <a href="{{route('update_result_marks',['id'=>$result->grade_id,'recode_id'=>$result->id])}}" class="btn btn-warning" role="button" aria-pressed="true">Update Marks</a>
+                                    @if($result->is_active)
+                                        <a href="{{ route('change_result_status', [ 'id'=> $result->id ]) }}" class="btn btn-success btn-sm" role="button" aria-pressed="true">Active</a>
+                                    @else
+                                        <a href="{{ route('change_result_status', [ 'id'=> $result->id ]) }}" class="btn btn-danger btn-sm" role="button" aria-pressed="true">Blocked</a>
+                                    @endif
+                                    <a href="{{route('update_result_marks',['id'=>$result->grade_id,'recode_id'=>$result->id])}}" class="btn btn-warning btn-sm" role="button" aria-pressed="true">Update Marks</a>
                                 @else
-                                    <a href="{{route('add_result_marks',$result->grade_id)}}" class="btn btn-info" role="button" aria-pressed="true">Add Marks</a>
+                                    <a href="{{route('add_result_marks',$result->grade_id)}}" class="btn btn-info btn-sm" role="button" aria-pressed="true">Add Marks</a>
                                 @endif
-                                <a href="{{route('delete_result_marks',$result->id)}}" class="btn btn-danger" role="button" aria-pressed="true">Delete</a>
+                                <a href="{{route('delete_result_marks',$result->id)}}" class="btn btn-danger btn-sm" role="button" aria-pressed="true">Delete</a>
                             </td>
                         </tr>
                         @endforeach
