@@ -119,11 +119,11 @@ class HomeController extends Controller
             if (!$student->is_active){
                 return redirect()->back()->withErrors(['errors'=>"Over Dues!! please clear your dues first to view your result"]);
             }
-            $slip = Recode::where(['grade_id'=>$student->grade_id,'is_active'=>1])->first();
+            $slip = Slip::where(['grade_id'=>$student->grade_id,'is_active'=>1])->first();
             if (!$slip){
                 return redirect()->back()->withErrors(['errors'=>"No Examination Recode Found"]);
             }
-            $recode = Recode::with('marks')->where(['grade_id'=>$student->grade_id])->first();
+            $recode = Recode::with('marks')->where(['grade_id'=>$student->grade_id,'is_active'=>1])->first();
             if (!$recode){
                 return redirect()->back()->withErrors(['errors'=>"Result is not published yet"]);
             }
