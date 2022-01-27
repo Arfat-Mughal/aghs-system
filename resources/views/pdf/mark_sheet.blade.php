@@ -57,7 +57,7 @@
                  @if(isset($vals['Fail'])  && $vals['Fail'] > 2)
                     Fail
                 @elseif(isset($vals['Fail']) && $vals['Fail'] <= 2)
-                    Fail
+                    RESULT:--
                 @else
                     {{ $student->position }}
                 @endif
