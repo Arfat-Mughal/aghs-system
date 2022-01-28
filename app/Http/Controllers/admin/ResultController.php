@@ -70,7 +70,7 @@ class ResultController extends Controller
     {
         $students = Student::whereHas('grade',function ($q) use ($id){
             $q->where('id',$id);
-        })->get();
+        })->where('is_active',1)->get();
         $recode = Recode::whereHas('marks')->with('marks')->where('grade_id',$id)->first();
         $subjects = RecodeMark::with('subject')->where('recode_id',$recode->id)->get();
         return view('admin.results_marks_add',compact('students','recode','subjects','id'));
