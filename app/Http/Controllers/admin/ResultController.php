@@ -93,6 +93,8 @@ class ResultController extends Controller
                  'student_id'=>$recode['student_id'],
                  'subject_id'=>$recode['subject_id']
              ])->update([
+                'student_id'=>$recode['student_id'],
+                'subject_id'=>$recode['subject_id'],
                 'o_marks'=>$recode['marks'],
                 'remarks'=>$recode['remarks']
             ]);
