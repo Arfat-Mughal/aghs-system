@@ -89,14 +89,11 @@ class ResultController extends Controller
     {
         foreach ($request->students as $recode)
         {
-            StudentRecodeCard::where([
-                 'student_id'=>$recode['student_id'],
-                 'subject_id'=>$recode['subject_id']
-             ])->updateOrCreate([
+            StudentRecodeCard::updateOrCreate([
                 ['student_id'=>$recode['student_id'],
-                'subject_id'=>$recode['subject_id']],
-                ['o_marks'=>$recode['marks'],
-                'remarks'=>$recode['remarks']]
+                    'subject_id'=>$recode['subject_id']],
+                ['o_marks'=>$recode['marks'] ?? 1,
+                    'remarks'=>$recode['remarks'] ?? 'fail']
             ]);
         }
         foreach ($request->students as $recode){
