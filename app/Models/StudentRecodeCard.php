@@ -9,6 +9,8 @@ class StudentRecodeCard extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['student_id','subject_id','total_marks','o_marks','remarks'];
+
     public function subject()
     {
         return $this->belongsTo(Subject::class,'subject_id');
