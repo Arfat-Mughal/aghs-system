@@ -31,7 +31,7 @@
             <h3>Click And Download </h3>
             <div class="row border">
                     <ul>
-                        <li><a href="{{asset('web_assets/images/datasheet.jpg')}}" target="_blank"> DateSheet 2022 </a></li>
+                        <li><a href="{{asset('web_assets/images/positions.jpg')}}" target="_blank"> Positions Holder 2022 </a></li>
                     </ul>
             </div>
         </div>

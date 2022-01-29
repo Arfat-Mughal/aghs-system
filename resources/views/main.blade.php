@@ -53,7 +53,7 @@
 {{--                        </div>--}}
 {{--                    </div>--}}
                 </div>
-        <div class="slider-item" style="background-image:url({{asset('web_assets/images/datasheet.jpg')}});">
+        <div class="slider-item" style="background-image:url({{asset('web_assets/images/positions.jpg')}});">
 {{--                    <div class="overlay"></div>--}}
 {{--                    <div class="container">--}}
 {{--                        <div class="row no-gutters slider-text align-items-center justify-content-center"--}}
