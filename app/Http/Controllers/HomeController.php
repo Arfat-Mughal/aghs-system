@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Certificate;
 use App\Models\Contact;
 use App\Models\Datesheet;
 use App\Models\Grade;
+use App\Models\Notifications;
 use App\Models\Recode;
 use App\Models\RecodeMark;
 use App\Models\Slip;
@@ -61,6 +63,15 @@ class HomeController extends Controller
         return view('pages.courses');
     }
 
+    public function getCertificate(Request $request)
+    {
+        $data = Certificate::where(['weeks'=>$request->duration,'name'=>$request->fullname])->first();
+        if (!$data){
+            return redirect()->back()->withErrors(['errors'=>"No recode Found"]);
+        }
+        return view('certificates.meritCertificate',compact('data'));
+    }
+
     public function roll_no()
     {
         SEOMeta::setTitle('AGHS-LAHORE | Roll Number Slips');
@@ -74,7 +85,8 @@ class HomeController extends Controller
         SEOMeta::setTitle('AGHS-LAHORE | Notifications');
         SEOMeta::setDescription('See All upcoming notifications');
         SEOMeta::setCanonical('https://aghslahore.com/notice');
-        return view('pages.notic');
+        $notifications = Notifications::all();
+        return view('pages.notic',compact('notifications'));
     }
 
     public function result()

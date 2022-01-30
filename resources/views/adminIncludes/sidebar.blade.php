@@ -24,15 +24,13 @@
                     <a href="{{route('slips')}}">
                         <i class="fas fa-table"></i>Roll No Slip's</a>
                 </li>
-                <li class="has-sub">
-                    <a class="js-arrow open" href="#">
-                        <i class="fas fa-trophy"></i>Certificates
-                    </a>
-                    <ul class="list-unstyled navbar__sub-list js-sub-list" style="display: block;">
-                        <li>
-                            <a href="{{route('certificate_merit')}}"><i class="fas fa-address-book"></i>Certificate Of Merit</a>
-                        </li>
-                    </ul>
+                <li>
+                    <a href="{{route('certificates')}}">
+                        <i class="fas fa-trophy"></i>Certificates</a>
+                </li>
+                <li>
+                    <a href="{{route('notifications')}}">
+                        <i class="fas fa-flag"></i>Notifications</a>
                 </li>
             </ul>
         </nav>

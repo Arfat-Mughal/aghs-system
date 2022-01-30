@@ -22,13 +22,13 @@
                                         </ul>
                                     </div>
                                 @endif
-                                <form action="{{route('get_certificate_merit')}}" novalidate="novalidate">
+                                <form action="{{route('store_certificate')}}" novalidate="novalidate" method="post">
+                                    @csrf
                                     <div class="row">
                                         <div class="col-3">
                                             <label for="x_card_code" class="control-label mb-1">Ref No</label>
                                             <div class="input-group">
                                                 <input id="x_card_code" name="ref_no" type="tel" class="form-control cc-cvc" value="" data-val="true">
-
                                             </div>
                                         </div>
                                         <div class="col-3">
@@ -64,42 +64,42 @@
                                         <div class="col-4">
                                             <div class="form-group">
                                                 <label for="cc-exp" class="control-label mb-1">Content of this course no 1</label>
-                                                <input id="cc-exp" name="content_1" type="text" class="form-control cc-exp" value="" data-val="true" data-val-required="Please enter the card expiration">
+                                                <input id="cc-exp" name="rows[1]" type="text" class="form-control cc-exp" value="" data-val="true" data-val-required="Please enter the card expiration">
                                                 <span class="help-block" data-valmsg-for="cc-exp" data-valmsg-replace="true"></span>
                                             </div>
                                         </div>
                                         <div class="col-4">
                                             <div class="form-group">
                                                 <label for="cc-exp" class="control-label mb-1">Content of this course no 2</label>
-                                                <input id="cc-exp" name="content_2" type="text" class="form-control cc-exp" value="" data-val="true" data-val-required="Please enter the card expiration">
+                                                <input id="cc-exp" name="rows[2]" type="text" class="form-control cc-exp" value="" data-val="true" data-val-required="Please enter the card expiration">
                                                 <span class="help-block" data-valmsg-for="cc-exp" data-valmsg-replace="true"></span>
                                             </div>
                                         </div>
                                         <div class="col-4">
                                             <div class="form-group">
                                                 <label for="cc-exp" class="control-label mb-1">Content of this course no 3</label>
-                                                <input id="cc-exp" name="content_3" type="text" class="form-control cc-exp" value="" data-val="true" data-val-required="Please enter the card expiration">
+                                                <input id="cc-exp" name="rows[3]" type="text" class="form-control cc-exp" value="" data-val="true" data-val-required="Please enter the card expiration">
                                                 <span class="help-block" data-valmsg-for="cc-exp" data-valmsg-replace="true"></span>
                                             </div>
                                         </div>
                                         <div class="col-4">
                                             <div class="form-group">
                                                 <label for="cc-exp" class="control-label mb-1">Content of this course no 4</label>
-                                                <input id="cc-exp" name="content_4" type="text" class="form-control cc-exp" value="" data-val="true" data-val-required="Please enter the card expiration">
+                                                <input id="cc-exp" name="rows[4]" type="text" class="form-control cc-exp" value="" data-val="true" data-val-required="Please enter the card expiration">
                                                 <span class="help-block" data-valmsg-for="cc-exp" data-valmsg-replace="true"></span>
                                             </div>
                                         </div>
                                         <div class="col-4">
                                             <div class="form-group">
                                                 <label for="cc-exp" class="control-label mb-1">Content of this course no 5</label>
-                                                <input id="cc-exp" name="content_5" type="text" class="form-control cc-exp" value="" data-val="true" data-val-required="Please enter the card expiration">
+                                                <input id="cc-exp" name="rows[5]" type="text" class="form-control cc-exp" value="" data-val="true" data-val-required="Please enter the card expiration">
                                                 <span class="help-block" data-valmsg-for="cc-exp" data-valmsg-replace="true"></span>
                                             </div>
                                         </div>
                                           <div class="col-4">
                                             <div class="form-group">
                                                 <label for="cc-exp" class="control-label mb-1">Content of this course no 6</label>
-                                                <input id="cc-exp" name="content_6" type="text" class="form-control cc-exp" value="" data-val="true" data-val-required="Please enter the card expiration">
+                                                <input id="cc-exp" name="rows[6]" type="text" class="form-control cc-exp" value="" data-val="true" data-val-required="Please enter the card expiration">
                                                 <span class="help-block" data-valmsg-for="cc-exp" data-valmsg-replace="true"></span>
                                             </div>
                                         </div>
@@ -107,7 +107,7 @@
                                     <div>
                                         <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">
                                             <i class="fa fa-book"></i>&nbsp;
-                                            <span id="payment-button-amount">Get Certificate</span>
+                                            <span id="payment-button-amount">Save</span>
                                         </button>
                                     </div>
                                 </form>

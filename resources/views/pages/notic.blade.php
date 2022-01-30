@@ -31,7 +31,17 @@
             <h3>Click And Download </h3>
             <div class="row border">
                     <ul>
-                        <li><a href="{{asset('web_assets/images/positions.jpg')}}" target="_blank"> Positions Holder 2022 </a></li>
+                        @if($notifications->count() >= 1)
+                        @foreach($notifications as $notification)
+                        <li>
+                            <a href="{{$notification->path}}" target="_blank"> {{$notification->name}} </a>
+                        </li>
+                        @endforeach
+                        @else
+                            <li>
+                               <p>No Notification</p>
+                            </li>
+                        @endif
                     </ul>
             </div>
         </div>

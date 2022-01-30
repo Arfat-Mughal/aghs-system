@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\admin\AdminController;
+use App\Http\Controllers\admin\CertificateController;
+use App\Http\Controllers\admin\NotificationController;
 use App\Http\Controllers\admin\ResultController;
 use App\Http\Controllers\admin\SlipController;
 use App\Http\Controllers\admin\StudentController;
@@ -34,6 +36,7 @@ Route::get('/', [$HC,'home'])->name('home');
 Route::get('/contact', [$HC,'contact'])->name('contact');
 Route::post('/contact', [$HC,'contactStore'])->name('contact_store');
 Route::get('/courses', [$HC,'courses'])->name('courses');
+Route::post('/courses', [$HC,'getCertificate'])->name('get_certificate');
 Route::get('/roll_no', [$HC,'roll_no'])->name('roll_no');
 Route::get('/roll_no_slip', [$HC,'getRollNumberSlip'])->name('get_roll_no');
 Route::get('/result', [$HC,'result'])->name('result');
@@ -46,6 +49,8 @@ Route::group(['middleware' => ['auth'], 'namespace'=>'admin'], function() {
     $SC = StudentController::class;
     $SLC = SlipController::class;
     $RC = ResultController::class;
+    $CC = CertificateController::class;
+    $NC = NotificationController::class;
     Route::get('/dashboard',[$AC,'index'])->name('panel');
     Route::get('/certificate-of-merit',[$AC,'certificateMerit'])->name('certificate_merit');
     Route::get('/get-certificate-of-merit',[$AC,'get_certificateMerit'])->name('get_certificate_merit');
@@ -84,6 +89,17 @@ Route::group(['middleware' => ['auth'], 'namespace'=>'admin'], function() {
     Route::get('/results/marks/{grade_id}/deleting',[$RC,'deleteResultMarks'])->name('delete_result_marks');
     Route::get('/results/{id}/changeStatus',[$RC,'changeResultsStatus'])->name('change_result_status');
     Route::get('/results/{action}/update-all-results',[$RC,'updateAllResultsStatus'])->name('update_all_results_status');
+    //CertificateController
+    Route::get('/certificates',[$CC,'index'])->name('certificates');
+    Route::get('/certificate/create',[$CC,'create'])->name('add_certificate');
+    Route::post('/certificate/create',[$CC,'store'])->name('store_certificate');
+    Route::post('/certificate/changeStatus',[$CC,'changeCertificateStatus'])->name('change_certificate_status');
+    Route::get('/certificate/{grade_id}/deleting',[$CC,'destroy'])->name('delete_certificate');
+    Route::get('/certificate/{action}/update-all-certificates',[$CC,'updateAllCertificateStatus'])->name('update_all_certificates_status');
+    //notifications
+    Route::get('/notify',[$NC,'index'])->name('notifications');
+    Route::post('/notify',[$NC,'store'])->name('store_notifications');
+    Route::get('/notify/{id}/delete',[$NC,'delete'])->name('delete_notifications');
 });
 //Route::get('/dashboard', function () {
 //    return view('admin.panel');
