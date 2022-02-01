@@ -35,8 +35,8 @@
                         <label for="duration">Choose a duration:</label>
                         <select name="duration" id="duration" class="form-control" required>
                             <option value="">Select</option>
-                            <option value="12">3 Months</option>
-                            <option value="24">6 Months</option>
+                            <option value="13">3 Months</option>
+                            <option value="26">6 Months</option>
                         </select>
                         <label for="duration">Fullname</label>
                         <input type="text" name="fullname" class="form-control" required>

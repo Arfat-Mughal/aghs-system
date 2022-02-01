@@ -65,7 +65,8 @@ class HomeController extends Controller
 
     public function getCertificate(Request $request)
     {
-        $data = Certificate::where(['weeks'=>$request->duration,'name'=>$request->fullname])->first();
+        $names = explode(" ", $request->fullname);
+        $data = Certificate::where(['weeks'=>$request->duration,'name'=>$names[0],'father_name'=>$names[1]])->first();
         if (!$data){
             return redirect()->back()->withErrors(['errors'=>"No recode Found"]);
         }
