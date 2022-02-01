@@ -66,8 +66,14 @@ class HomeController extends Controller
     public function getCertificate(Request $request)
     {
         $names = explode(" ", $request->fullname);
-        $data = Certificate::where(['weeks'=>$request->duration,'name'=>$names[0],'father_name'=>$names[1]])->first();
-        if (!$data){
+        $count = count($names);
+        if($count === 2){
+            $data = Certificate::where(['weeks'=>$request->duration,'name'=>$names[0],'father_name'=>$names[1]])->first();
+        }else{
+            $data = Certificate::where(['weeks'=>$request->duration,'name'=>$names[0].' '.$names[1],'father_name'=>$names[2].' '.$names[3]])->first();
+        }
+        
+        if (!$data || !$data->is_active){
             return redirect()->back()->withErrors(['errors'=>"No recode Found"]);
         }
         return view('certificates.meritCertificate',compact('data'));
