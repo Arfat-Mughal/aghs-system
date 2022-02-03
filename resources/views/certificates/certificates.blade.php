@@ -52,6 +52,7 @@
                                         <form action="{{route('change_certificate_status',$certificate->id)}}" method="post">
                                             @csrf
                                             <button class="btn btn-success" type="submit" value="{{$certificate->id}}" name="id">Active</button>
+                                            <a class="btn btn-danger" href="{{route('view_certificate',$certificate->id)}}" target="_blank">Print</a>
                                         </form>
                                     </td>
                                 @else

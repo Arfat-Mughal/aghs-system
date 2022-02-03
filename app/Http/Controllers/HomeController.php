@@ -72,11 +72,16 @@ class HomeController extends Controller
         }else{
             $data = Certificate::where(['weeks'=>$request->duration,'name'=>$names[0].' '.$names[1],'father_name'=>$names[2].' '.$names[3]])->first();
         }
-        
+
         if (!$data || !$data->is_active){
             return redirect()->back()->withErrors(['errors'=>"No recode Found"]);
         }
-        return view('certificates.meritCertificate',compact('data'));
+        return redirect()->back()->with([
+            'message'=>'Registration No:'." ".$data->ref_no,
+            'registration_code'=>'Registration Code:'." ".$data->registration_code,
+            'week'=>'No of weeks:'." ".$data->weeks,
+            'name'=>'Full Name:'." ".$data->name.''.$data->father_name],
+        );
     }
 
     public function roll_no()

@@ -70,6 +70,15 @@ class CertificateController extends Controller
 
     }
 
+    public function view($id)
+    {
+        $data = Certificate::with('contents')->find($id);
+        if ($data){
+            return view('certificates.meritCertificate',compact('data'));
+        }
+        return redirect()->back();
+    }
+
     public function updateAllCertificateStatus($action)
     {
         if ($action){

@@ -6,6 +6,7 @@ use App\Http\Controllers\admin\NotificationController;
 use App\Http\Controllers\admin\ResultController;
 use App\Http\Controllers\admin\SlipController;
 use App\Http\Controllers\admin\StudentController;
+use App\Http\Controllers\admin\BannerController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
@@ -51,6 +52,7 @@ Route::group(['middleware' => ['auth'], 'namespace'=>'admin'], function() {
     $RC = ResultController::class;
     $CC = CertificateController::class;
     $NC = NotificationController::class;
+    $BC = BannerController::class;
     Route::get('/dashboard',[$AC,'index'])->name('panel');
     Route::get('/certificate-of-merit',[$AC,'certificateMerit'])->name('certificate_merit');
     Route::get('/get-certificate-of-merit',[$AC,'get_certificateMerit'])->name('get_certificate_merit');
@@ -96,10 +98,15 @@ Route::group(['middleware' => ['auth'], 'namespace'=>'admin'], function() {
     Route::post('/certificate/changeStatus',[$CC,'changeCertificateStatus'])->name('change_certificate_status');
     Route::get('/certificate/{grade_id}/deleting',[$CC,'destroy'])->name('delete_certificate');
     Route::get('/certificate/{action}/update-all-certificates',[$CC,'updateAllCertificateStatus'])->name('update_all_certificates_status');
+    Route::get('/certificate/{id}/view',[$CC,'view'])->name('view_certificate');
     //notifications
     Route::get('/notify',[$NC,'index'])->name('notifications');
     Route::post('/notify',[$NC,'store'])->name('store_notifications');
     Route::get('/notify/{id}/delete',[$NC,'delete'])->name('delete_notifications');
+    //banners
+    Route::get('/banners/list',[$BC,'index'])->name('banners');
+    Route::post('/banners/list',[$BC,'store'])->name('store_banners');
+    Route::get('/banners/{id}/delete',[$BC,'delete'])->name('delete_banners');
 });
 //Route::get('/dashboard', function () {
 //    return view('admin.panel');

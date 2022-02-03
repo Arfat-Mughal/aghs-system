@@ -60,28 +60,10 @@
             </div>
             <div>
                 <p>The content of this course are as under</p>
-                @if($data['content_1'])
-                    <p style="margin-bottom: 5px;">1. <span style="margin-left:15px;">{{$data['content_1']}}</span></p>
-                @endif
-                @if($data['content_2'])
-                    <p style="margin-bottom: 5px;margin-top: 5px;">2. <span
-                            style="margin-left:15px;">{{$data['content_2']}}</span></p>
-                @endif
-                @if($data['content_3'])
-                    <p style="margin-bottom: 5px;margin-top: 5px;">3. <span
-                            style="margin-left:15px;">{{$data['content_3']}}</span></p>
-                @endif
-                @if($data['content_4'])
-                    <p style="margin-bottom: 5px;margin-top: 5px;">4. <span
-                            style="margin-left:15px;">{{$data['content_4']}}</span></p>
-                @endif
-                @if($data['content_5'])
-                    <p style="margin-bottom: 5px;margin-top: 5px;">5. <span
-                            style="margin-left:15px;">{{$data['content_5']}}</span></p>
-                @endif
-                @if($data['content_6'])
-                    <p style="margin-bottom: 5px;margin-top: 5px;">6. <span
-                            style="margin-left:15px;">{{$data['content_6']}}</span></p>
+                @if(isset($data->contents))
+                    @foreach($data->contents as $key => $data)
+                    <p style="margin-bottom: 5px;">{{ ++$key}}<span style="margin-left:15px;">{{$data->name}}</span></p>
+                    @endforeach
                 @endif
             </div>
         </div>

@@ -32,6 +32,10 @@
                     <a href="{{route('notifications')}}">
                         <i class="fas fa-flag"></i>Notifications</a>
                 </li>
+                <li>
+                    <a href="{{route('banners')}}">
+                        <i class="fas fa-sliders"></i>Banners</a>
+                </li>
             </ul>
         </nav>
     </div>

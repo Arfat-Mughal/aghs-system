@@ -30,6 +30,18 @@
                 <div class="col-md-12">
                     <h1>Online Certificate</h1>
                 </div>
+                @if(session()->has('message'))
+                    <div class="alert alert-success col-md-6 offset-2">
+                        <h4>Your Diploma/Certificate has been verified</h4>
+                        <ul>
+                            <li>{{ session()->get('message') }}</li>
+                            <li>{{ session()->get('registration_code') }}</li>
+                            <li>{{ session()->get('week') }}</li>
+                            <li>{{ session()->get('name') }}</li>
+                        </ul>
+                        <h5>Has successfully completed the prescribed course</h5>
+                    </div>
+                @endif
                     <form action="{{route('get_certificate')}}" method="post" class="border col-md-6 offset-2">
                         @csrf
                         <label for="duration">Choose a duration:</label>
