@@ -6,7 +6,7 @@
     @if($banners->count() > 0)
     <section class="home-slider owl-carousel">
         @foreach($banners as $banner)
-        <div class="slider-item" style="background-image:url({{asset($banner->path)}});">
+        <div class="slider-item" style="background-image:url({{asset('/public/'.$banner->path)}});">
             {{--            <div class="overlay"></div>--}}
             {{--            <div class="container">--}}
             {{--                <div class="row no-gutters slider-text align-items-center justify-content-center"--}}
