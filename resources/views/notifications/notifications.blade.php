@@ -38,7 +38,7 @@
                             <tr>
                                 <td scope="row">{{$notification->id}}</td>
                                 <td scope="row">{{$notification->name}}</td>
-                                <td><img src="{{$notification->path}}" alt="{{$notification->name}}" height="40px" width="60px" class="rounded"></td>
+                                <td><img src="{{asset($notification->path)}}" alt="{{$notification->name}}" height="40px" width="60px" class="rounded"></td>
                                 <td><a href="{{route('delete_notifications',$notification->id)}}" class="btn btn-danger ml-2" role="button" aria-pressed="true">Delete</a></td>
                             </tr>
                         @endforeach

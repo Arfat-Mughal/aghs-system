@@ -39,7 +39,7 @@
                 <li class="nav-item"><a href="{{route('contact')}}" class="nav-link">Contact Us</a></li>
                 @if (Route::has('login'))
                         @auth
-                        <li class="nav-item"><a href="{{ url('/dashboard') }}" class="nav-link">Dashboard</a></li>
+                        <li class="nav-item"><a href="{{ url('/admin/dashboard') }}" class="nav-link">Dashboard</a></li>
                         @else
                         <li class="nav-item"> <a href="{{ route('login') }}" class="nav-link">Log in</a></li>
 

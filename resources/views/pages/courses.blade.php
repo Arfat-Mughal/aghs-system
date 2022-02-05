@@ -37,6 +37,7 @@
                             <li>{{ session()->get('message') }}</li>
                             <li>{{ session()->get('registration_code') }}</li>
                             <li>{{ session()->get('week') }}</li>
+                            <li>{{ session()->get('date') }}</li>
                             <li>{{ session()->get('name') }}</li>
                         </ul>
                         <h5>Has successfully completed the prescribed course</h5>

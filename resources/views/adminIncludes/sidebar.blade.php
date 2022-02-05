@@ -26,7 +26,7 @@
                 </li>
                 <li>
                     <a href="{{route('certificates')}}">
-                        <i class="fas fa-trophy"></i>Certificates</a>
+                        <i class="fas fa-trophy"></i>Short Courses</a>
                 </li>
                 <li>
                     <a href="{{route('notifications')}}">

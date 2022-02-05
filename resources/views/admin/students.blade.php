@@ -77,7 +77,7 @@
                         @foreach($students as $index => $student)
                         <tr>
                             <th scope="row">{{$student->id}}</th>
-                            <td><img src="{{$student->path}}" alt="{{$student->name}}" height="40px" width="60px" class="rounded"></td>
+                            <td><img src="{{asset($student->path)}}" alt="{{$student->name}}" height="40px" width="60px" class="rounded"></td>
                             <td>{{$student->addmission_no}}</td>
                             <td>{{$student->name}}</td>
                             <td>{{$student->father_name}}</td>

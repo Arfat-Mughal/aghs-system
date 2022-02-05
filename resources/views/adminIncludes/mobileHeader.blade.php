@@ -18,7 +18,7 @@
         <div class="container-fluid">
             <ul class="navbar-mobile__list list-unstyled">
                 <li class="active has-sub">
-                    <a class="js-arrow" href="#">
+                    <a class="js-arrow" href="{{route('panel')}}">
                         <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                 </li>
                 <li>
@@ -32,6 +32,18 @@
                 <li>
                     <a href="{{route('slips')}}">
                         <i class="fas fa-table"></i>Roll No Slip's</a>
+                </li>
+                <li>
+                    <a href="{{route('certificates')}}">
+                        <i class="fas fa-trophy"></i>Short Courses</a>
+                </li>
+                <li>
+                    <a href="{{route('notifications')}}">
+                        <i class="fas fa-flag"></i>Notifications</a>
+                </li>
+                <li>
+                    <a href="{{route('banners')}}">
+                        <i class="fas fa-sliders"></i>Banners</a>
                 </li>
             </ul>
         </div>

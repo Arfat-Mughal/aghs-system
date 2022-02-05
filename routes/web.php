@@ -45,7 +45,7 @@ Route::get('/result_sheet', [$HC,'getMaksSheet'])->name('result_catd');
 Route::get('/notice', [$HC,'notice'])->name('notice');
 Route::get('/about-us', [$HC,'about'])->name('about');
 
-Route::group(['middleware' => ['auth'], 'namespace'=>'admin'], function() {
+Route::group(['middleware' => ['auth'],'namespace'=>'admin','prefix'=>'admin'], function() {
     $AC = AdminController::class;
     $SC = StudentController::class;
     $SLC = SlipController::class;
@@ -104,8 +104,8 @@ Route::group(['middleware' => ['auth'], 'namespace'=>'admin'], function() {
     Route::post('/notify',[$NC,'store'])->name('store_notifications');
     Route::get('/notify/{id}/delete',[$NC,'delete'])->name('delete_notifications');
     //banners
-    Route::get('/banners/list',[$BC,'index'])->name('banners');
-    Route::post('/banners/list',[$BC,'store'])->name('store_banners');
+    Route::get('/banners',[$BC,'index'])->name('banners');
+    Route::post('/banners',[$BC,'store'])->name('store_banners');
     Route::get('/banners/{id}/delete',[$BC,'delete'])->name('delete_banners');
 });
 //Route::get('/dashboard', function () {

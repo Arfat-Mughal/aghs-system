@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Banner;
 use App\Models\Certificate;
 use App\Models\Contact;
 use App\Models\Datesheet;
@@ -14,6 +15,7 @@ use App\Models\Student;
 use App\Models\StudentRecodeCard;
 use Illuminate\Http\Request;
 use Artesaos\SEOTools\Facades\SEOMeta;
+use Illuminate\Support\Carbon;
 use NumberToWords\NumberToWords;
 
 class HomeController extends Controller
@@ -29,7 +31,8 @@ class HomeController extends Controller
         SEOMeta::setTitleDefault('AL-FALAH GRAMMAR HIGH SCHOOL & ACADEMY');
         SEOMeta::setDescription('Home page');
         SEOMeta::setCanonical('https://aghslahore.com');
-        return view('main');
+        $banners = Banner::all('name','path');
+        return view('main',compact('banners'));
     }
 
     public function contact()
@@ -80,7 +83,8 @@ class HomeController extends Controller
             'message'=>'Registration No:'." ".$data->ref_no,
             'registration_code'=>'Registration Code:'." ".$data->registration_code,
             'week'=>'No of weeks:'." ".$data->weeks,
-            'name'=>'Full Name:'." ".$data->name.''.$data->father_name],
+            'date'=>'Issue On:'." ". Carbon::parse($data->date)->format('d-M-Y'),
+            'name'=>'Full Name:'." ".$data->name.' '.$data->father_name],
         );
     }
 
