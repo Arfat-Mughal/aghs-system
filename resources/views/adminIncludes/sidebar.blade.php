@@ -36,6 +36,10 @@
                     <a href="{{route('banners')}}">
                         <i class="fas fa-sliders"></i>Banners</a>
                 </li>
+                <li>
+                    <a href="{{route('fees')}}">
+                        <i class="fas fa-calculator"></i>Fees</a>
+                </li>
             </ul>
         </nav>
     </div>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\CertificateController;
+use App\Http\Controllers\admin\FeeController;
 use App\Http\Controllers\admin\NotificationController;
 use App\Http\Controllers\admin\ResultController;
 use App\Http\Controllers\admin\SlipController;
@@ -53,6 +54,7 @@ Route::group(['middleware' => ['auth'],'namespace'=>'admin','prefix'=>'admin'], 
     $CC = CertificateController::class;
     $NC = NotificationController::class;
     $BC = BannerController::class;
+    $FC = FeeController::class;
     Route::get('/dashboard',[$AC,'index'])->name('panel');
     Route::get('/certificate-of-merit',[$AC,'certificateMerit'])->name('certificate_merit');
     Route::get('/get-certificate-of-merit',[$AC,'get_certificateMerit'])->name('get_certificate_merit');
@@ -70,6 +72,7 @@ Route::group(['middleware' => ['auth'],'namespace'=>'admin','prefix'=>'admin'], 
     Route::get('/student/{id}/class',[$SC,'getStudentsViewByClasses'])->name('getStudentsViewByClasses');
     Route::get('/student/{id}/changeStatus',[$SC,'changeStudentStatus'])->name('change_Student_Status');
     Route::get('/student/changeStatus', [$SC,'ChangeUserStatus'])->name('change_user_status');
+    Route::get('/student/{id}/promote-next-class', [$SC,'promoteNextClass'])->name('promote_next_class');
     //SlipController
     Route::get('/slips',[$SLC,'index'])->name('slips');
     Route::get('/slips/create',[$SLC,'create'])->name('add_datesheet');
@@ -107,6 +110,10 @@ Route::group(['middleware' => ['auth'],'namespace'=>'admin','prefix'=>'admin'], 
     Route::get('/banners',[$BC,'index'])->name('banners');
     Route::post('/banners',[$BC,'store'])->name('store_banners');
     Route::get('/banners/{id}/delete',[$BC,'delete'])->name('delete_banners');
+    //fees
+    Route::get('/fees',[$FC,'index'])->name('fees');
+    Route::post('/fees',[$FC,'store'])->name('fee_store');
+    Route::get('/fees/create',[$FC,'create'])->name('add_fee');
 });
 //Route::get('/dashboard', function () {
 //    return view('admin.panel');

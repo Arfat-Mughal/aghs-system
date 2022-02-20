@@ -25,6 +25,11 @@ class Student extends Model
         return $this->hasMany(StudentRecodeCard::class,'student_id');
     }
 
+    public function fees()
+    {
+        return $this->hasMany(Fee::class);
+    }
+
     public function getFullNameAttribute()
     {
         return "{$this->name} {$this->father_name}";

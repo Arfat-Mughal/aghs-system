@@ -34,6 +34,16 @@
                                     </div>
                                 </div>
                                 <div class="btn-group" role="group">
+                                    <button id="btnGroupDrop4" type="button" class="btn btn-warning text-white dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Move to Next Class
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop4">
+                                        @foreach($grades as $grade)
+                                                <a class="dropdown-item" onclick="return confirm('Are you sure? All Active Students of this class will promote to next class ')" href="{{route('promote_next_class',$grade->id)}}">{{$grade->name}}</a>
+                                        @endforeach
+                                    </div>
+                                </div>
+                                <div class="btn-group" role="group">
                                     <button id="btnGroupDrop2" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         PRINT RECORD
                                     </button>

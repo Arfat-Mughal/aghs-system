@@ -28,6 +28,29 @@ class StudentController extends Controller
         return view('admin.students', compact('students','grades'));
     }
 
+    public function promoteNextClass($id)
+    {
+        $have_next_class = $id + 1;
+        $grades = Grade::pluck('id')->toArray();
+        if (in_array($have_next_class, $grades)) {
+            $students = Student::where(['grade_id'=>$id,'is_active'=>1])->select('id','grade_id')->get();
+            if ($students->count() === 0){
+                Alert::error('No Student Found in this Class', 'No Record');
+                return redirect()->route('students');
+            }else{
+                $students = Student::where(['grade_id'=>$id,'is_active'=>1])->select('id','grade_id')->get();
+                foreach ($students as $student){
+                    $student->grade_id = $have_next_class;
+                    $student->save();
+                }
+                Alert::success('Students of selected class promote to next class', 'Success Message');
+                return redirect()->route('students');
+            }
+        }
+        Alert::error('You did not have next class to promote these students', 'No Next Class');
+        return redirect()->route('students');
+    }
+
     public function addStudentPositions(Request $request)
     {
         $students = Student::where('grade_id',$request->grade)->select('id','o_marks','position')->orderBy('o_marks', 'DESC')->get();
