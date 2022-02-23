@@ -13,8 +13,8 @@ class FeeController extends Controller
 {
     public function index()
     {
-        $fees = Fee::with('payments','student')->get();
-        return view('fee.fees',compact('fees'));
+        $fees = Fee::with('payments', 'student')->get();
+        return view('fee.fees', compact('fees'));
     }
 
     public function store(Request $request)
@@ -25,13 +25,13 @@ class FeeController extends Controller
             'last_date' => 'required'
         ]);
 
-        $students = Student::where('grade_id',$request->grade_id)->get();
-        if (!$students){
+        $students = Student::where('grade_id', $request->grade_id)->get();
+        if (!$students) {
             Alert::error('No Student Found For Select Class', 'No Student');
             return redirect()->route('fees');
         }
 
-        foreach ($students as $student){
+        foreach ($students as $student) {
             $fee = new Fee;
             $fee->grade_id = $request->grade_id;
             $fee->student_id = $student->id;
@@ -39,22 +39,27 @@ class FeeController extends Controller
             $fee->last_date = $request->last_date;
             $fee->save();
 
-            foreach ($request->fees as $data){
+            foreach ($request->fees as $data) {
                 $fee->payments()->create([
-                    'detail'=> $data['detail'],
-                    'fee'=> $data['fee']
+                    'student_id'=> $student->id,
+                    'detail' => $data['detail'],
+                    'fee' => $data['fee']
                 ]);
             }
         }
         Alert::success('Students Fee Cards Added', 'Success Message');
         return redirect()->route('fees');
-
-
     }
 
     public function create()
     {
-        $grades = Grade::all('id','name');
-        return view('fee.fee_create',compact('grades'));
+        $grades = Grade::all('id', 'name');
+        return view('fee.fee_create', compact('grades'));
+    }
+
+
+    public function view()
+    {
+       //
     }
 }
