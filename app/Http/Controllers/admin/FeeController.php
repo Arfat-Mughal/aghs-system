@@ -21,7 +21,6 @@ class FeeController extends Controller
     {
         $request->validate([
             'grade_id' => 'numeric|required',
-            'fee' => 'numeric|required',
             'issue_date' => 'required',
             'last_date' => 'required'
         ]);
@@ -40,9 +39,12 @@ class FeeController extends Controller
             $fee->last_date = $request->last_date;
             $fee->save();
 
-            $fee->payments()->create([
-                'fee'=> $request->fee
-            ]);
+            foreach ($request->fees as $data){
+                $fee->payments()->create([
+                    'detail'=> $data['detail'],
+                    'fee'=> $data['fee']
+                ]);
+            }
         }
         Alert::success('Students Fee Cards Added', 'Success Message');
         return redirect()->route('fees');

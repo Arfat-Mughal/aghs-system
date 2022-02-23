@@ -54,8 +54,7 @@
                                         <form method="POST" action="#">
                                             @csrf
                                             <input type="hidden" name="id" value={{$date->id}}>
-                                            <button type="submit" class="dropdown-item">Delete
-                                            </button>
+                                            <button type="submit" class="dropdown-item">Delete</button>
                                         </form>
                                     </div>
                                 </div>
