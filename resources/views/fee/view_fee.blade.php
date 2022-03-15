@@ -22,29 +22,52 @@
             <p class="text-center">CELL # 0321-4960275,PHONE # 042-37172294</p>
         </div>
     </div>
-    <div class="row">
-        <div class="col-6 text-center">
-            No: <b>{{$details->id}}</b>
+    <div class="row mt-2 mb-2">
+        <div class="col-4 text-center">
+            <b>Roll No :</b> {{$details->student->addmission_no}}
         </div>
-        <div class="col-6 text-center">
-            Issue Date: <b>{{$details->issue_date->format('d-M-y')}}</b>
+        <div class="col-4 text-center">
+            <b>Student Name :</b> {{$details->student->name}}
+        </div>
+        <div class="col-4 text-center">
+            <b>Father Name :</b> {{$details->student->father_name}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-3 text-center">
+            <b>No:</b> {{$details->id}}
+        </div>
+        <div class="col-3 text-center">
+            <b>Issue Date:</b> {{$details->issue_date->format('d-M-y')}}
+        </div>
+        <div class="col-3 text-center">
+            <b>Last Date:</b> {{$details->last_date->format('d-M-y')}}
+        </div>
+        <div class="col-3 text-center">
+            <b>Class :</b> {{$details->student->grade->name}}
         </div>
     </div>
     <table class="table table-bordered">
         <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col">Details</th>
+            <th scope="col">Fee</th>
+            <th scope="col">Status</th>
         </tr>
         </thead>
         <tbody>
         <tr>
-            <th scope="row">STUDENT NAME</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
+            @foreach($details->payments as $payment)
+                <th scope="row">{{$payment->id}}</th>
+                <td>{{$payment->detail}}</td>
+                <td>{{$payment->fee}}</td>
+                @if($payment->is_paid)
+                    <td>Paid</td>
+                @else
+                    <td>UnPaid</td>
+                @endif
+            @endforeach
         </tr>
         </tbody>
     </table>

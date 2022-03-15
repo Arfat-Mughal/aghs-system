@@ -113,11 +113,7 @@ Route::group(['middleware' => ['auth'],'namespace'=>'admin','prefix'=>'admin'], 
     Route::get('/fees',[$FC,'index'])->name('fees');
     Route::post('/fees',[$FC,'store'])->name('fee_store');
     Route::get('/fees/create',[$FC,'create'])->name('add_fee');
-<<<<<<< Updated upstream
-    Route::get('/fees/view',[$FC,'view'])->name('view_fee');
-=======
     Route::get('/fee/{id}/view}',[$FC,'view'])->name('view_fee');
->>>>>>> Stashed changes
 });
 //Route::get('/dashboard', function () {
 //    return view('admin.panel');

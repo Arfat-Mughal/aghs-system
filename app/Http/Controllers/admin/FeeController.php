@@ -57,12 +57,6 @@ class FeeController extends Controller
         return view('fee.fee_create', compact('grades'));
     }
 
-
-    public function view()
-    {
-       //
-    }
-
     public function view($id)
     {
         $fee_details = Fee::with('student','payments')->find($id);
