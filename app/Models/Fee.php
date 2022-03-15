@@ -11,6 +11,8 @@ class Fee extends Model
 
     protected $guarded = [];
 
+    protected $dates = ['issue_date','last_date'];
+
     public function payments()
     {
         return $this->hasMany(Payment::class,'fee_id');

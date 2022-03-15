@@ -62,4 +62,13 @@ class FeeController extends Controller
     {
        //
     }
+
+    public function view($id)
+    {
+        $fee_details = Fee::with('student','payments')->find($id);
+        if ($fee_details){
+            $details = $fee_details;
+            return view('fee.view_fee',compact('details'));
+        }
+    }
 }

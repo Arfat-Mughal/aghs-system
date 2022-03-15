@@ -49,7 +49,7 @@
                                         Actions
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                        <a class="dropdown-item" href="#" target="_blank">View</a>
+                                        <a class="dropdown-item" href="{{route('view_fee',$date->id)}}" target="_blank">View</a>
                                         <a class="dropdown-item" href="#">Update</a>
                                         <form method="POST" action="#">
                                             @csrf

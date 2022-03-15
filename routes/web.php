@@ -82,7 +82,6 @@ Route::group(['middleware' => ['auth'],'namespace'=>'admin','prefix'=>'admin'], 
     Route::get('/slips/{id}/update',[$SLC,'updateSlip'])->name('update_slips_marks');
     Route::post('/slips/{id}/update',[$SLC,'update_slip'])->name('update_slips_marks_store');
     Route::get('/slips/{action}/update-all',[$SLC,'updateAllSlipStatus'])->name('update_all_slips_status');
-
     //ResultController
     Route::get('/results',[$RC,'index'])->name('results');
     Route::get('/results/create',[$RC,'create'])->name('add_results');
@@ -114,7 +113,11 @@ Route::group(['middleware' => ['auth'],'namespace'=>'admin','prefix'=>'admin'], 
     Route::get('/fees',[$FC,'index'])->name('fees');
     Route::post('/fees',[$FC,'store'])->name('fee_store');
     Route::get('/fees/create',[$FC,'create'])->name('add_fee');
+<<<<<<< Updated upstream
     Route::get('/fees/view',[$FC,'view'])->name('view_fee');
+=======
+    Route::get('/fee/{id}/view}',[$FC,'view'])->name('view_fee');
+>>>>>>> Stashed changes
 });
 //Route::get('/dashboard', function () {
 //    return view('admin.panel');
