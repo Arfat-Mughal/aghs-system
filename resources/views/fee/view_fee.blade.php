@@ -14,11 +14,11 @@
 <div class="container mt-2">
     <div class="row">
         <div class="col-3">
-            <img src="{{asset('web_assets/images/logo_header.png')}}" alt="aghs" width="150px" height="150px">
+            <img src="{{asset('web_assets/images/logo_header.png')}}" alt="aghs" width="120px" height="120px">
         </div>
         <div class="col-8">
-            <h2 class="text-center">AL-FALAH GRAMMAR HIGH SCHOOL AND ACADEMY</h2>
-            <h4 class="text-center">VILLAGE BHANO CHAK LAHORE CANTT </h4>
+            <h3 class="text-center">AL-FALAH GRAMMAR HIGH SCHOOL AND ACADEMY</h3>
+            <h5 class="text-center">VILLAGE BHANO CHAK LAHORE CANTT </h5>
             <p class="text-center">CELL # 0321-4960275,PHONE # 042-37172294</p>
         </div>
     </div>
@@ -33,7 +33,7 @@
             <b>Father Name :</b> {{$details->student->father_name}}
         </div>
     </div>
-    <div class="row">
+    <div class="row ">
         <div class="col-3 text-center">
             <b>No:</b> {{$details->id}}
         </div>
@@ -47,7 +47,7 @@
             <b>Class :</b> {{$details->student->grade->name}}
         </div>
     </div>
-    <table class="table table-bordered">
+    <table class="table table-striped table-bordered">
         <thead>
         <tr>
             <th scope="col">#</th>
@@ -61,13 +61,18 @@
             @foreach($details->payments as $payment)
                 <th scope="row">{{$payment->id}}</th>
                 <td>{{$payment->detail}}</td>
-                <td>{{$payment->fee}}</td>
+                <td>Rs : {{$payment->fee}}</td>
                 @if($payment->is_paid)
                     <td>Paid</td>
                 @else
                     <td>UnPaid</td>
                 @endif
             @endforeach
+        </tr>
+        <tr>
+            <td>Total</td>
+            <td>Payable Amount</td>
+            <td colspan="2" class="font-weight-bold text-center"> Rs : {{$details->payments->sum('fee')}}</td>
         </tr>
         </tbody>
     </table>

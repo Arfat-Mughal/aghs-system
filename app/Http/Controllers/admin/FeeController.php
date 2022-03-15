@@ -14,7 +14,8 @@ class FeeController extends Controller
     public function index()
     {
         $fees = Fee::with('payments', 'student')->get();
-        return view('fee.fees', compact('fees'));
+        $grades = Grade::all('id','name');
+        return view('fee.fees', compact('fees','grades'));
     }
 
     public function store(Request $request)

@@ -11,12 +11,13 @@
                         <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
                             <a type="button" href="{{route('add_fee')}}" class="au-btn au-btn-icon au-btn--blue" ><i class="zmdi zmdi-plus"></i>Create Fee card</a>
                             <div class="btn-group" role="group">
-                                <button id="btnGroupDrop1" type="button" class="btn btn-info dropdown-toggle au-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Update Status
+                                <button id="btnGroupDrop1" type="button" class="btn btn-danger dropdown-toggle au-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Print Challan form
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                    <a class="dropdown-item" href="{{route('update_all_slips_status',1)}}">Activate All</a>
-                                    <a class="dropdown-item" href="{{route('update_all_slips_status',0)}}">Deactivate All</a>
+                                    @foreach($grades as $grade)
+                                        <a class="dropdown-item" href="{{route('getStudentsViewByClasses',$grade->id)}}" target="_blank">{{$grade->name}}</a>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
@@ -31,7 +32,9 @@
                         <th scope="col">Roll Number</th>
                         <th scope="col">Student Name</th>
                         <th scope="col">Father Name</th>
-                        <th scope="col">Payable Amount</th>
+                        <th scope="col">Class</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col">Month</th>
                         <th scope="col">Actions</th>
                     </tr>
                     </thead>
@@ -42,7 +45,9 @@
                             <td scope="row">{{$date->student->addmission_no}}</td>
                             <td scope="row">{{$date->student->name}}</td>
                             <td scope="row">{{$date->student->father_name}}</td>
+                            <td scope="row">{{$date->student->grade->name}}</td>
                             <td scope="row">{{$date->payments->sum('fee')}}</td>
+                            <td scope="row">{{$date->created_at->format('F')}}</td>
                             <td>
                                 <div class="btn-group" role="group">
                                     <button id="btnGroupDrop1" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
