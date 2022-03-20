@@ -33,7 +33,7 @@
             <b>Father Name :</b> {{$details->student->father_name}}
         </div>
     </div>
-    <div class="row ">
+    <div class="row ml-2">
         <div class="col-3 text-center">
             <b>No:</b> {{$details->id}}
         </div>
@@ -57,8 +57,8 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            @foreach($details->payments as $payment)
+        @foreach($details->payments as $payment)
+            <tr>
                 <th scope="row">{{$payment->id}}</th>
                 <td>{{$payment->detail}}</td>
                 <td>Rs : {{$payment->fee}}</td>
@@ -67,8 +67,8 @@
                 @else
                     <td>UnPaid</td>
                 @endif
-            @endforeach
         </tr>
+        @endforeach
         <tr>
             <td>Total</td>
             <td>Payable Amount</td>

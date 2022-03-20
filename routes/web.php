@@ -114,6 +114,8 @@ Route::group(['middleware' => ['auth'],'namespace'=>'admin','prefix'=>'admin'], 
     Route::post('/fees',[$FC,'store'])->name('fee_store');
     Route::get('/fees/create',[$FC,'create'])->name('add_fee');
     Route::get('/fee/{id}/view}',[$FC,'view'])->name('view_fee');
+    Route::get('/fee/{id}/all/classes}',[$FC,'all_fee_view'])->name('all_fee_view');
+    Route::post('/fee/delete-by-id}',[$FC,'destroyFee'])->name('view_delete');
 });
 //Route::get('/dashboard', function () {
 //    return view('admin.panel');

@@ -16,7 +16,7 @@
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                     @foreach($grades as $grade)
-                                        <a class="dropdown-item" href="{{route('getStudentsViewByClasses',$grade->id)}}" target="_blank">{{$grade->name}}</a>
+                                        <a class="dropdown-item" href="{{route('all_fee_view',$grade->id)}}" target="_blank">{{$grade->name}}</a>
                                     @endforeach
                                 </div>
                             </div>
@@ -56,7 +56,7 @@
                                     <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                         <a class="dropdown-item" href="{{route('view_fee',$date->id)}}" target="_blank">View</a>
                                         <a class="dropdown-item" href="#">Update</a>
-                                        <form method="POST" action="#">
+                                        <form method="POST" action="{{route('view_delete')}}">
                                             @csrf
                                             <input type="hidden" name="id" value={{$date->id}}>
                                             <button type="submit" class="dropdown-item">Delete</button>
