@@ -13,7 +13,7 @@
 <style>
     @page {
         size: A4;
-        margin: 2;
+        margin: 0;
     }
     @media print {
         html, body {
@@ -26,64 +26,68 @@
 <body>
 @foreach($fee_details as $detail)
         <div class="container mt-2 mb-2">
-            <div class="row">
-                <div class="col-3">
-                    <img src="{{asset('web_assets/images/logo_header.png')}}" alt="aghs" width="120px" height="120px">
-                </div>
-                <div class="col-8">
-                    <h4 class="text-center">AL-FALAH GRAMMAR HIGH SCHOOL AND ACADEMY</h4>
-                    <h5 class="text-center">VILLAGE BHANO CHAK LAHORE CANTT </h5>
-                    <p class="text-center">CELL # 0321-4960275,PHONE # 042-37172294</p>
-                </div>
-            </div>
-            <table class="table table-bordered">
-                <thead>
-                <tr>
-                    <th scope="col">Father Name</th>
-                    <th scope="col">Student Name</th>
-                    <th scope="col">Class</th>
-                    <th scope="col">Roll No</th>
-                    <th scope="col">Last Date</th>
-                    <th scope="col">Issue Date </th>
-                </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>{{$detail->student->name}}</td>
-                        <td>{{$detail->student->father_name}}</td>
-                        <td>{{$detail->student->grade->name}}</td>
-                        <td>{{$detail->student->addmission_no}}</td>
-                        <td>{{$detail->last_date->format('d-M-y')}}</td>
-                        <td>{{$detail->issue_date->format('d-M-y')}}</td>
-                    </tr>
-                </tbody>
-            </table>
             <table class="table table-striped table-bordered">
                 <thead>
                 <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Details</th>
-                    <th scope="col">Fee</th>
-                    <th scope="col">Status</th>
+                    <th colspan="4">
+                        <h4 class="text-center">AL-FALAH GRAMMAR HIGH SCHOOL AND ACADEMY</h4>
+                        <p class="text-center mb-0">Online Payment Jazz Cash / Easy Paisa 0321-4960275 or HBL account # 05227902408503</p>
+                    </th>
+                </tr>
+                <tr>
+                    <th scope="col">Student Name</th>
+                    <td>{{$detail->student->name}}</td>
+
+                    <th scope="col">Father Name</th>
+                    <td>{{$detail->student->father_name}}</td>
+                </tr>
+                <tr>
+                    <th scope="col">Roll No</th>
+                    <td>{{$detail->student->addmission_no}}</td>
+
+                    <th scope="col">Class</th>
+                    <td>{{$detail->student->grade->name}}</td>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($detail->payments as $payment)
                     <tr>
-                        <th scope="row">{{$loop->iteration}}</th>
-                        <td>{{$payment->detail}}</td>
-                        <td>Rs : {{$payment->fee}}</td>
-                        @if($payment->is_paid)
-                            <td>Paid</td>
-                        @else
-                            <td>UnPaid</td>
-                        @endif
+                        <th scope="col">Total Dues / FEE</th>
+                        <td colspan="3">
+                            @foreach($detail->payments as $payment)
+                                {{$payment->detail}} = Rs : {{$payment->fee}} +
+                            @endforeach
+                        </td>
+{{--                        <td> Rs : {{$detail->payments->sum('fee')}}</td>--}}
                     </tr>
-                @endforeach
                 <tr>
-                    <td>Total</td>
-                    <td>Payable Amount</td>
-                    <td colspan="2" class="font-weight-bold text-center"> Rs : {{$detail->payments->sum('fee')}}</td>
+                    <th scope="col">Total Payable</th>
+                    <td>
+                        {{$detail->issue_date->format('d/M/y')}}
+                    </td>
+                    <td>{{$detail->last_date->format('d/M/y')}}</td>
+                    <td>
+                        Rs : {{$detail->payments->sum('fee')}}
+                    </td>
+                </tr>
+                    <tr>
+                    <th scope="col">Total Payment</th>
+                    <td>
+                        {{ \Carbon\Carbon::parse($detail->last_date)->addDay()->format('d/M/y') }}
+                    </td>
+                    <td>{{ \Carbon\Carbon::parse($detail->last_date)->addDays(5)->format('d/M/y') }}</td>
+                    <td>
+                        Rs : {{$detail->payments->sum('fee')+50}}
+                    </td>
+                </tr>
+                    <tr>
+                    <th scope="col">Late Payment</th>
+                    <td>
+                        {{ \Carbon\Carbon::parse($detail->last_date)->addDays(6)->format('d/M/y') }}
+                    </td>
+                    <td>{{ \Carbon\Carbon::parse($detail->last_date)->addDays(12)->format('d/M/y') }}</td>
+                    <td>
+                        Rs : {{$detail->payments->sum('fee')+100}}
+                    </td>
                 </tr>
                 </tbody>
             </table>
