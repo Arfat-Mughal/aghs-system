@@ -11,6 +11,9 @@
     <title>Challan Form</title>
 </head>
 <style>
+    .table-bordered td, .table-bordered th {
+        border: 3px solid #0a0909;
+    }
     @page {
         size: A4;
         margin: 0;
@@ -26,11 +29,11 @@
 <body>
 @foreach($fee_details as $detail)
         <div class="container mt-2 mb-2">
-            <table class="table table-striped table-bordered border">
+            <table class="table table-bordered">
                 <thead>
                 <tr>
                     <th colspan="4">
-                        <h4 class="text-center">AL-FALAH GRAMMAR HIGH SCHOOL AND ACADEMY</h4>
+                        <h3 class="text-center">AL-FALAH GRAMMAR HIGH SCHOOL AND ACADEMY</h3>
                         <p class="text-center mb-0">Online Payment Jazz Cash / Easy Paisa 0321-4960275 or HBL account Title : Bilal Shahid Account # 05227902408503</p>
                     </th>
                 </tr>
