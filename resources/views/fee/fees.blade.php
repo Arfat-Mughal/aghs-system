@@ -10,6 +10,7 @@
                         <h2 class="title-1">Fees</h2>
                         <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
                             <a type="button" href="{{route('add_fee')}}" class="au-btn au-btn-icon au-btn--blue" ><i class="zmdi zmdi-plus"></i>Create Fee card</a>
+                            <a type="button" onclick="return confirm('Are you sure? All Cards are deleted')"  href="{{route('delete_all_fee_cards')}}" class="au-btn au-btn-icon au-btn--green" >Delete all fee cards</a>
                             <div class="btn-group" role="group">
                                 <button id="btnGroupDrop1" type="button" class="btn btn-danger dropdown-toggle au-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Print Challan form
@@ -55,7 +56,7 @@
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                         <a class="dropdown-item" href="{{route('view_fee',$date->id)}}" target="_blank">View</a>
-                                        <a class="dropdown-item" href="#">Update</a>
+                                        <a class="dropdown-item" href="{{route('update_fee_card',$date->id)}}">Update</a>
                                         <form method="POST" action="{{route('view_delete')}}">
                                             @csrf
                                             <input type="hidden" name="id" value={{$date->id}}>

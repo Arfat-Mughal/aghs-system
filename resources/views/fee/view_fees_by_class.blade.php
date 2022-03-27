@@ -26,12 +26,12 @@
 <body>
 @foreach($fee_details as $detail)
         <div class="container mt-2 mb-2">
-            <table class="table table-striped table-bordered">
+            <table class="table table-striped table-bordered border">
                 <thead>
                 <tr>
                     <th colspan="4">
                         <h4 class="text-center">AL-FALAH GRAMMAR HIGH SCHOOL AND ACADEMY</h4>
-                        <p class="text-center mb-0">Online Payment Jazz Cash / Easy Paisa 0321-4960275 or HBL account # 05227902408503</p>
+                        <p class="text-center mb-0">Online Payment Jazz Cash / Easy Paisa 0321-4960275 or HBL account Title : Bilal Shahid Account # 05227902408503</p>
                     </th>
                 </tr>
                 <tr>
@@ -60,7 +60,7 @@
 {{--                        <td> Rs : {{$detail->payments->sum('fee')}}</td>--}}
                     </tr>
                 <tr>
-                    <th scope="col">Total Payable</th>
+                    <th scope="col">Total Payable/Fee</th>
                     <td>
                         {{$detail->issue_date->format('d/M/y')}}
                     </td>
@@ -70,7 +70,7 @@
                     </td>
                 </tr>
                     <tr>
-                    <th scope="col">Total Payment</th>
+                    <th scope="col">Late Payment/Fee</th>
                     <td>
                         {{ \Carbon\Carbon::parse($detail->last_date)->addDay()->format('d/M/y') }}
                     </td>
@@ -80,11 +80,11 @@
                     </td>
                 </tr>
                     <tr>
-                    <th scope="col">Late Payment</th>
+                    <th scope="col">After Late Payment/Fee</th>
                     <td>
                         {{ \Carbon\Carbon::parse($detail->last_date)->addDays(6)->format('d/M/y') }}
                     </td>
-                    <td>{{ \Carbon\Carbon::parse($detail->last_date)->addDays(12)->format('d/M/y') }}</td>
+                    <td>{{ \Carbon\Carbon::parse($detail->last_date)->addDays(8)->format('d/M/y') }}</td>
                     <td>
                         Rs : {{$detail->payments->sum('fee')+100}}
                     </td>

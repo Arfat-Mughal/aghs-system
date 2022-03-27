@@ -97,4 +97,54 @@ class FeeController extends Controller
         Alert::error('No Fee Found', 'Opss');
         return redirect()->route('fees');
     }
+
+    public function delete_all_fee_cards()
+    {
+        $fees = Fee::all();
+        if (count($fees) > 0){
+            foreach ($fees as $fee){
+                $payments = Payment::where('fee_id',$fee->id)->get();
+                if (count($payments) > 0){
+                    foreach ($payments as $payment){
+                        $payment->fee_id = 0;
+                        $payment->save();
+                    }
+                }
+                $fee->delete();
+            }
+            Alert::success('All Fee Cards Deleted', 'Success Message');
+            return redirect()->route('fees');
+        }
+        Alert::error('No Fee Found', 'Opss');
+        return redirect()->route('fees');
+    }
+
+    public function update_fee_card($id)
+    {
+        $fee = Fee::with('payments','student','grade')->withCount('payments')->find($id);
+        if ($fee){
+            return view('fee.fee_update',compact('fee'));
+        }
+    }
+
+    public function fee_update(Request $request)
+    {
+        $fee = Fee::find($request->fee_id);
+        if ($fee){
+            $fee->payments()->delete();
+            foreach ($request->fees as $data) {
+                if ($data['detail'] !== null && $data['fee'] !== null){
+                    $fee->payments()->create([
+                        'student_id'=> $fee->student_id,
+                        'detail' => $data['detail'],
+                        'fee' => $data['fee']
+                    ]);
+                }
+            }
+            Alert::success('Card Updated', 'Success Message');
+            return redirect()->route('fees');
+        }
+        Alert::error('No Fee Found', 'Opss');
+        return redirect()->route('fees');
+    }
 }
