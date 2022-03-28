@@ -11,6 +11,14 @@
     <title>Challan Form</title>
 </head>
 <style>
+    @media print{
+        .table-bordered td, .table-bordered th {
+            border-width: 3px !important;
+            border-style: solid !important;
+            border-color: black !important;
+            -webkit-print-color-adjust:exact ;
+        }
+    }
     .table-bordered td, .table-bordered th {
         border: 3px solid #0a0909;
     }
@@ -33,7 +41,7 @@
                 <thead>
                 <tr>
                     <th colspan="4">
-                        <h3 class="text-center">AL-FALAH GRAMMAR HIGH SCHOOL AND ACADEMY</h3>
+                        <h2 class="text-center">AL-FALAH GRAMMAR HIGH SCHOOL AND ACADEMY</h2>
                         <p class="text-center mb-0">Online Payment Jazz Cash / Easy Paisa 0321-4960275 or HBL account Title : Bilal Shahid Account # 05227902408503</p>
                     </th>
                 </tr>
