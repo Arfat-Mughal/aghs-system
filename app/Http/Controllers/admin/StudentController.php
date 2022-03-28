@@ -33,12 +33,12 @@ class StudentController extends Controller
         $have_next_class = $id + 1;
         $grades = Grade::pluck('id')->toArray();
         if (in_array($have_next_class, $grades)) {
-            $students = Student::where(['grade_id'=>$id,'is_active'=>1])->select('id','grade_id')->get();
+            $students = Student::where(['grade_id'=>$id,'is_active'=> true])->select('id','grade_id')->get();
             if ($students->count() === 0){
                 Alert::error('No Student Found in this Class', 'No Record');
                 return redirect()->route('students');
             }else {
-                $students = Student::where(['grade_id' => $id, 'is_active' => 1])->select('id', 'grade_id')->get();
+                $students = Student::where(['grade_id' => $id, 'is_active' => true])->select('id', 'grade_id')->get();
                 foreach ($students as $student) {
                     $array = Student::where('grade_id', $have_next_class)->pluck('addmission_no')->toArray();
                     if(!empty($array)){

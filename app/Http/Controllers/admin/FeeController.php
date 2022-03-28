@@ -71,7 +71,7 @@ class FeeController extends Controller
     public function all_fee_view($grade_id)
     {
         $fee_details = Fee::whereHas('student',function ($q) {
-            $q->where('is_active',1);
+            $q->where('is_active',true);
         })->with('student','payments')->where('grade_id',$grade_id)->get();
         if (count($fee_details) > 0){
             return view('fee.view_fees_by_class',compact('fee_details'));
