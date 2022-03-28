@@ -37,9 +37,51 @@ class StudentController extends Controller
             if ($students->count() === 0){
                 Alert::error('No Student Found in this Class', 'No Record');
                 return redirect()->route('students');
-            }else{
-                $students = Student::where(['grade_id'=>$id,'is_active'=>1])->select('id','grade_id')->get();
-                foreach ($students as $student){
+            }else {
+                $students = Student::where(['grade_id' => $id, 'is_active' => 1])->select('id', 'grade_id')->get();
+                foreach ($students as $student) {
+                    $array = Student::where('grade_id', $have_next_class)->pluck('addmission_no')->toArray();
+                    if(!empty($array)){
+                        $addmission_no = end($array) + 1;
+                    }else{
+                        switch ($have_next_class){
+                            case ($have_next_class == 4):
+                                $addmission_no = 786101;
+                                break;
+                            case ($have_next_class == 5):
+                                $addmission_no = 786201;
+                                break;
+                            case ($have_next_class == 6):
+                                $addmission_no = 786301;
+                                break;
+                            case ($have_next_class == 7):
+                                $addmission_no = 786401;
+                                break;
+                            case ($have_next_class == 8):
+                                $addmission_no = 786501;
+                                break;
+                            case ($have_next_class == 9):
+                                $addmission_no = 786601;
+                                break;
+                            case ($have_next_class == 10):
+                                $addmission_no = 786701;
+                                break;
+                            case ($have_next_class == 11):
+                                $addmission_no = 786801;
+                                break;
+                            case ($have_next_class == 12):
+                            case ($have_next_class == 13):
+                            case ($have_next_class == 14):
+                                $addmission_no = 786901;
+                                break;
+                            case ($have_next_class == 15):
+                                $addmission_no = 787000;
+                                break;
+                            default:
+                                $addmission_no = 786000;
+                        }
+                    }
+                    $student->addmission_no = $addmission_no;
                     $student->grade_id = $have_next_class;
                     $student->save();
                 }
