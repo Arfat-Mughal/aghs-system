@@ -134,8 +134,15 @@ class FeeController extends Controller
         $fee = Fee::find($request->fee_id);
         if ($fee){
             $fee->payments()->delete();
+            if(isset($request->last_date)){
+                $fee->last_date = $request->last_date;
+            }
+            if(isset($request->issue_date)){
+                $fee->issue_date = $request->issue_date;
+            }
+            $fee->save();
             foreach ($request->fees as $data) {
-                if ($data['detail'] !== null && $data['fee'] !== null){
+                if ($data['detail'] !== null && $data['fee'] !== null){ 
                     $fee->payments()->create([
                         'student_id'=> $fee->student_id,
                         'detail' => $data['detail'],

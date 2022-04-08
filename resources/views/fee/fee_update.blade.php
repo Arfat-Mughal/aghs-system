@@ -50,6 +50,14 @@
                                         <b>{{$fee->last_date->format('d-M-Y')}}</b>
                                     </div>
                                 </div>
+                                <div class="col-6 mt-2">
+                                <label for="x_card_code" class="control-label mb-1">Update Issue date</label>
+                                <input type="date" placeholder="Details" name="issue_date" class="form-control">
+                            </div>
+                            <div class="col-6 mt-2">
+                                <label for="x_card_code" class="control-label mb-1">Update last date</label>
+                                <input type="date" placeholder="Details" name="last_date" class="form-control">
+                            </div>
                                 <div class="col-12 mt-2">
                                     <label for="x_card_code" class="control-label mb-1">Details</label>
                                     @foreach($fee->payments as $key => $payment)
