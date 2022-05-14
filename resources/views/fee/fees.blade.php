@@ -21,6 +21,16 @@
                                     @endforeach
                                 </div>
                             </div>
+                            <div class="btn-group" role="group">
+                                <button id="btnGroupDrop1" type="button" class="btn btn-info dropdown-toggle au-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Update by class
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                    @foreach($grades as $grade)
+                                        <a class="dropdown-item" href="{{route('update_fee_by_class',$grade->id)}}">{{$grade->name}}</a>
+                                    @endforeach
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

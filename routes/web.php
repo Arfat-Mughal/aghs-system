@@ -118,6 +118,7 @@ Route::group(['middleware' => ['auth'],'namespace'=>'admin','prefix'=>'admin'], 
     Route::post('/fee/delete-by-id}',[$FC,'destroyFee'])->name('view_delete');
     Route::get('/fees/all/delete}',[$FC,'delete_all_fee_cards'])->name('delete_all_fee_cards');
     Route::get('/fee/{id}/update}',[$FC,'update_fee_card'])->name('update_fee_card');
+    Route::get('/fee/{class_id}/update-class}',[$FC,'update_fee_by_class'])->name('update_fee_by_class');
     Route::post('/fee/update}',[$FC,'fee_update'])->name('fee_update');
 });
 //Route::get('/dashboard', function () {

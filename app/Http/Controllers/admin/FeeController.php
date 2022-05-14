@@ -129,6 +129,17 @@ class FeeController extends Controller
         }
     }
 
+    public function update_fee_by_class($id)
+    {
+        $fees = Fee::where('grade_id',$id)->get();
+        if ($fees){
+            dd($fees);
+            return view('fee.fee_update_byclass',compact('fees'));
+        }
+        Alert::error('No Class Found', 'Opss');
+        return redirect()->route('fees');
+    }
+
     public function fee_update(Request $request)
     {
         $fee = Fee::find($request->fee_id);
@@ -142,7 +153,7 @@ class FeeController extends Controller
             }
             $fee->save();
             foreach ($request->fees as $data) {
-                if ($data['detail'] !== null && $data['fee'] !== null){ 
+                if ($data['detail'] !== null && $data['fee'] !== null){
                     $fee->payments()->create([
                         'student_id'=> $fee->student_id,
                         'detail' => $data['detail'],
