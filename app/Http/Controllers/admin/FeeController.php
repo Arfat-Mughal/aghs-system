@@ -131,9 +131,8 @@ class FeeController extends Controller
 
     public function update_fee_by_class($id)
     {
-        $fees = Fee::where('grade_id',$id)->get();
+        $fees = Fee::where('grade_id',$id)->with('grade')->get();
         if ($fees){
-            dd($fees);
             return view('fee.fee_update_byclass',compact('fees'));
         }
         Alert::error('No Class Found', 'Opss');
@@ -159,6 +158,35 @@ class FeeController extends Controller
                         'detail' => $data['detail'],
                         'fee' => $data['fee']
                     ]);
+                }
+            }
+            Alert::success('Card Updated', 'Success Message');
+            return redirect()->route('fees');
+        }
+        Alert::error('No Fee Found', 'Opss');
+        return redirect()->route('fees');
+    }
+
+    public function fee_update_for_selected_class(Request $request)
+    {
+        $fees = Fee::where('grade_id',$request->class_id)->get();
+        if (count($fees) > 0){
+            foreach($fees as $fee){
+                if(isset($request->last_date)){
+                    $fee->last_date = $request->last_date;
+                }
+                if(isset($request->issue_date)){
+                    $fee->issue_date = $request->issue_date;
+                }
+                $fee->save();
+                foreach ($request->fees as $data) {
+                    if ($data['detail'] !== null && $data['fee'] !== null){
+                        $fee->payments()->create([
+                            'student_id'=> $fee->student_id,
+                            'detail' => $data['detail'],
+                            'fee' => $data['fee']
+                        ]);
+                    }
                 }
             }
             Alert::success('Card Updated', 'Success Message');

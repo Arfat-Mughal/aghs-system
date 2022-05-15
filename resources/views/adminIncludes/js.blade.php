@@ -129,7 +129,7 @@
                 $.ajax({
                     type: "GET",
                     dataType: "json",
-                    url: '/student/changeStatus',
+                    url: '/admin/student/changeStatus',
                     data: {'is_active': status, 'id': user_id},
                     success: function(data){
                         console.log(data.success)
