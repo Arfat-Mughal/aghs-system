@@ -27,7 +27,7 @@ class FeeController extends Controller
             'last_date' => 'required'
         ]);
 
-        $students = Student::where('grade_id', $request->grade_id)->get();
+        $students = Student::where(['grade_id'=> $request->grade_id,'is_active'=>1])->get();
         if (!$students) {
             Alert::error('No Student Found For Select Class', 'No Student');
             return redirect()->route('fees');
@@ -190,6 +190,20 @@ class FeeController extends Controller
                 }
             }
             Alert::success('Card Updated', 'Success Message');
+            return redirect()->route('fees');
+        }
+        Alert::error('No Fee Found', 'Opss');
+        return redirect()->route('fees');
+    }
+
+    public function delete_fee_cards_by_class_id($id){
+        $fees = Fee::where('grade_id',$id)->with('payments')->get();
+        if (!empty($fees)){
+            foreach($fees as $fee){
+                $fee->payments()->delete();
+                $fee->delete();
+            }
+            Alert::success('Fee Cards Deleted', 'Success Message');
             return redirect()->route('fees');
         }
         Alert::error('No Fee Found', 'Opss');
