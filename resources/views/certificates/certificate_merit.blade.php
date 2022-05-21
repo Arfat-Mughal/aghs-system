@@ -42,7 +42,7 @@
             <p style="margin-left: 70px;display: inline-block; border-bottom: 1px solid #000;font-size: 14px;padding-left: 8px;width: 190px;text-align: center;">{{$data['registration_code']}}</p>
         </div>
         <div style="display: inline-block;float: right;width: 38%;text-align: center;">
-            <div><img src="{{asset('admin_assets/images/logo_header.png')}}" style="width: 150px; height: 120px"/></div>
+            <div><img src="{{asset('admin_assets/images/logo_header.jpg')}}" style="width: 150px; height: 120px"/></div>
             <p style="font-size: 10px;text-align: center;margin-top: -4px;">A GROUP OF COLLEGES</p>
             <h2 style="font-size: 18px;color: #027e02;">AL-FALAH COMPUTER COLLEGE</h2>
             <h3 style="font-size: 16px;">PUNJAB PAKISTAN</h3>
@@ -86,7 +86,7 @@
             </div>
         </div>
         <div style="display: inline-block;float: right;width: 38%;text-align: center;">
-            <div><img src="{{asset('admin_assets/images/logo_header.png')}}" style="width: 150px; height: 120px"/></div>
+            <div><img src="{{asset('admin_assets/images/logo_header.jpg')}}" style="width: 150px; height: 120px"/></div>
             <p style="font-size: 14px;text-align: center;margin-top: -4px;">BHANO CHAK CAMPUS</p>
             <p style="font-size: 12px;text-align: center;">G.T Road Wahga Lahore</p>
             <p style="font-size: 12px;text-align: center;">PH: 042-37172294</p>
