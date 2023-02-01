@@ -14,7 +14,7 @@ class FeeController extends Controller
 {
     public function index()
     {
-        $fees = Fee::with('payments', 'student')->get();
+        $fees = Fee::whereHas('student')->with('payments', 'student')->get();
         $grades = Grade::all('id','name');
         return view('fee.fees', compact('fees','grades'));
     }
