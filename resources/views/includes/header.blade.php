@@ -20,10 +20,12 @@
         </div>
     </div>
 </div>
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark ftco_navbar ftco-navbar-light" id="ftco-navbar">
     <div class="container-fluid d-flex align-items-center">
         <div class="icon"><img src="{{asset('web_assets/images/logo_header.png')}}" alt="" width="90px" height="80px"></div>
-        <a class="navbar-brand" href="#">AL-FALAH GRAMMAR HIGH SCHOOL & ACADEMY</a>
+        <a class="navbar-brand d-block d-sm-none" href="#">AL-FALAH GRAMMAR</a>
+        <a class="navbar-brand d-none d-sm-block" href="#">AL-FALAH GRAMMAR HIGH SCHOOL & ACADEMY</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="oi oi-menu"></span> Menu
         </button>
@@ -33,20 +35,14 @@
                 <li class="nav-item "><a href="{{route('notice')}}" class="nav-link pl-0">Notification</a></li>
                 <li class="nav-item"><a href="{{route('roll_no')}}" class="nav-link">Roll No Slip</a></li>
                 <li class="nav-item"><a href="{{route('result')}}" class="nav-link">Result</a></li>
-{{--                <li class="nav-item"><a href="#" class="nav-link">Courses</a></li>--}}
-{{--                <li class="nav-item"><a href="#" class="nav-link">Pricing</a></li>--}}
                 <li class="nav-item"><a href="{{route('courses')}}" class="nav-link">Short Courses</a></li>
                 <li class="nav-item"><a href="{{route('contact')}}" class="nav-link">Contact Us</a></li>
                 @if (Route::has('login'))
-                        @auth
+                    @auth
                         <li class="nav-item"><a href="{{ url('/admin/dashboard') }}" class="nav-link">Dashboard</a></li>
-                        @else
+                    @else
                         <li class="nav-item"> <a href="{{ route('login') }}" class="nav-link">Log in</a></li>
-
-{{--                            @if (Route::has('register'))--}}
-{{--                                <a href="{{ route('register') }}" class="nav-link">Register</a>--}}
-{{--                            @endif--}}
-                        @endauth
+                    @endauth
                 @endif
             </ul>
         </div>

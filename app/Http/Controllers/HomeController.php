@@ -140,38 +140,42 @@ class HomeController extends Controller
 
     public function getMaksSheet(Request $request)
     {
-        $array = [];
-        $passOrFail = "";
-        $student = Student::where('addmission_no',$request->roll_no)->first();
-        if ($student){
-            if (!$student->is_active){
-                return redirect()->back()->withErrors(['errors'=>"Over Dues!! please clear your dues first to view your result"]);
-            }
-            $slip = Slip::where(['grade_id'=>$student->grade_id,'is_active'=>1])->first();
-            if (!$slip){
-                return redirect()->back()->withErrors(['errors'=>"No Examination Recode Found"]);
-            }
-            $recode = Recode::with('marks')->where(['grade_id'=>$student->grade_id,'is_active'=>1])->first();
-            if (!$recode){
-                return redirect()->back()->withErrors(['errors'=>"Result is not published yet"]);
-            }
-            $recode_marks = StudentRecodeCard::with('subject','recode')->where(['student_id'=>$student->id,'recode_id'=>$recode->id])->get();
-            foreach ($recode_marks as $status){
-                $array[] =  $status->remarks;
-            }
+        $student = Student::where('addmission_no', $request->roll_no)->first();
 
-            $vals = array_count_values($array);
-            if (empty($recode_marks)){
-                return redirect()->back()->withErrors(['errors'=>"Result is not Added Yet"]);
-            }
-            $obtainMarks = $recode_marks->sum('o_marks');
-            $numberToWords = new NumberToWords();
-            $numberTransformer = $numberToWords->getNumberTransformer('en');
-            $numberToWord = $numberTransformer->toWords($obtainMarks);
-            $totalMarks = $recode->marks->sum('t_marks');
-            return view('pdf.mark_sheet',compact('student','recode','slip','recode_marks','totalMarks','obtainMarks','numberToWord','vals'));
+        if (!$student || !$student->is_active) {
+            return redirect()->back()->withErrors(['errors' => "Over Dues!! please clear your dues first to view your result"]);
         }
-        return redirect()->back()->withErrors(['errors'=>"No Recode Found"]);
+
+        $slip = Slip::where(['grade_id' => $student->grade_id, 'is_active' => 1])->first();
+
+        if (!$slip) {
+            return redirect()->back()->withErrors(['errors' => "No Examination Recode Found"]);
+        }
+
+        $recode = Recode::with('marks')->where(['grade_id' => $student->grade_id, 'is_active' => 1])->first();
+
+        if (!$recode) {
+            return redirect()->back()->withErrors(['errors' => "Result is not published yet"]);
+        }
+
+        $recode_marks = StudentRecodeCard::with('subject', 'recode')
+            ->where(['student_id' => $student->id, 'recode_id' => $recode->id])
+            ->get();
+
+        if ($recode_marks->isEmpty()) {
+            return redirect()->back()->withErrors(['errors' => "Result is not Added Yet"]);
+        }
+
+        $obtainMarks = $recode_marks->sum('o_marks');
+        $numberToWords = new NumberToWords();
+        $numberTransformer = $numberToWords->getNumberTransformer('en');
+        $numberToWord = $numberTransformer->toWords($obtainMarks);
+        $totalMarks = $recode->marks->sum('t_marks');
+
+        // Count the number of occurrences of each status (remarks)
+        $vals = $recode_marks->pluck('remarks')->countBy();
+
+        return view('pdf.mark_sheet', compact('student', 'recode', 'slip', 'recode_marks', 'totalMarks', 'obtainMarks', 'numberToWord', 'vals'));
     }
 
     private function getT_marks($recode_id, $subject_id)

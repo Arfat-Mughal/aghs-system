@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Datesheet;
 use App\Models\Grade;
 use App\Models\Slip;
+use App\Models\Student;
 use App\Models\Subject;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -15,7 +16,8 @@ class SlipController extends Controller
     public function index()
     {
         $slips = Slip::with('grade')->get();
-        return view('admin.slips',compact('slips'));
+        $gradesWithSlips = Grade::whereHas('slips')->with('slips')->get();
+        return view('admin.slips',compact('slips','gradesWithSlips'));
     }
 
     public function create()
@@ -133,4 +135,28 @@ class SlipController extends Controller
         Alert::success('All Slip Status Updated', 'Success Message');
         return redirect()->route('slips');
     }
+
+
+    public function printSlipClassWise($grade_id)
+    {
+        $students = Student::where(['is_active' => 1, 'grade_id' => $grade_id])->get();
+
+        if ($students->isEmpty()) {
+            return redirect()->back()->withErrors(['errors' => "No Records Found"]);
+        }
+
+        $slip = Slip::with('grade')->where('grade_id', $grade_id)->first();
+        $dataSheets = Datesheet::with('subject')->whereIn('slip_id', [$slip->id])->get();
+
+        if (!$slip) {
+            return redirect()->back()->withErrors(['errors' => "Slip is not found"]);
+        }
+        if ( $dataSheets->isEmpty()){
+            return redirect()->back()->withErrors(['errors' => "Please Create DateSheet First"]);
+        }
+
+        return view('pdf.roll_no_slip_class_wise', compact('students', 'slip', 'dataSheets'));
+    }
+
+
 }

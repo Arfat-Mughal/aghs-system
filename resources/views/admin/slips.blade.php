@@ -19,8 +19,25 @@
                                         <a class="dropdown-item" href="{{route('update_all_slips_status',0)}}">Deactivate All</a>
                                     </div>
                                 </div>
+                                <div class="btn-group" role="group">
+                                    <button id="btnGroupDrop2" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        PRINT SLIPS
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop2">
+                                        @foreach($gradesWithSlips as $grade)
+                                            <a class="dropdown-item" href="{{route('print_slip_class_wise',$grade->id)}}" >{{$grade->name}}</a>
+                                        @endforeach
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="col-md-12 mt-3">
+                        @if ($errors->has('errors'))
+                            <div class="alert alert-danger">
+                                {{ $errors->first('errors') }}
+                            </div>
+                        @endif
                     </div>
                 </div>
                 <div class="mt-2">

@@ -19,8 +19,25 @@
                                         <a class="dropdown-item" href="{{route('update_all_results_status',0)}}">Deactivate All</a>
                                     </div>
                                 </div>
+                                <div class="btn-group" role="group">
+                                    <button id="btnGroupDrop2" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        PRINT RESULT CARDS
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop2">
+                                        @foreach($gradesWithData as $grade)
+                                            <a class="dropdown-item" href="{{route('get_Maks_Sheet_Class_Wise',$grade->id)}}" >{{$grade->name}}</a>
+                                        @endforeach
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="col-md-12 mt-3">
+                        @if ($errors->has('errors'))
+                            <div class="alert alert-danger">
+                                {{ $errors->first('errors') }}
+                            </div>
+                        @endif
                     </div>
                 </div>
                 <div class="mt-2">

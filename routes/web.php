@@ -82,6 +82,7 @@ Route::group(['middleware' => ['auth'],'namespace'=>'admin','prefix'=>'admin'], 
     Route::get('/slips/{id}/update',[$SLC,'updateSlip'])->name('update_slips_marks');
     Route::post('/slips/{id}/update',[$SLC,'update_slip'])->name('update_slips_marks_store');
     Route::get('/slips/{action}/update-all',[$SLC,'updateAllSlipStatus'])->name('update_all_slips_status');
+    Route::get('/slips/{grade_id}/print-slip-class-wise',[$SLC,'printSlipClassWise'])->name('print_slip_class_wise');
     //ResultController
     Route::get('/results',[$RC,'index'])->name('results');
     Route::get('/results/create',[$RC,'create'])->name('add_results');
@@ -93,6 +94,7 @@ Route::group(['middleware' => ['auth'],'namespace'=>'admin','prefix'=>'admin'], 
     Route::get('/results/marks/{grade_id}/deleting',[$RC,'deleteResultMarks'])->name('delete_result_marks');
     Route::get('/results/{id}/changeStatus',[$RC,'changeResultsStatus'])->name('change_result_status');
     Route::get('/results/{action}/update-all-results',[$RC,'updateAllResultsStatus'])->name('update_all_results_status');
+    Route::get('/{grade_id}/result-sheet-class-wise', [$RC,'getMaksSheetClassWise'])->name('get_Maks_Sheet_Class_Wise');
     //CertificateController
     Route::get('/certificates',[$CC,'index'])->name('certificates');
     Route::get('/certificate/create',[$CC,'create'])->name('add_certificate');

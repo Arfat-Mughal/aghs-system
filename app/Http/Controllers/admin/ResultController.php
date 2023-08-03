@@ -6,19 +6,25 @@ use App\Http\Controllers\Controller;
 use App\Models\Grade;
 use App\Models\Recode;
 use App\Models\RecodeMark;
+use App\Models\Slip;
 use App\Models\Student;
 use App\Models\StudentRecodeCard;
 use App\Models\Subject;
 use Illuminate\Http\Request;
+use NumberToWords\NumberToWords;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class ResultController extends Controller
 {
     public function index()
     {
-        $results = Recode::with('marks','grade','studentsRecodeCards')->get();
-        return view('admin.results',compact('results'));
+        // Eager load relationships to reduce database queries
+        $results = Recode::with('marks', 'grade', 'studentsRecodeCards')->get();
+        $gradesWithData = Grade::whereHas('recode')->with('recode')->get();
+
+        return view('admin.results', compact('results', 'gradesWithData'));
     }
+
 
     public function changeResultsStatus($id)
     {
@@ -140,5 +146,43 @@ class ResultController extends Controller
         $recode->delete();
         Alert::success('Deleted Successfully', 'Success Message');
         return redirect()->route('results');
+    }
+
+    public function getMaksSheetClassWise($grade_id)
+    {
+        $students = Student::where(['is_active'=>1,'grade_id'=>$grade_id])->get();
+
+        foreach ($students as $student){
+            $slip = Slip::where(['grade_id' => $student->grade_id, 'is_active' => 1])->first();
+
+            if (!$slip) {
+                return redirect()->back()->withErrors(['errors' => "Please Create DateSheet First"]);
+            }
+
+            $recode = Recode::with('marks')->where(['grade_id' => $student->grade_id])->first();
+
+            if (!$recode) {
+                return redirect()->back()->withErrors(['errors' => "Please Create Result First"]);
+            }
+
+            $recode_marks = StudentRecodeCard::with('subject', 'recode')
+                ->where(['student_id' => $student->id, 'recode_id' => $recode->id])
+                ->get();
+
+            if ($recode_marks->isEmpty()) {
+                return redirect()->back()->withErrors(['errors' => "Result is not Added Yet"]);
+            }
+
+            $obtainMarks = $recode_marks->sum('o_marks');
+            $numberToWords = new NumberToWords();
+            $numberTransformer = $numberToWords->getNumberTransformer('en');
+            $numberToWord = $numberTransformer->toWords($obtainMarks);
+            $totalMarks = $recode->marks->sum('t_marks');
+
+            // Count the number of occurrences of each status (remarks)
+            $vals = $recode_marks->pluck('remarks')->countBy();
+        }
+
+        return view('pdf.mark_sheet_class_wise', compact('students', 'recode', 'slip', 'recode_marks', 'totalMarks', 'obtainMarks', 'numberToWord', 'vals'));
     }
 }

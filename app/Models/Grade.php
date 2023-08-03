@@ -16,6 +16,11 @@ class Grade extends Model
 
     public function recode()
     {
-        return $this->hasMany(Recode::class,'recode_id');
+        return $this->hasMany(Recode::class,'grade_id');
+    }
+
+    public function slips()
+    {
+        return $this->hasMany(Slip::class);
     }
 }
