@@ -89,10 +89,15 @@
                                             <option value="0" {{ ( "0" == $student->quran) ? 'selected' : '' }}>No</option>
                                         </select>
                                     </div>
-                                    <div class="col-2">
+                                    <div class="col-3 flex">
                                         <label for="x_card_code" class="control-label mb-1">Student Image</label>
                                         <div class="input-group">
-                                            <input type="file" name="image" value="{{$student->path}}">
+                                            <!-- Hidden default "Choose File" button -->
+                                            <input type="file" name="image" id="image-input" style="display: none;">
+                                            <!-- Show existing image and allow uploading new image by clicking on it -->
+                                            @if($student->path)
+                                                <img id="student-image" src="{{ asset($student->path) }}" alt="Student Image" style="max-width: 150px; margin-top: 10px; cursor: pointer;">
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -175,4 +180,16 @@
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const imageInput = document.getElementById('image-input');
+            const studentImage = document.getElementById('student-image');
+
+            if (studentImage) {
+                studentImage.addEventListener('click', function () {
+                    imageInput.click();
+                });
+            }
+        });
+    </script>
 @endsection

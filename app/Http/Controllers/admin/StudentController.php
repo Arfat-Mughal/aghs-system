@@ -213,7 +213,7 @@ class StudentController extends Controller
         $student->grade_id = $request->grade_id;
         $student->date = $request->date;
         $student->position = $request->position;
-        $student->path = $this->UserImageUpload($request->file('image'));
+        $student->path = $this->UserImageUpload($request->file('image'),$request->name,$request->father_name);
         $student->save();
         Alert::success('Student Added', 'Success Message');
         return redirect()->route('students');
@@ -232,7 +232,11 @@ class StudentController extends Controller
             'grade_id' => 'required',
         ]);
 
-        $student = Student::where('id', $request->id)->first();
+        $student = Student::find($request->id);
+        if (!$student) {
+            // Student not found, redirect back with error
+            return redirect()->back()->withErrors(['Student not found.']);
+        }
         $student->addmission_no = $request->roll_no;
         $student->name = $request->name;
         $student->father_name = $request->father_name;
@@ -250,27 +254,29 @@ class StudentController extends Controller
         $student->grade_id = $request->grade_id;
         $student->date = $request->date;
         $student->position = $request->position;
+
         if ($request->hasFile('image')) {
-//            unlink("student_profile/".$student->path);
-            $student->path = $this->UserImageUpload($request->file('image'));
+            // Delete the old image file if exists
+            if ($student->path && file_exists(public_path($student->path))) {
+                unlink(public_path($student->path));
+            }
+            $student->path = $this->UserImageUpload($request->file('image'), $request->name, $request->father_name);
         }
+
         $student->save();
 
-        Alert::success('Student Recode Updated', 'Success Message');
+        Alert::success('Student Record Updated', 'Success Message');
         return redirect()->route('students');
     }
 
-    private function UserImageUpload($query) // Taking input image as parameter
+    private function UserImageUpload($imageFile, $studentName, $fatherName)
     {
-        $image_name = Str::random(25);
-        $ext = strtolower($query->getClientOriginalExtension()); // You can use also getClientOriginalName()
-        $image_full_name = $image_name . '.' . $ext;
-        $upload_path = 'student_profile/';    //Creating Sub directory in Public folder to put image
-        $image_url = $upload_path . $image_full_name;
-        $query->move($upload_path, $image_full_name);
-
-        return $image_url; // Just return image
+        $imageName = Str::slug($studentName . '-' . $fatherName) . '-' . time() . '.' . $imageFile->getClientOriginalExtension();
+        $uploadPath = 'student_profile/';
+        $imageFile->move($uploadPath, $imageName);
+        return $uploadPath . $imageName;
     }
+
 
     public function getStudentsViewByClasses($id)
     {

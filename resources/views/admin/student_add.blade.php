@@ -65,27 +65,27 @@
                                     <div class="col-2">
                                         <label for="x_card_code" class="control-label mb-1">Religion</label>
                                         <select class="custom-select" name="religion">
-                                            <option selected>Select option</option>
-                                            <option value="Islam">Islam</option>
-                                            <option value="Hinduism ">Hinduism</option>
-                                            <option value="Christianity ">Christianity</option>
-                                            <option value="Sikhism">Sikhism</option>
+                                            <option value="" selected>Select option</option>
+                                            <option value="Islam" {{ old('religion') === 'Islam' ? 'selected' : '' }}>Islam</option>
+                                            <option value="Hinduism" {{ old('religion') === 'Hinduism' ? 'selected' : '' }}>Hinduism</option>
+                                            <option value="Christianity" {{ old('religion') === 'Christianity' ? 'selected' : '' }}>Christianity</option>
+                                            <option value="Sikhism" {{ old('religion') === 'Sikhism' ? 'selected' : '' }}>Sikhism</option>
                                         </select>
                                     </div>
                                     <div class="col-2">
                                         <label for="x_card_code" class="control-label mb-1">Gender</label>
                                         <select class="custom-select" name="gender">
-                                            <option selected>Select option</option>
-                                            <option value="male">Male</option>
-                                            <option value="female">Female</option>
+                                            <option value="" selected>Select option</option>
+                                            <option value="male" {{ old('gender') === 'male' ? 'selected' : '' }}>Male</option>
+                                            <option value="female" {{ old('gender') === 'female' ? 'selected' : '' }}>Female</option>
                                         </select>
                                     </div>
                                     <div class="col-2">
                                         <label for="x_card_code" class="control-label mb-1">Hafiz Quran</label>
                                         <select class="custom-select" name="quran">
-                                            <option selected>Select option</option>
-                                            <option value="1">Yes</option>
-                                            <option value="0">No</option>
+                                            <option value="" selected>Select option</option>
+                                            <option value="1" {{ old('quran') === '1' ? 'selected' : '' }}>Yes</option>
+                                            <option value="0" {{ old('quran') === '0' ? 'selected' : '' }}>No</option>
                                         </select>
                                     </div>
                                     <div class="col-2">
@@ -127,7 +127,7 @@
                                     <div class="col-4">
                                         <label for="x_card_code" class="control-label mb-1">Father CNIC</label>
                                         <div class="input-group">
-                                            <input type="number" name="cnic" class="form-control" value="{{ old('cnin') }}">
+                                            <input type="number" name="cnic" class="form-control" value="{{ old('cnic') }}">
                                         </div>
                                     </div>
                                 </div>
@@ -141,16 +141,16 @@
                                     <div class="col-3">
                                         <label for="x_card_code" class="control-label mb-1">Cell</label>
                                         <div class="input-group">
-                                            <input type="number" name="cell" class="form-control" value="{{ old('number') }}">
+                                            <input type="number" name="cell" class="form-control" value="{{ old('cell') }}">
                                         </div>
                                     </div>
                                     <div class="col-3">
                                         <label for="x_card_code" class="control-label mb-1">Class</label>
                                         <div class="input-group">
                                             <select class="custom-select" name="grade_id">
-                                                <option selected>Select option</option>
+                                                <option value="" selected>Select option</option>
                                                 @foreach($grades as $grade)
-                                                    <option value="{{$grade->id}}">{{$grade->name}}</option>
+                                                    <option value="{{$grade->id}}" {{ old('grade_id') === $grade->id ? 'selected' : '' }}>{{$grade->name}}</option>
                                                 @endforeach
                                             </select>
                                         </div>

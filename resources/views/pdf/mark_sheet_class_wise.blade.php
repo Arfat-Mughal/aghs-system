@@ -100,7 +100,7 @@
         <h4 style="font-weight:400;">AL-FALAH GRAMMAR HIGH SCHOOL LAHORE CANTT</h4>
     </div>
     <div style="display: inline-block;width: 16%;height: 150px;float: right;">
-        <img src="{{$student->path}}" style="width: 165px; height: 160px; border-radius: 17%;"/>
+        <img src="{{asset($student->path)}}" style="width: 165px; height: 160px; border-radius: 17%;"/>
     </div>
 </div>
 <div class="clearfix">

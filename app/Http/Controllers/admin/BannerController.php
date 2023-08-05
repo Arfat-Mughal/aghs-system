@@ -12,39 +12,45 @@ class BannerController extends Controller
 {
     public function index()
     {
-        $notifications = Banner::all();
-        return view('banners.banners',compact('notifications'));
+        $banners = Banner::all();
+        return view('banners.banners', compact('banners'));
     }
 
     public function store(Request $request)
     {
-        $notifications = new Banner;
-        $notifications->name = $request->title;
-        $notifications->path = $this->UserImageUpload($request->file('file'));
-        $notifications->save();
-        Alert::success('Banners Added', 'Success Message');
+        $request->validate([
+            'title' => 'required|max:255',
+            'file' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        $banner = new Banner;
+        $banner->name = $request->title;
+        $banner->path = $this->uploadBannerImage($request->file('file'));
+        $banner->save();
+
+        Alert::success('Banner Added', 'Success Message');
         return redirect()->route('banners');
     }
 
-    private function UserImageUpload($query) // Taking input image as parameter
+    private function uploadBannerImage($imageFile)
     {
-        $image_name = Str::random(25);
-        $ext = strtolower($query->getClientOriginalExtension()); // You can use also getClientOriginalName()
-        $image_full_name = $image_name . '.' . $ext;
-        $upload_path = 'banners/';    //Creating Sub directory in Public folder to put image
-        $image_url = $upload_path . $image_full_name;
-        $query->move($upload_path, $image_full_name);
+        $imageName = Str::slug('banner-' . time()) . '.' . $imageFile->getClientOriginalExtension();
+        $uploadPath = 'banners/'; // Creating Sub directory in Public folder to put image
+        $imageUrl = $uploadPath . $imageName;
+        $imageFile->move($uploadPath, $imageName);
 
-        return $image_url; // Just return image
+        return $imageUrl; // Return image URL
     }
 
     public function delete($id)
     {
-        $notifications = Banner::find($id);
-        if ($notifications){
-            unlink($notifications->path);
-            $notifications->delete();
-            return redirect()->route('banners');
+        $banner = Banner::find($id);
+        if ($banner && file_exists(public_path($banner->path))) {
+            unlink(public_path($banner->path));
+            $banner->delete();
+        }else{
+            $banner->delete();
         }
+        return redirect()->route('banners');
     }
 }

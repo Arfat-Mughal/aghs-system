@@ -93,7 +93,7 @@
         </div>
         <div
             style="display: inline-block;width: 16%;border: 2px solid #000000;border-radius: 34px;height: 200px;float: right;">
-            <img src="{{$student->path}}" style="width: 161px; height: 200px; border-radius: 17%;"/>
+            <img src="{{asset($student->path)}}" style="width: 161px; height: 200px; border-radius: 17%;"/>
         </div>
     </div>
     <div class="clearfix"></div>
