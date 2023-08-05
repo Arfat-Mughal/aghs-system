@@ -63,6 +63,8 @@
                     '<option value="27">BIOLOGY/COMPUTER</option>'+
                     '<option value="28">HOME WORK</option>'+
                     '<option value="29">ISLAMIAT TRANSLATION</option>'+
+                    '<option value="30">ISLAMIAYT TARJUMA</option>'+
+                    '<option value="31">ONE MINUTE TARBIYAH</option>'+
                 '</select></td>' +
                 '<td><input type="date" name="subject_id['+j+'][date]" placeholder="Enter your Name" class="form-control name_list" /></td>'+
                 '<td><input type="time" name="subject_id['+j+'][reporting]" placeholder="Enter reporting time" class="form-control name_list" /></td>'+
@@ -108,6 +110,8 @@
                 '<option value="27">BIOLOGY/COMPUTER</option>'+
                 '<option value="28">HOME WORK</option>'+
                 '<option value="29">ISLAMIAT TRANSLATION</option>'+
+                '<option value="30">ISLAMIAYT TARJUMA</option>'+
+                '<option value="31">ONE MINUTE TARBIYAH</option>'+
                 '</select></td>' +
                 '<td><input type="number" name="subject_id['+j+'][marks]" placeholder="Enter your Name" class="form-control name_list" /></td>'+
                 '<td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove_result">X</button></td>' +
