@@ -143,7 +143,7 @@
                 @if(isset($data->contents))
                     <ul class="content-list">
                         @foreach($data->contents as $key => $data)
-                            <li><span style="margin-left:15px;">{{$data->name}}</span></li>
+                            <li>{{$loop->iteration}}:<span style="margin-left:5px;">{{$data->name}}</span></li>
                         @endforeach
                     </ul>
                 @endif
