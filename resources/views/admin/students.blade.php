@@ -84,9 +84,9 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($students as $index => $student)
+                        @foreach($students as $student)
                         <tr>
-                            <th scope="row">{{$student->id}}</th>
+                            <th scope="row">{{ $loop->iteration }}</th>
                             <td><img src="{{asset($student->path)}}" alt="{{$student->name}}" height="40px" width="60px" class="rounded"></td>
                             <td>{{$student->addmission_no}}</td>
                             <td>{{$student->name}}</td>

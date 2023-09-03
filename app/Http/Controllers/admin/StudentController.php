@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Grade;
 use App\Models\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -23,7 +24,7 @@ class StudentController extends Controller
             'cell',
             'grade_id',
             'is_active'
-        )->paginate(10);
+        )->paginate(20);
         $grades = Grade::whereHas('students')->get();
         return view('admin.students', compact('students','grades'));
     }
@@ -154,17 +155,27 @@ class StudentController extends Controller
 
     public function destroy(Request $request)
     {
-        $student = Student::where('id', $request->id)->first();
-        if (count($student->studentRecodeCards) > 0) {
-            foreach ($student->studentRecodeCards as $studentCard) {
-                $studentCard->delete();
-            }
+        $student = Student::find($request->id);
+
+        if (!$student) {
+            return redirect()->route('students')->with('error', 'Student not found');
         }
-        unlink($student->path);
+
+        // Delete associated student record cards
+        $student->studentRecodeCards()->delete();
+        $student->fees()->delete();
+
+        // Delete the student profile image
+        if (file_exists($student->path)) {
+            unlink($student->path);
+        }
+
+        // Delete the student
         $student->delete();
-        Alert::success('Student Deleted', 'Success Message');
-        return redirect()->route('students');
+
+        return redirect()->route('students')->with('success', 'Student Deleted');
     }
+
 
     public function changeStudentStatus($id)
     {
