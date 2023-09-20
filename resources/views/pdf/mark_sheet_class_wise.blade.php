@@ -122,7 +122,7 @@
             REMARKS
         </th>
     </tr>
-    @foreach($recode_marks as $marks)
+    @foreach($student->studentRecodeCards as $marks)
         <tr style="font-size: 18px">
             <td style="font-weight: normal;">
                 {{$marks->subject->name}}
@@ -151,7 +151,7 @@
             @elseif(isset($vals['Fail']) && $vals['Fail'] <= 2)
                 RESULT:--
             @else
-                MARKS OBTAINED: {{$obtainMarks}}
+                MARKS OBTAINED: {{$student->studentRecodeCards->sum('o_marks')}}
             @endif
         </td>
     </tr>
@@ -162,7 +162,10 @@
     @elseif(isset($vals['Fail']) && $vals['Fail'] <= 2)
         The Candidate has failed in {{$vals['Fail']}} subjects
     @else
-        The Candidate has Passed and obtained Marks {{ucfirst($numberToWord)}}
+        <div>
+            <!-- You can use $numberToWords here -->
+            <p> The Candidate has Passed and obtained Marks  {{ $numberToWords->getNumberTransformer('en')->toWords($student->studentRecodeCards->sum('o_marks')) }}</p>
+        </div>
     @endif
 </h4>
 <h4 style="margin:0; margin-top: 10px">NOTE:</h4>

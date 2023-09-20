@@ -159,30 +159,18 @@ class ResultController extends Controller
                 return redirect()->back()->withErrors(['errors' => "Please Create DateSheet First"]);
             }
 
-            $recode = Recode::with('marks')->where(['grade_id' => $student->grade_id])->first();
+            $recode = Recode::where(['grade_id' => $student->grade_id])->first();
 
             if (!$recode) {
                 return redirect()->back()->withErrors(['errors' => "Please Create Result First"]);
             }
 
-            $recode_marks = StudentRecodeCard::with('subject', 'recode')
-                ->where(['student_id' => $student->id, 'recode_id' => $recode->id])
-                ->get();
-
-            if ($recode_marks->isEmpty()) {
-                return redirect()->back()->withErrors(['errors' => "Result is not Added Yet"]);
-            }
-
-            $obtainMarks = $recode_marks->sum('o_marks');
             $numberToWords = new NumberToWords();
-            $numberTransformer = $numberToWords->getNumberTransformer('en');
-            $numberToWord = $numberTransformer->toWords($obtainMarks);
             $totalMarks = $recode->marks->sum('t_marks');
 
             // Count the number of occurrences of each status (remarks)
-            $vals = $recode_marks->pluck('remarks')->countBy();
+            $vals = $student->studentRecodeCards->pluck('remarks')->countBy();
         }
-
-        return view('pdf.mark_sheet_class_wise', compact('students', 'recode', 'slip', 'recode_marks', 'totalMarks', 'obtainMarks', 'numberToWord', 'vals'));
+        return view('pdf.mark_sheet_class_wise', compact('students', 'recode', 'slip', 'totalMarks', 'numberToWords', 'vals'));
     }
 }
