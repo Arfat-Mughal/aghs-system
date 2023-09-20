@@ -152,6 +152,21 @@ class ResultController extends Controller
     {
         $students = Student::where(['is_active'=>1,'grade_id'=>$grade_id])->get();
 
+        // Calculate the sum of o_mark for each student and store it in an array
+        $totalMarks = [];
+        foreach ($students as $student) {
+            $totalMarks[$student->id] = $student->studentRecodeCards->sum('o_marks');
+        }
+
+
+// Sort students by totalMarks in descending order
+        $students = $students->sortByDesc(function ($student) use ($totalMarks) {
+            return $totalMarks[$student->id];
+        });
+
+        // Initialize a variable to keep track of the position
+        $position = 1;
+
         foreach ($students as $student){
             $slip = Slip::where(['grade_id' => $student->grade_id, 'is_active' => 1])->first();
 
@@ -165,12 +180,15 @@ class ResultController extends Controller
                 return redirect()->back()->withErrors(['errors' => "Please Create Result First"]);
             }
 
+            // Assign the position to the student
+            $student->position = $position;
+            $student->save();
+            // Increment the position for the next student with the same totalMarks
+            $position++;
+
             $numberToWords = new NumberToWords();
             $totalMarks = $recode->marks->sum('t_marks');
-
-            // Count the number of occurrences of each status (remarks)
-            $vals = $student->studentRecodeCards->pluck('remarks')->countBy();
         }
-        return view('pdf.mark_sheet_class_wise', compact('students', 'recode', 'slip', 'totalMarks', 'numberToWords', 'vals'));
+        return view('pdf.mark_sheet_class_wise', compact('students', 'recode', 'slip', 'totalMarks', 'numberToWords'));
     }
 }

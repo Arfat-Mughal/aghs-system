@@ -53,6 +53,9 @@
     </style>
 </head>
 @foreach($students as $student)
+    @php
+        $remarksCount = $student->studentRecodeCards->pluck('remarks')->countBy();
+    @endphp
 <body style="width: 1000px; height:2480px; margin: auto;">
 <h1 style="text-align: center;">AL-FALAH GRAMMAR HIGH SCHOOL AND ACADEMY</h1>
 <h4 style="text-align: center;">VILLAGE BHANO CHAK LAHORE CANTT <span style="margin-left:50px;">CELL # 0321-4960275,PHONE # 042-37172294</span>
@@ -61,9 +64,9 @@
     <div style="float: left;margin-top: 10px;">
         <h4>ROLL NO:<span style="font-weight:400;"> {{$student->addmission_no}} </span></h4>
         <h4>RESULT:<span style="font-weight:400;">
-                @if(isset($vals['Fail'])  && $vals['Fail'] > 2)
+                @if(isset($remarksCount['Fail'])  && $remarksCount['Fail'] > 2)
                     Fail
-                @elseif(isset($vals['Fail']) && $vals['Fail'] <= 2)
+                @elseif(isset($remarksCount['Fail']) && $remarksCount['Fail'] <= 2)
                     RESULT:-
                 @else
                     Pass
@@ -76,9 +79,9 @@
     <div style="float: right;margin-top: 10px;">
         <h4>CLASS:<span style="font-weight:400;"> {{$student->grade->name}}</span></h4>
         <h4>POSITION:<span style="font-weight:400;">
-                 @if(isset($vals['Fail'])  && $vals['Fail'] > 2)
+                 @if(isset($remarksCount['Fail'])  && $remarksCount['Fail'] > 2)
                     Fail
-                @elseif(isset($vals['Fail']) && $vals['Fail'] <= 2)
+                @elseif(isset($remarksCount['Fail']) && $remarksCount['Fail'] <= 2)
                     RESULT:--
                 @else
                     {{ $student->position }}
@@ -146,9 +149,9 @@
             {{$totalMarks}}
         </td>
         <td style="border-right: none;font-weight: bold;" colspan="2">
-            @if(isset($vals['Fail'])  && $vals['Fail'] > 2)
+            @if(isset($remarksCount['Fail'])  && $remarksCount['Fail'] > 2)
                 Fail
-            @elseif(isset($vals['Fail']) && $vals['Fail'] <= 2)
+            @elseif(isset($remarksCount['Fail']) && $remarksCount['Fail'] <= 2)
                 RESULT:--
             @else
                 MARKS OBTAINED: {{$student->studentRecodeCards->sum('o_marks')}}
@@ -157,10 +160,10 @@
     </tr>
 </table>
 <h4 style="margin-bottom: 0px;margin-top: 10px;">
-    @if(isset($vals['Fail'])  && $vals['Fail'] > 2)
-        The Candidate has failed in {{$vals['Fail']}} subjects
-    @elseif(isset($vals['Fail']) && $vals['Fail'] <= 2)
-        The Candidate has failed in {{$vals['Fail']}} subjects
+    @if(isset($remarksCount['Fail'])  && $remarksCount['Fail'] > 2)
+        The Candidate has failed in {{$remarksCount['Fail']}} subjects
+    @elseif(isset($remarksCount['Fail']) && $remarksCount['Fail'] <= 2)
+        The Candidate has failed in {{$remarksCount['Fail']}} subjects
     @else
         <div>
             <!-- You can use $numberToWords here -->
