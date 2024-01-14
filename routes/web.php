@@ -8,9 +8,13 @@ use App\Http\Controllers\admin\ResultController;
 use App\Http\Controllers\admin\SlipController;
 use App\Http\Controllers\admin\StudentController;
 use App\Http\Controllers\admin\BannerController;
+use App\Http\Controllers\admin\GradeController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
+
+use App\Mail\NewStudentAdded;
+use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +26,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 
 Route::get('/clear&optimize', function() {
     Artisan::call('route:cache');
@@ -55,6 +60,12 @@ Route::group(['middleware' => ['auth'],'namespace'=>'admin','prefix'=>'admin'], 
     $NC = NotificationController::class;
     $BC = BannerController::class;
     $FC = FeeController::class;
+    //Grades classes
+    Route::get('grades', [GradeController::class,'index'])->name('grades.index');
+    Route::post('grades', [GradeController::class,'store'])->name('grades.store');
+    Route::put('grades', [GradeController::class,'update'])->name('grades.update');
+    Route::post('grade-edit', [GradeController::class,'edit'])->name('grades.edit');
+
     Route::get('/dashboard',[$AC,'index'])->name('panel');
     Route::get('/certificate-of-merit',[$AC,'certificateMerit'])->name('certificate_merit');
     Route::get('/get-certificate-of-merit',[$AC,'get_certificateMerit'])->name('get_certificate_merit');
@@ -128,5 +139,20 @@ Route::group(['middleware' => ['auth'],'namespace'=>'admin','prefix'=>'admin'], 
 //Route::get('/dashboard', function () {
 //    return view('admin.panel');
 //})->middleware(['auth'])->name('dashboard');
+
+Route::get('/send-welcome-email/{user}', function () {
+    // Fetch the user by ID (or any other appropriate method based on your application)
+    $user = App\Models\Student::find(1);
+
+    // Check if the user exists
+    if (!$user) {
+        return response('User not found.', 404);
+    }
+
+    // Send the welcome email
+    Mail::to($user->email)->send(new NewStudentAdded($user));
+
+    return response('Welcome email sent to ' . $user->email);
+});
 
 require __DIR__.'/auth.php';

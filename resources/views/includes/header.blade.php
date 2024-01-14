@@ -9,7 +9,7 @@
                     </div>
                     <div class="col-md pr-4 d-flex topper align-items-center">
                         <div class="icon bg-secondary mr-2 d-flex justify-content-center align-items-center"><span class="icon-paper-plane"></span></div>
-                        <span class="text">info@aghslahore.com</span>
+                        <span class="text">info@aghslahore.pk</span>
                     </div>
                     <div class="col-md pr-4 d-flex topper align-items-center">
                         <div class="icon bg-tertiary mr-2 d-flex justify-content-center align-items-center"><span class="icon-phone2"></span></div>

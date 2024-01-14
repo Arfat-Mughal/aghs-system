@@ -40,10 +40,15 @@ class NotificationController extends Controller
 
     public function delete($id)
     {
-        $notifications = Notifications::find($id);
-        if ($notifications){
-            unlink($notifications->path);
-            $notifications->delete();
+        $notification = Notifications::find($id);
+    
+        if ($notification) {
+            if (file_exists($notification->path)) {
+                unlink($notification->path);
+            }
+    
+            $notification->delete();
+    
             return redirect()->route('notifications');
         }
     }

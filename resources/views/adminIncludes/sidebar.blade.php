@@ -40,6 +40,10 @@
                     <a href="{{route('fees')}}">
                         <i class="fas fa-calculator"></i>Fees</a>
                 </li>
+                <li>
+                    <a href="{{route('grades.index')}}">
+                        <i class="fas fa-address-card"></i>Classes</a>
+                </li>
             </ul>
         </nav>
     </div>
