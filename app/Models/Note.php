@@ -6,7 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Note extends Model
 {
-    public function index()
-    {
-    }
+    protected $fillable = ['id','name','description','path'] ;
 }

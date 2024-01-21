@@ -46,7 +46,7 @@
                 </li>
                 <li>
                     <a href="{{ route('notes.index') }}">
-                        <i class="fas fa-linode"></i>Notes</a>
+                        <i class="fas fa-address-card"></i>Notes</a>
                 </li>
             </ul>
         </nav>
