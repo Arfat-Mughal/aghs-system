@@ -153,7 +153,7 @@
             <div><img src="{{asset('web_assets/images/logo_header.jpg')}}" class="header-logo" alt="Logo"/></div>
             <p class="college-info">BHANO CHAK CAMPUS</p>
             <p class="college-location">G.T Road Wahga Lahore</p>
-            <p class="college-location">PH: 042-37172294</p>
+            <p class="college-location">PH: 042-37172500</p>
         </div>
     </div>
     <div class="clearfix" style="width: 100%;margin-top: 10px;">

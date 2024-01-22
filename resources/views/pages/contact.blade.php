@@ -26,7 +26,7 @@
                 <div class="col-md-4 d-flex">
                     <div class="bg-light align-self-stretch box p-4 text-center">
                         <h3 class="mb-4">Contact Number</h3>
-                        <p><a href="#">0321-4960275,  0321-4969849,  042-37172294</a></p>
+                        <p><a href="#">0321-4960275,  0321-4969849,  042-37172500</a></p>
                     </div>
                 </div>
                 <div class="col-md-4 d-flex">

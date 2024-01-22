@@ -36,7 +36,12 @@ Route::get('/clear&optimize', function() {
     Artisan::call('cache:clear');
     Artisan::call('config:cache');
     Artisan::call('optimize');
+    Artisan::call('storage:link');
     return '<h1>All cleared</h1>';
+});
+
+Route::get('/storage-link', function() {
+    return Artisan::call('storage:link');
 });
 
 $HC = HomeController::class;

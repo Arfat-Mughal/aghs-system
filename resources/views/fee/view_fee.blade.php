@@ -19,7 +19,7 @@
         <div class="col-8">
             <h3 class="text-center">AL-FALAH GRAMMAR HIGH SCHOOL AND ACADEMY</h3>
             <h5 class="text-center">VILLAGE BHANO CHAK LAHORE CANTT </h5>
-            <p class="text-center">CELL # 0321-4960275,PHONE # 042-37172294</p>
+            <p class="text-center">CELL # 0321-4960275,PHONE # 042-37172500</p>
         </div>
     </div>
     <div class="row mt-2 mb-2">

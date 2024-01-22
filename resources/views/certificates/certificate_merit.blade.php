@@ -89,7 +89,7 @@
             <div><img src="{{asset('admin_assets/images/logo_header.jpg')}}" style="width: 150px; height: 120px"/></div>
             <p style="font-size: 14px;text-align: center;margin-top: -4px;">BHANO CHAK CAMPUS</p>
             <p style="font-size: 12px;text-align: center;">G.T Road Wahga Lahore</p>
-            <p style="font-size: 12px;text-align: center;">PH: 042-37172294</p>
+            <p style="font-size: 12px;text-align: center;">PH: 042-37172500</p>
         </div>
     </div>
     <div class="clearfix" style="width: 100%;margin-top: 10px;">

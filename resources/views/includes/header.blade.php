@@ -13,7 +13,7 @@
                     </div>
                     <div class="col-md pr-4 d-flex topper align-items-center">
                         <div class="icon bg-tertiary mr-2 d-flex justify-content-center align-items-center"><span class="icon-phone2"></span></div>
-                        <span class="text">0321-4960275, 0321-4969849, 042-37172294</span>
+                        <span class="text">0321-4960275, 0321-4969849, 042-37172500</span>
                     </div>
                 </div>
             </div>

@@ -58,7 +58,7 @@
     @endphp
 <body style="width: 1000px; height:2480px; margin: auto;">
 <h1 style="text-align: center;">AL-FALAH GRAMMAR HIGH SCHOOL AND ACADEMY</h1>
-<h4 style="text-align: center;">VILLAGE BHANO CHAK LAHORE CANTT <span style="margin-left:50px;">CELL # 0321-4960275,PHONE # 042-37172294</span>
+<h4 style="text-align: center;">VILLAGE BHANO CHAK LAHORE CANTT <span style="margin-left:50px;">CELL # 0321-4960275,PHONE # 042-37172500</span>
 </h4>
 <div style="width: 100%;" class="clearfix row">
     <div style="float: left;margin-top: 10px;">
