@@ -10,6 +10,7 @@ use App\Http\Controllers\admin\StudentController;
 use App\Http\Controllers\admin\BannerController;
 use App\Http\Controllers\admin\GradeController;
 use App\Http\Controllers\admin\NoteController;
+use App\Http\Controllers\admin\SubjectController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
@@ -61,7 +62,10 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'admin', 'prefix' => 'adm
     $NC = NotificationController::class;
     $BC = BannerController::class;
     $FC = FeeController::class;
-
+    //Subjects
+    Route::get('subjects', [SubjectController::class, 'index'])->name('subjects.index');
+    Route::post('subjects', [SubjectController::class, 'store'])->name('subjects.store');
+    Route::put('subjects', [SubjectController::class, 'update'])->name('subjects.update');
     //Notes
     Route::get('notes', [NoteController::class, 'index'])->name('notes.index');
     Route::post('notes', [NoteController::class, 'store'])->name('notes.store');
