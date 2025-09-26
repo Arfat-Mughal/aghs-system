@@ -1,16 +1,10 @@
 <x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <img src="{{asset('web_assets/images/logo_header.png')}}" alt="aghslahore" height="50px" width="450px">
-            </a>
-        </x-slot>
-
-        <!-- Session Status -->
-        <x-auth-session-status class="mb-4" :status="session('status')" />
+   <x-auth-card>
+       <!-- Session Status -->
+        <x-auth-session-status class="mb-2" :status="session('status')" />
 
         <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
+        <x-auth-validation-errors class="mb-2" :errors="$errors" />
 
         <form method="POST" action="{{ route('login') }}">
             @csrf

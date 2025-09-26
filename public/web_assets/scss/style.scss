@@ -590,6 +590,19 @@ h1, h2, h3, h4, h5,
 	background: #fafafa!important;
 }
 
+// Light gray card backgrounds
+.card {
+	background: #f8f9fa !important;
+}
+
+// Specific card elements
+.result-card,
+.roll-slip-card,
+.certificate-card {
+	background: #f8f9fa !important;
+	border: 1px solid rgba(0,0,0,.05);
+}
+
 .bg-white{
 	background: $white !important;
 }
@@ -2213,6 +2226,7 @@ h1, h2, h3, h4, h5,
 .certificate-form-wrapper,
 .result-form-wrapper,
 .roll-slip-form-wrapper {
+	background: #f8f9fa !important;
   .form-header {
     .form-icon {
       width: 80px;
@@ -2524,6 +2538,7 @@ h1, h2, h3, h4, h5,
     max-width: 500px;
     margin: 0 auto;
     border: 1px solid rgba(0,0,0,.05);
+    background: #f8f9fa !important;
 
     .auth-content {
       .form-group {
@@ -2535,9 +2550,9 @@ h1, h2, h3, h4, h5,
       }
 
       .btn {
-        padding: 0.5rem 1.5rem;
-        font-size: 16px;
-        border-radius: 25px;
+        padding: 0.4rem 1.2rem;
+        font-size: 14px;
+        border-radius: 20px;
         transition: all 0.3s ease;
 
         &:hover {
@@ -2549,9 +2564,9 @@ h1, h2, h3, h4, h5,
       .form-control {
         border: 1px solid rgba(0,0,0,.1);
         border-radius: 0;
-        padding: 0.5rem 0.75rem;
-        font-size: 16px;
-        height: 45px;
+        padding: 0.4rem 0.6rem;
+        font-size: 14px;
+        height: 40px;
 
         &:focus {
           border-color: $primary;
@@ -2560,9 +2575,10 @@ h1, h2, h3, h4, h5,
       }
 
       .form-label {
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.4rem;
         color: rgba(0,0,0,.8);
         font-weight: 600;
+        font-size: 14px;
       }
 
       .alert {

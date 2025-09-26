@@ -27,6 +27,7 @@
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
     <body class="bg-light">
+        @include('includes.header')
         <div class="container">
             <div class="row justify-content-center align-items-center min-vh-100">
                 <div class="col-md-6 col-lg-5">
