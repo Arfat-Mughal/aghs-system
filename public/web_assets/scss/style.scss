@@ -1187,57 +1187,71 @@ h1, h2, h3, h4, h5,
 
 
 .ftco-footer {
-	font-size: 14px;
-	background: #232323;
-	padding: 6em 0;
-	.ftco-footer-widget {
-		width: 100%;
-		display: block;
-		h2 {
-			font-weight: normal;
-			color: $white;
-			margin-bottom: 40px;
-			font-size: 22px;
-			font-weight: 500;
-		}
-		.logo{
-			color: $primary;
-			span{
-				color: $secondary;
-			}
-		}
-		ul{
-			li{
-				a{
-					span{
-						color: $white;
-					}
-				}
-			}
-		}
-		.btn-primary{
-			background: $white !important;
-			border: 2px solid $white !important;
-			&:hover{
-				background: $white;
-				border: 2px solid $white !important;
-			}
-		}
-	}
-	p {
-	  color: #000;
-	}
-	a {
-	  color: rgba(0,0,0,.7);
-	  &:hover {
-	    color: #000;
-	  }
-	}
-	.ftco-heading-2 {
-		font-size: 17px;
-		font-weight: 400;
-		color: $black;
-	}
+ 	font-size: 14px;
+ 	background: #232323;
+ 	padding: 3em 0 2em 0;
+ 	.ftco-footer-widget {
+ 		width: 100%;
+ 		display: block;
+ 		h2 {
+ 			font-weight: normal;
+ 			color: $white;
+ 			margin-bottom: 20px;
+ 			font-size: 18px;
+ 			font-weight: 600;
+ 		}
+ 		.logo{
+ 			color: $primary;
+ 			background: $white;
+ 			padding: 10px 15px;
+ 			border-radius: 5px;
+ 			display: inline-block;
+ 			span{
+ 				color: $secondary;
+ 			}
+ 		}
+ 		ul{
+ 			li{
+ 				margin-bottom: 8px;
+ 				a{
+ 					color: $white;
+ 					text-decoration: none;
+ 					&:hover {
+ 					  color: $primary;
+ 					}
+ 					span{
+ 						color: $white;
+ 					}
+ 				}
+ 			}
+ 		}
+ 		.btn-primary{
+ 			background: $white !important;
+ 			border: 2px solid $white !important;
+ 			color: $black !important;
+ 			&:hover{
+ 				background: $primary;
+ 				border: 2px solid $primary !important;
+ 				color: $white !important;
+ 			}
+ 		}
+ 	}
+ 	p {
+ 	  color: $white;
+ 	  margin-bottom: 0;
+ 	}
+ 	a {
+ 	  color: $white;
+ 	  text-decoration: none;
+ 	  &:hover {
+ 	    color: $primary;
+ 	  }
+ 	}
+ 	.ftco-heading-2 {
+ 		font-size: 16px;
+ 		font-weight: 600;
+ 		color: $white;
+ 	}
 
 	.categories{
 		li{
