@@ -1126,21 +1126,24 @@ h1, h2, h3, h4, h5,
 }
 
 
-.form-control {
-	height: 52px!important;
-	background: $white!important;
-	color: $black!important;
-	font-size: 18px;
-	border-radius: 0px;
-	box-shadow: none!important;
-	border: 1px solid rgba(0,0,0,.1);
-	&:focus, &:active {
-		border-color: $black;
-	}
-}
-textarea.form-control {
-	height: inherit!important;
-}
+.form-control, .form-select {
+ 	height: 45px!important;
+ 	background: $white!important;
+ 	color: $black!important;
+ 	font-size: 16px;
+ 	border-radius: 0px;
+ 	box-shadow: none!important;
+ 	border: 1px solid rgba(0,0,0,.1);
+ 	padding: 0.5rem 0.75rem;
+ 	&:focus, &:active {
+ 		border-color: $primary;
+ 		box-shadow: 0 0 0 0.2rem rgba(30, 170, 241, 0.25);
+ 	}
+ }
+ textarea.form-control {
+ 	height: inherit!important;
+ 	min-height: 120px;
+ }
 
 .ftco-animate {
 	opacity: 0;
@@ -2143,5 +2146,471 @@ textarea.form-control {
   100% {
     stroke-dasharray: 89, 200;
     stroke-dashoffset: -136px;
+  }
+}
+
+// Custom Responsive Styles for Redesigned Pages
+.divider {
+  display: flex;
+  align-items: center;
+  margin: 1rem 0;
+
+  .divider-line {
+    flex: 1;
+    height: 2px;
+    background: linear-gradient(90deg, $primary, transparent);
+  }
+
+  &::before,
+  &::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: $primary;
+    border-radius: 50%;
+    margin: 0 10px;
+  }
+}
+
+// Contact Info Cards
+.contact-info-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(0,0,0,.05);
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,.1);
+  }
+
+  .contact-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, $primary, lighten($primary, 10%));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+  }
+}
+
+// Form Enhancements
+.contact-form-wrapper,
+.certificate-form-wrapper,
+.result-form-wrapper,
+.roll-slip-form-wrapper {
+  .form-header {
+    .form-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, $primary, lighten($primary, 10%));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+    }
+  }
+
+  .form-features {
+    .feature-item {
+      text-align: center;
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+  }
+}
+
+// Notification Styles
+.notifications-wrapper {
+  .notifications-header {
+    .notification-count {
+      .badge {
+        font-size: 0.875rem;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+      }
+    }
+  }
+
+  .notification-item {
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0,0,0,.05);
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0,0,0,.1);
+    }
+
+    .notification-icon {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, $primary, lighten($primary, 10%));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .notification-title {
+      color: $black;
+      font-weight: 600;
+    }
+
+    .notification-meta {
+      font-size: 0.875rem;
+    }
+  }
+
+  .notifications-summary {
+    .summary-item {
+      padding: 1rem;
+
+      h4 {
+        margin-bottom: 0.5rem;
+        font-weight: 700;
+      }
+
+      small {
+        opacity: 0.8;
+      }
+    }
+  }
+}
+
+// Verification Result Styles
+.verification-result {
+  border-left: 4px solid $tertiary;
+
+  .verification-icon {
+    width: 60px;
+    height: 60px;
+    background: $tertiary;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .verification-details {
+    .success-message {
+      border-left: 4px solid rgba(255,255,255,0.3);
+    }
+  }
+}
+
+// Instructions and Steps
+.instruction-step {
+  text-align: center;
+
+  .step-number {
+    width: 40px;
+    height: 40px;
+    background: $primary;
+    color: $white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 0.5rem;
+    font-weight: 700;
+  }
+}
+
+// Quick Access and Additional Services
+.quick-contact,
+.additional-services {
+  .btn {
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0,0,0,.2);
+    }
+  }
+}
+
+// No Notifications State
+.no-notifications {
+  .no-notifications-icon {
+    width: 80px;
+    height: 80px;
+    background: rgba(0,0,0,.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+  }
+
+  .no-notifications-actions {
+    .btn {
+      margin: 0 0.25rem;
+    }
+  }
+}
+
+// Responsive Design Enhancements
+@media (max-width: 768px) {
+  .hero-wrap-2 {
+    height: 250px !important;
+
+    .slider-text {
+      height: 250px !important;
+
+      .bread {
+        font-size: 2rem !important;
+      }
+
+      .breadcrumbs {
+        font-size: 0.75rem !important;
+      }
+    }
+  }
+
+  .contact-info-card {
+    margin-bottom: 1.5rem;
+
+    .contact-icon {
+      width: 50px;
+      height: 50px;
+    }
+  }
+
+  .form-features {
+    .feature-item {
+      margin-bottom: 1rem;
+    }
+  }
+
+  .notifications-list {
+    .notification-item {
+      padding: 1rem !important;
+
+      .notification-content {
+        .d-flex {
+          flex-direction: column !important;
+
+          .notification-icon {
+            margin-bottom: 1rem;
+            align-self: center;
+          }
+        }
+      }
+
+      .notification-actions {
+        margin-top: 1rem;
+        text-align: center;
+      }
+    }
+  }
+
+  .instructions-box {
+    .row {
+      .col-md-4 {
+        margin-bottom: 1.5rem;
+      }
+    }
+  }
+
+  .divider {
+    &::before,
+    &::after {
+      width: 6px;
+      height: 6px;
+      margin: 0 5px;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-wrap-2 {
+    .slider-text {
+      .bread {
+        font-size: 1.5rem !important;
+      }
+    }
+  }
+
+  .contact-form-wrapper,
+  .certificate-form-wrapper,
+  .result-form-wrapper,
+  .roll-slip-form-wrapper {
+    padding: 1.5rem !important;
+  }
+
+  .form-header {
+    .form-icon {
+      width: 60px !important;
+      height: 60px !important;
+    }
+  }
+
+  .notifications-summary {
+    .row {
+      .col-md-4 {
+        margin-bottom: 1rem;
+      }
+    }
+  }
+
+  .quick-contact,
+  .additional-services {
+    padding: 1rem !important;
+
+    .row {
+      .col-md-4 {
+        margin-bottom: 1rem;
+      }
+    }
+  }
+}
+
+// Print Styles
+@media print {
+  .hero-wrap,
+  .navbar,
+  .footer,
+  .btn,
+  .no-notifications-actions {
+    display: none !important;
+  }
+
+  .notification-item {
+    break-inside: avoid;
+    border: 1px solid #000 !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .notifications-summary {
+    background: #000 !important;
+    color: #fff !important;
+    -webkit-print-color-adjust: exact;
+  }
+}
+
+// Auth Components Styles
+.auth-card-wrapper {
+  .auth-header {
+    text-align: center;
+    margin-bottom: 2rem;
+
+    img {
+      max-width: 300px;
+      height: auto;
+    }
+  }
+
+  .auth-card {
+    max-width: 500px;
+    margin: 0 auto;
+    border: 1px solid rgba(0,0,0,.05);
+
+    .auth-content {
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+
+      .form-check {
+        margin-bottom: 1rem;
+      }
+
+      .btn {
+        padding: 0.5rem 1.5rem;
+        font-size: 16px;
+        border-radius: 25px;
+        transition: all 0.3s ease;
+
+        &:hover {
+          transform: translateY(-1px);
+          box-shadow: 0 3px 10px rgba(30, 170, 241, 0.3);
+        }
+      }
+
+      .form-control {
+        border: 1px solid rgba(0,0,0,.1);
+        border-radius: 0;
+        padding: 0.5rem 0.75rem;
+        font-size: 16px;
+        height: 45px;
+
+        &:focus {
+          border-color: $primary;
+          box-shadow: 0 0 0 0.2rem rgba(30, 170, 241, 0.25);
+        }
+      }
+
+      .form-label {
+        margin-bottom: 0.5rem;
+        color: rgba(0,0,0,.8);
+        font-weight: 600;
+      }
+
+      .alert {
+        border-radius: 0;
+        border: none;
+        padding: 1rem 1.5rem;
+
+        &.alert-success {
+          background: rgba($tertiary, 0.1);
+          color: darken($tertiary, 20%);
+          border-left: 4px solid $tertiary;
+        }
+
+        &.alert-danger {
+          background: rgba($quarternary, 0.1);
+          color: darken($quarternary, 20%);
+          border-left: 4px solid $quarternary;
+        }
+      }
+
+      .text-muted {
+        color: rgba(0,0,0,.6) !important;
+        font-size: 0.875rem;
+
+        a {
+          color: $primary;
+          text-decoration: none;
+
+          &:hover {
+            color: darken($primary, 10%);
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Responsive Auth Styles
+@media (max-width: 768px) {
+  .auth-card-wrapper {
+    .auth-card {
+      margin: 1rem;
+      padding: 2rem 1.5rem;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .auth-card-wrapper {
+    .auth-header {
+      img {
+        max-width: 250px;
+      }
+    }
+
+    .auth-card {
+      .auth-content {
+        .btn {
+          width: 100%;
+        }
+      }
+    }
   }
 }
