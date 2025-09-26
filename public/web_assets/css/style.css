@@ -8019,12 +8019,12 @@ h1, h2, h3, h4, h5,
   color: #1eaaf1 !important; }
 
 .topper {
-  font-size: 15px;
+  font-size: 13px;
   width: 100%;
   display: block; }
   @media (max-width: 767.98px) {
     .topper {
-      margin-bottom: 10px; } }
+      display: none; } }
   .topper .icon {
     width: 30px;
     height: 30px;
@@ -8036,15 +8036,17 @@ h1, h2, h3, h4, h5,
       color: #fff; }
   .topper .text {
     width: calc(100% - 30px);
-    color: rgba(255, 255, 255, 0.7); }
+    color: rgba(0, 0, 0, 0.7); }
 
 .ftco-navbar-light {
-  background: transparent !important;
+  background: #fff !important;
+  -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   z-index: 3;
   padding: 0; }
   @media (max-width: 991.98px) {
     .ftco-navbar-light {
-      background: #000000 !important;
+      background: #fff !important;
       position: relative;
       top: 0;
       padding: 10px 15px; } }
@@ -8054,7 +8056,7 @@ h1, h2, h3, h4, h5,
       color: #000000; }
     @media (max-width: 991.98px) {
       .ftco-navbar-light .navbar-brand {
-        color: #fff; } }
+        color: #000; } }
   @media (max-width: 991.98px) {
     .ftco-navbar-light .navbar-nav {
       padding-bottom: 10px; } }
@@ -8075,7 +8077,7 @@ h1, h2, h3, h4, h5,
         padding-right: 0;
         padding-top: .9rem;
         padding-bottom: .9rem;
-        color: rgba(255, 255, 255, 0.7); }
+        color: #000000; }
         .ftco-navbar-light .navbar-nav > .nav-item > .nav-link:hover {
           color: #fff; } }
   .ftco-navbar-light .navbar-nav > .nav-item .dropdown-menu {
@@ -8125,7 +8127,7 @@ h1, h2, h3, h4, h5,
         color: #fff; } }
   .ftco-navbar-light .navbar-toggler {
     border: none;
-    color: rgba(255, 255, 255, 0.5) !important;
+    color: rgba(0, 0, 0, 0.5) !important;
     cursor: pointer;
     padding-right: 0;
     text-transform: uppercase;
@@ -8193,7 +8195,7 @@ h1, h2, h3, h4, h5,
 
 .navbar-brand {
   font-weight: 900;
-  font-size: 24px;
+  font-size: 20px;
   padding: 0;
   line-height: 1; }
 
@@ -8931,7 +8933,7 @@ textarea.form-control {
         background: #fff;
         border: 2px solid #fff !important; }
   .ftco-footer p {
-    color: rgba(255, 255, 255, 0.7); }
+    color: #000; }
   .ftco-footer a {
     color: rgba(255, 255, 255, 0.7); }
     .ftco-footer a:hover {

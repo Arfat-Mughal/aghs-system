@@ -11,6 +11,7 @@
 @include('includes.css')
 </head>
 <body>
+@include('includes.header')
 @yield('content')
 @include('includes.footer')
 @include('includes.loader')

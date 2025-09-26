@@ -1,8 +1,6 @@
 @extends('layouts.mainLayout')
 @section('content')
 
-    @include('includes.header')
-
     @if($banners->count() > 0)
     <section class="home-slider owl-carousel">
         @foreach($banners as $banner)

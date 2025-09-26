@@ -3,7 +3,13 @@
         <div class="row mb-5">
             <div class="col-md-6 col-lg-3">
                 <div class="ftco-footer-widget mb-5">
-                    <h2 class="ftco-heading-2">Have a Questions?</h2>
+                    <img src="{{asset('web_assets/images/logo_header.png')}}" alt="" width="90px" height="80px" class="mb-3">
+                    <h2 class="ftco-heading-2">AL-FALAH GRAMMAR HIGH SCHOOL & ACADEMY</h2>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="ftco-footer-widget mb-5">
+                    <h2 class="ftco-heading-2">Contact Info</h2>
                     <div class="block-23 mb-3">
                         <ul>
                             <li><span class="icon icon-map-marker"></span><span class="text">VILLAGE BHANO CHAK P/O WAGHA TEHSIL SHALIMAR CANTT LAHORE</span></li>

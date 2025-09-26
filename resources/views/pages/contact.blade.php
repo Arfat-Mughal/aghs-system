@@ -1,7 +1,6 @@
 @extends('layouts.mainLayout')
 @section('content')
 
-    @include('includes.header')
     <section class="hero-wrap hero-wrap-2" style="background-image: url('{{asset('web_assets/images/image_4.jpg')}}');">
         <div class="overlay"></div>
         <div class="container">

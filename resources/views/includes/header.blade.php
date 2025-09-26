@@ -1,4 +1,4 @@
-<div class="py-2 bg-primary">
+<div class="py-2 bg-light">
     <div class="container-fluid">
         <div class="row no-gutters d-flex align-items-start align-items-center px-3 px-md-0">
             <div class="col-lg-12 d-block">
@@ -21,7 +21,7 @@
     </div>
 </div>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark ftco_navbar ftco-navbar-light" id="ftco-navbar">
+<nav class="navbar navbar-expand-lg navbar-light ftco_navbar ftco-navbar-light" id="ftco-navbar">
     <div class="container-fluid d-flex align-items-center">
         <div class="icon"><img src="{{asset('web_assets/images/logo_header.png')}}" alt="" width="90px" height="80px"></div>
         <a class="navbar-brand d-block d-sm-none" href="#">AL-FALAH GRAMMAR</a>
