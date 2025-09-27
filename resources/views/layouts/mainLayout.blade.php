@@ -20,6 +20,7 @@
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@aghslahore">
+    <meta name="google-adsense-account" content="ca-pub-1672484806651208">
     
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
