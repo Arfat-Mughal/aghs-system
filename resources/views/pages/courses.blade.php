@@ -119,7 +119,7 @@
                                     </label>
                                     <select name="duration"
                                             id="duration"
-                                            class="form-select"
+                                            class="form-control"
                                             required>
                                         <option value="">Select Course Duration</option>
                                         <option value="13">3 Months / 13 weeks</option>

@@ -92,7 +92,7 @@
                                         <span class="input-group-text bg-primary text-white">
                                             <i class="ion-university"></i>
                                         </span>
-                                        <select class="form-select"
+                                        <select class="form-control"
                                                 id="class"
                                                 name="class"
                                                 required>
