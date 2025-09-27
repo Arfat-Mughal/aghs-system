@@ -12,16 +12,7 @@
         <link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great" rel="stylesheet">
 
         <!-- Styles -->
-        <link rel="stylesheet" href="{{asset('web_assets/css/open-iconic-bootstrap.min.css')}}">
-        <link rel="stylesheet" href="{{asset('web_assets/css/animate.css')}}">
-        <link rel="stylesheet" href="{{asset('web_assets/css/owl.carousel.min.css')}}">
-        <link rel="stylesheet" href="{{asset('web_assets/css/owl.theme.default.min.css')}}">
-        <link rel="stylesheet" href="{{asset('web_assets/css/magnific-popup.css')}}">
-        <link rel="stylesheet" href="{{asset('web_assets/css/aos.css')}}">
-        <link rel="stylesheet" href="{{asset('web_assets/css/ionicons.min.css')}}">
-        <link rel="stylesheet" href="{{asset('web_assets/css/flaticon.css')}}">
-        <link rel="stylesheet" href="{{asset('web_assets/css/icomoon.css')}}">
-        <link rel="stylesheet" href="{{asset('web_assets/css/style.css')}}">
+       @include('includes.css')
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
