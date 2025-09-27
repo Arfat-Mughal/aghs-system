@@ -1,2 +1,21 @@
 User-agent: *
-Disallow:
+Allow: /
+
+# Sitemap
+Sitemap: https://aghslahore.pk/sitemap.xml
+
+# Disallow admin areas
+Disallow: /admin/
+Disallow: /login
+Disallow: /register
+
+# Allow important pages
+Allow: /
+Allow: /about-us
+Allow: /contact
+Allow: /privacy-policy
+Allow: /terms-of-service
+Allow: /courses
+Allow: /notice
+Allow: /roll_no
+Allow: /result

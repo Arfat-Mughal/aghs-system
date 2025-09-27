@@ -120,8 +120,24 @@ class HomeController extends Controller
     {
         SEOMeta::setTitle('AGHS-LAHORE | About Us');
         SEOMeta::setDescription('Message from the Head of School');
-        SEOMeta::setCanonical('https://aghslahore.pk/result');
+        SEOMeta::setCanonical('https://aghslahore.pk/about-us');
         return view('pages.about');
+    }
+
+    public function privacyPolicy()
+    {
+        SEOMeta::setTitle('AGHS-LAHORE | Privacy Policy');
+        SEOMeta::setDescription('Privacy Policy - AL-FALAH GRAMMAR HIGH SCHOOL & ACADEMY');
+        SEOMeta::setCanonical('https://aghslahore.pk/privacy-policy');
+        return view('pages.privacy-policy');
+    }
+
+    public function termsOfService()
+    {
+        SEOMeta::setTitle('AGHS-LAHORE | Terms of Service');
+        SEOMeta::setDescription('Terms of Service - AL-FALAH GRAMMAR HIGH SCHOOL & ACADEMY');
+        SEOMeta::setCanonical('https://aghslahore.pk/terms-of-service');
+        return view('pages.terms-of-service');
     }
 
     public function getRollNumberSlip(Request $request)

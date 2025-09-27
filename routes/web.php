@@ -52,6 +52,8 @@ Route::get('/result', [$HC, 'result'])->name('result');
 Route::get('/result_sheet', [$HC, 'getMaksSheet'])->name('result_catd');
 Route::get('/notice', [$HC, 'notice'])->name('notice');
 Route::get('/about-us', [$HC, 'about'])->name('about');
+Route::get('/privacy-policy', [$HC, 'privacyPolicy'])->name('privacy_policy');
+Route::get('/terms-of-service', [$HC, 'termsOfService'])->name('terms_of_service');
 
 Route::group(['middleware' => ['auth'], 'namespace' => 'admin', 'prefix' => 'admin'], function () {
     $AC = AdminController::class;

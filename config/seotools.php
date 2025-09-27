@@ -49,12 +49,12 @@ return [
          * The default configurations to be used by the opengraph generator.
          */
         'defaults' => [
-            'title'       => 'Over 9000 Thousand!', // set false to total remove
-            'description' => 'For those who helped create the Genki Dama', // set false to total remove
-            'url'         => false, // Set null for using Url::current(), set false to total remove
-            'type'        => false,
-            'site_name'   => false,
-            'images'      => [],
+            'title'       => 'AL-FALAH GRAMMAR HIGH SCHOOL & ACADEMY', // set false to total remove
+            'description' => 'Quality education in Lahore, Pakistan. Providing excellent academic programs from Montessori to 10th grade.', // set false to total remove
+            'url'         => null, // Set null for using Url::current(), set false to total remove
+            'type'        => 'website',
+            'site_name'   => 'AL-FALAH GRAMMAR HIGH SCHOOL & ACADEMY',
+            'images'      => ['https://aghslahore.pk/web_assets/images/logo_header.png'],
         ],
     ],
     'twitter' => [
@@ -62,8 +62,11 @@ return [
          * The default values to be used by the twitter cards generator.
          */
         'defaults' => [
-            //'card'        => 'summary',
-            //'site'        => '@LuizVinicius73',
+            'card'        => 'summary_large_image',
+            'site'        => '@aghslahore',
+            'title'       => 'AL-FALAH GRAMMAR HIGH SCHOOL & ACADEMY',
+            'description' => 'Quality education in Lahore, Pakistan. Providing excellent academic programs from Montessori to 10th grade.',
+            'image'       => 'https://aghslahore.pk/web_assets/images/logo_header.png',
         ],
     ],
     'json-ld' => [
@@ -71,11 +74,11 @@ return [
          * The default configurations to be used by the json-ld generator.
          */
         'defaults' => [
-            'title'       => 'Over 9000 Thousand!', // set false to total remove
-            'description' => 'For those who helped create the Genki Dama', // set false to total remove
-            'url'         => false, // Set null for using Url::current(), set false to total remove
-            'type'        => 'WebPage',
-            'images'      => [],
+            'title'       => 'AL-FALAH GRAMMAR HIGH SCHOOL & ACADEMY', // set false to total remove
+            'description' => 'Quality education in Lahore, Pakistan. Providing excellent academic programs from Montessori to 10th grade.', // set false to total remove
+            'url'         => null, // Set null for using Url::current(), set false to total remove
+            'type'        => 'EducationalOrganization',
+            'images'      => ['https://aghslahore.pk/web_assets/images/logo_header.png'],
         ],
     ],
 ];
