@@ -41,4 +41,9 @@
         font-size: 1rem !important;
     }
 }
+
+/* Black text for course descriptions */
+.text-black-force {
+    color: #000000 !important;
+}
 </style>

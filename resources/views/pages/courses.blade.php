@@ -106,7 +106,7 @@
                                            class="form-control"
                                            id="fullname"
                                            name="fullname"
-                                           placeholder="Enter your full name as it appears on the certificate"
+                                           placeholder="Enter your full name"
                                            required>
                                     <div class="form-text">
                                         <small>Enter the exact name as shown on your certificate</small>
@@ -187,13 +187,13 @@
                             <div class="col-md-6">
                                 <div class="info-card p-3 bg-white bg-opacity-10 rounded">
                                     <h5 class="mb-2">3-Month Program</h5>
-                                    <p class="mb-0 small">Intensive short-term courses for quick skill acquisition</p>
+                                    <p class="mb-0 small text-black-force">Intensive short-term courses for quick skill acquisition</p>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="info-card p-3 bg-white bg-opacity-10 rounded">
                                     <h5 class="mb-2">6-Month Program</h5>
-                                    <p class="mb-0 small">Comprehensive courses with in-depth knowledge and practical training</p>
+                                    <p class="mb-0 small text-black-force">Comprehensive courses with in-depth knowledge and practical training</p>
                                 </div>
                             </div>
                         </div>

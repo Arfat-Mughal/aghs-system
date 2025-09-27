@@ -76,7 +76,7 @@
                                                class="form-control"
                                                id="full_name"
                                                name="full_name"
-                                               placeholder="Enter your full name as per school records"
+                                               placeholder="Enter your full"
                                                required>
                                     </div>
                                     <div class="form-text">
