@@ -8,7 +8,7 @@
                 <div class="card-header">
                     <h3 class="card-title">E-Book System Status</h3>
                     <div class="card-tools">
-                        <a href="{{ route('admin.ebooks.index') }}" class="btn btn-secondary">Back to E-Books</a>
+                        <a href="{{ route('ebooks.index') }}" class="btn btn-secondary">Back to E-Books</a>
                     </div>
                 </div>
                 <div class="card-body">

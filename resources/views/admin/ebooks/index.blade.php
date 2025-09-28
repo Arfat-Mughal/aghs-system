@@ -1,7 +1,8 @@
 @extends('layouts.adminLayout')
 
 @section('content')
-<div class="container-fluid">
+   <div class="main-content">
+        <div class="section__content section__content--p30">
     <div class="row">
         <!-- Main Content -->
         <div class="col-md-12">
@@ -113,5 +114,7 @@
 
         <!-- Sidebar removed -->
     </div>
-</div>
+        </div>
+   </div>
+
 @endsection

@@ -13,42 +13,30 @@ class NoteController extends Controller
 {
     public function index()
     {
-        $notes = Note::all();
+        $notes = Note::latest()->paginate(20);
         return view("admin.note.index", compact("notes"));
     }
 
     public function store(Request $request)
     {
-        try {
-            // Validate the request
-            $request->validate([
-                'name' => 'required|string|max:255',
-                'description' => 'required|string',
-                'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            ]);
+        // Validate the request
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'content' => 'required|string',
+            'category' => 'nullable|string|max:255',
+            'is_active' => 'boolean',
+        ]);
 
-            // Handle file upload if an image is provided
-            $imagePath = null;
-            if ($request->hasFile('image')) {
-                $imageName = time() . '.' . $request->file('image')->getClientOriginalExtension();
-                $uploadPath = 'note/';
-                $request->image->move($uploadPath, $imageName);
-                $imagePath = $uploadPath . $imageName;
-            }
+        // Create a new Note
+        $note = Note::create([
+            'title' => $request->title,
+            'content' => $request->content,
+            'category' => $request->category,
+            'is_active' => $request->has('is_active') ? $request->is_active : true,
+            'user_id' => auth()->id(), // Associate with current user
+        ]);
 
-            // Create a new Note
-            $note = Note::create([
-                'name' => $request->name,
-                'description' => $request->description,
-                'path' => $imagePath,
-            ]);
-
-            // Redirect with success message
-            return redirect()->route('notes.index')->with('success', 'Note created successfully');
-        } catch (ValidationException $e) {
-            // Redirect back with validation errors
-            return redirect()->back()->withErrors($e->errors())->withInput();
-        }
+        return redirect()->route('notes.index')->with('success', 'Note created successfully');
     }
 
     public function destroy(Note $note)
@@ -62,29 +50,20 @@ class NoteController extends Controller
     {
         // Validate the request
         $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'required|string',
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Adjust based on your needs
+            'title' => 'required|string|max:255',
+            'content' => 'required|string',
+            'category' => 'nullable|string|max:255',
+            'is_active' => 'boolean',
         ]);
-
-        // Handle file upload if a new image is provided
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('images', 'public');
-            // Delete the old image if it exists
-            if ($note->path) {
-                Storage::disk('public')->delete($note->path);
-            }
-            // Update the image path
-            $note->path = $imagePath;
-        }
 
         // Update the Note
         $note->update([
-            'name' => $request->name,
-            'description' => $request->description,
+            'title' => $request->title,
+            'content' => $request->content,
+            'category' => $request->category,
+            'is_active' => $request->has('is_active') ? $request->is_active : $note->is_active,
         ]);
 
-        // Redirect or respond as needed
         return redirect()->route('notes.index')->with('success', 'Note updated successfully');
     }
 

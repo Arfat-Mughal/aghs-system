@@ -8,13 +8,13 @@
                 <div class="card-header">
                     <h3 class="card-title">E-Book Details</h3>
                     <div class="card-tools">
-                        <a href="{{ route('admin.ebooks.edit', $ebook) }}" class="btn btn-warning">Edit</a>
-                        <form action="{{ route('admin.ebooks.destroy', $ebook) }}" method="POST" style="display: inline-block;">
+                        <a href="{{ route('ebooks.edit', $ebook) }}" class="btn btn-warning">Edit</a>
+                        <form action="{{ route('ebooks.destroy', $ebook) }}" method="POST" style="display: inline-block;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
                         </form>
-                        <a href="{{ route('admin.ebooks.index') }}" class="btn btn-secondary">Back to List</a>
+                        <a href="{{ route('ebooks.index') }}" class="btn btn-secondary">Back to List</a>
                     </div>
                 </div>
                 <div class="card-body">
