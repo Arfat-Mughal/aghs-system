@@ -32,11 +32,18 @@
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active"><a href="{{route('home')}}" class="nav-link pl-0">Home</a></li>
-                <li class="nav-item"><a href="{{route('about')}}" class="nav-link">About Us</a></li>
                 <li class="nav-item "><a href="{{route('notice')}}" class="nav-link pl-0">Notification</a></li>
-                <li class="nav-item"><a href="{{route('roll_no')}}" class="nav-link">Roll No Slip</a></li>
-                <li class="nav-item"><a href="{{route('result')}}" class="nav-link">Result</a></li>
-                <li class="nav-item"><a href="{{route('courses')}}" class="nav-link">Short Courses</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="onlineVerificationDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Online Verification
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="onlineVerificationDropdown">
+                        <a class="dropdown-item" href="{{route('roll_no')}}">Get Roll No Slip</a>
+                        <a class="dropdown-item" href="{{route('result')}}">Result Announcement</a>
+                        <a class="dropdown-item" href="{{route('courses')}}">Short Courses</a>
+                    </div>
+                </li>
+                <li class="nav-item"><a href="{{route('about')}}" class="nav-link">About Us</a></li>
                 <li class="nav-item"><a href="{{route('contact')}}" class="nav-link">Contact Us</a></li>
                 @if (Route::has('login'))
                     @auth
