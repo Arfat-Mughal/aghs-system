@@ -55,6 +55,12 @@ Route::get('/about-us', [$HC, 'about'])->name('about');
 Route::get('/privacy-policy', [$HC, 'privacyPolicy'])->name('privacy_policy');
 Route::get('/terms-of-service', [$HC, 'termsOfService'])->name('terms_of_service');
 
+// Public E-Book Routes
+Route::get('/ebooks', [\App\Http\Controllers\EbookFrontendController::class, 'index'])->name('frontend.ebooks.index');
+Route::get('/ebooks/{slug}', [\App\Http\Controllers\EbookFrontendController::class, 'show'])->name('frontend.ebooks.show');
+Route::get('/ebooks/genre/{slug}', [\App\Http\Controllers\EbookFrontendController::class, 'genre'])->name('frontend.ebooks.genre');
+Route::get('/ebooks/download/{file}', [\App\Http\Controllers\EbookFrontendController::class, 'download'])->name('frontend.ebooks.download');
+
 Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
     // E-Book Routes
     Route::resource('ebooks', \App\Http\Controllers\admin\EbookController::class);

@@ -1,0 +1,77 @@
+@extends('layouts.mainLayout')
+
+@section('content')
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-8">
+            <h1 class="mb-4">E-Books in "{{ $genre->name }}"</h1>
+            
+            @if($ebooks->count() > 0)
+                <div class="row">
+                    @foreach($ebooks as $ebook)
+                        <div class="col-md-6 mb-4">
+                            <div class="card h-100">
+                                @if($ebook->cover_image)
+                                    <img src="{{ asset('storage/' . $ebook->cover_image) }}" class="card-img-top" alt="{{ $ebook->title }}" style="height: 200px; object-fit: cover;">
+                                @else
+                                    <div class="bg-light d-flex align-items-center justify-content-center" style="height: 200px;">
+                                        <i class="fas fa-book fa-3x text-muted"></i>
+                                    </div>
+                                @endif
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title">
+                                        <a href="{{ route('frontend.ebooks.show', $ebook->slug) }}">{{ $ebook->title }}</a>
+                                    </h5>
+                                    <p class="card-text">{{ Str::limit($ebook->short_description, 100) }}</p>
+                                    <div class="mt-auto">
+                                        <p class="text-muted small">
+                                            by {{ $ebook->author->name ?? 'Unknown Author' }}
+                                        </p>
+                                        <div class="d-flex flex-wrap">
+                                            @foreach($ebook->genres as $genre)
+                                                <span class="badge badge-secondary mr-1 mb-1">{{ $genre->name }}</span>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+                
+                <!-- Pagination -->
+                <div class="d-flex justify-content-center">
+                    {{ $ebooks->links() }}
+                </div>
+            @else
+                <div class="alert alert-info">
+                    <p>No e-books available in this genre.</p>
+                </div>
+            @endif
+        </div>
+        
+        <!-- Sidebar with genres -->
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Browse by Genre</h5>
+                </div>
+                <div class="card-body">
+                    @if($genres->count() > 0)
+                        <ul class="list-group">
+                            @foreach($genres as $g)
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <a href="{{ route('frontend.ebooks.genre', $g->slug) }}">{{ $g->name }}</a>
+                                    <span class="badge badge-primary badge-pill">{{ $g->ebooks_count }}</span>
+                                </li>
+                            @endforeach
+                        </ul>
+                    @else
+                        <p>No genres available.</p>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
