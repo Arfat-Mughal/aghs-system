@@ -39,7 +39,7 @@
     })(window,document,'script','dataLayer','GTM-WZ6PBT3G');</script>
 
     <!-- Google Analytics (recommended for AdSense) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-WZ6PBT3G"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
