@@ -55,7 +55,21 @@ Route::get('/about-us', [$HC, 'about'])->name('about');
 Route::get('/privacy-policy', [$HC, 'privacyPolicy'])->name('privacy_policy');
 Route::get('/terms-of-service', [$HC, 'termsOfService'])->name('terms_of_service');
 
-Route::group(['middleware' => ['auth'], 'namespace' => 'admin', 'prefix' => 'admin'], function () {
+Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
+    // E-Book Routes
+    Route::resource('ebooks', \App\Http\Controllers\admin\EbookController::class);
+    Route::post('ebooks/{ebook}/upload-files', [\App\Http\Controllers\admin\EbookController::class, 'uploadFiles'])->name('admin.ebooks.upload-files');
+    Route::delete('ebooks/files/{file}', [\App\Http\Controllers\admin\EbookController::class, 'deleteFile'])->name('admin.ebooks.delete-file');
+    Route::get('ebooks/files/{file}/download', [\App\Http\Controllers\admin\EbookController::class, 'download'])->name('admin.ebooks.download');
+    Route::get('ebooks-analytics/popular', [\App\Http\Controllers\admin\EbookController::class, 'popular'])->name('admin.ebooks.popular');
+    Route::get('ebooks-analytics/recent-downloads', [\App\Http\Controllers\admin\EbookController::class, 'recentDownloads'])->name('admin.ebooks.recent-downloads');
+    Route::get('ebooks-system-status', [\App\Http\Controllers\admin\EbookController::class, 'systemStatus'])->name('admin.ebooks.system-status');
+    
+    // Authors Routes
+    Route::resource('authors', \App\Http\Controllers\admin\AuthorController::class);
+    
+    // Genres Routes
+    Route::resource('genres', \App\Http\Controllers\admin\GenreController::class);
     $AC = AdminController::class;
     $SC = StudentController::class;
     $SLC = SlipController::class;
@@ -167,6 +181,65 @@ Route::get('/send-welcome-email/{user}', function () {
     Mail::to($user->email)->send(new NewStudentAdded($user));
 
     return response('Welcome email sent to ' . $user->email);
+});
+
+/**
+ * E-Book System Setup Route
+ * Run this once after deployment to set up the ebook system
+ * Access via: /setup-ebook-system
+ */
+Route::get('/setup-ebook-system', function () {
+    try {
+        // Run migrations for ebook system
+        $output = [];
+        $migrations = [
+            '2025_09_28_055113_create_authors_table',
+            '2025_09_28_055114_create_genres_table',
+            '2025_09_28_055115_create_ebooks_table',
+            '2025_09_28_055116_create_ebook_genre_table',
+            '2025_09_28_055117_create_ebook_files_table',
+            '2025_09_28_055118_create_seo_meta_table',
+            '2025_09_28_055119_create_reviews_table',
+            '2025_09_28_055120_create_downloads_table',
+            '2025_09_28_055121_create_formats_table'
+        ];
+
+        foreach ($migrations as $migration) {
+            $path = database_path("migrations/{$migration}.php");
+            if (file_exists($path)) {
+                Artisan::call('migrate', ['--path' => $path]);
+                $output[] = "Migrated: {$migration}";
+            }
+        }
+
+        // Create storage link
+        if (!file_exists(public_path('storage'))) {
+            Artisan::call('storage:link');
+            $output[] = "Storage link created";
+        } else {
+            $output[] = "Storage link already exists";
+        }
+
+        // Run seeders
+        Artisan::call('db:seed', ['--class' => 'FormatSeeder']);
+        $output[] = "FormatSeeder completed";
+
+        Artisan::call('db:seed', ['--class' => 'EbookSeeder']);
+        $output[] = "EbookSeeder completed";
+
+        return response()->json([
+            'success' => true,
+            'message' => 'E-Book system setup completed successfully!',
+            'output' => $output
+        ]);
+
+    } catch (\Exception $e) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Setup failed: ' . $e->getMessage(),
+            'output' => isset($output) ? $output : []
+        ], 500);
+    }
 });
 
 require __DIR__ . '/auth.php';

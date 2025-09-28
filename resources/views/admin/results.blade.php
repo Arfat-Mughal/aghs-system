@@ -9,9 +9,9 @@
                         <div class="overview-wrap">
                             <h2 class="title-1">Results</h2>
                             <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-                                <a href="{{route('add_results')}}" class="au-btn au-btn-icon au-btn--blue"><i class="zmdi zmdi-plus"></i>create results</a>
+                                <a href="{{route('add_results')}}" class="au-btn au-btn-icon au-btn--blue au-btn--sm"><i class="zmdi zmdi-plus"></i>create results</a>
                                 <div class="btn-group" role="group">
-                                    <button id="btnGroupDrop4" type="button" class="btn btn-info dropdown-toggle au-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <button id="btnGroupDrop4" type="button" class="btn btn-info dropdown-toggle au-btn btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Update Status
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="btnGroupDrop4">
@@ -20,7 +20,7 @@
                                     </div>
                                 </div>
                                 <div class="btn-group" role="group">
-                                    <button id="btnGroupDrop2" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <button id="btnGroupDrop2" type="button" class="btn btn-danger dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         PRINT RESULT CARDS
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="btnGroupDrop2">
