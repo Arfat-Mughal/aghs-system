@@ -207,7 +207,8 @@ Route::get('/setup-ebook-system', function () {
             '2025_09_28_055118_create_seo_meta_table',
             '2025_09_28_055119_create_reviews_table',
             '2025_09_28_055120_create_downloads_table',
-            '2025_09_28_055121_create_formats_table'
+            '2025_09_28_055121_create_formats_table',
+            '2025_09_28_105334_create_notes_table'
         ];
 
         foreach ($migrations as $migration) {
@@ -225,13 +226,6 @@ Route::get('/setup-ebook-system', function () {
         } else {
             $output[] = "Storage link already exists";
         }
-
-        // Run seeders
-        Artisan::call('db:seed', ['--class' => 'FormatSeeder']);
-        $output[] = "FormatSeeder completed";
-
-        Artisan::call('db:seed', ['--class' => 'EbookSeeder']);
-        $output[] = "EbookSeeder completed";
 
         return response()->json([
             'success' => true,
