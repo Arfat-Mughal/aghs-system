@@ -37,30 +37,45 @@
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-WZ6PBT3G');</script>
-
-    <!-- Google Analytics (recommended for AdSense) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-WZ6PBT3G"></script>
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-        gtag('config', 'GA_MEASUREMENT_ID');
+        gtag('config', 'G-XXXXXXXXXX'); // Replace with your actual GA4 measurement ID
     </script>
     
-@include('includes.css')
+    @include('includes.css')
 </head>
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WZ6PBT3G"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WZ6PBT3G"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
-@include('includes.header')
-<div style="background-color: #f8f9fa;">
-@yield('content')
-</div>
-@include('includes.footer')
-@include('includes.loader')
-@include('includes.js')
+    @include('includes.header')
+    
+    <div style="background-color: #f8f9fa;">
+        @yield('content')
+    </div>
+    
+    <!-- Ad Unit - Placed after content -->
+    <div class="ad-container" style="text-align: center; padding: 20px 0;">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-1672484806651208"
+             data-ad-slot="3012210794"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+    
+    @include('includes.footer')
+    @include('includes.loader')
+    @include('includes.js')
 </body>
 </html>

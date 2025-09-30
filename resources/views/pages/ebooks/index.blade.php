@@ -12,12 +12,15 @@
                         <div class="col-md-6 mb-2">
                             <div class="card h-100">
                                 @if($ebook->cover_image)
-                                    <img src="{{ asset('storage/' . $ebook->cover_image) }}" class="card-img-top" alt="{{ $ebook->title }}" style="width: 100%; height: 100%; object-fit: contain;">
-                                @else
-                                    <div class="bg-light d-flex align-items-center justify-content-center" style="height: 150px;">
-                                        <i class="fas fa-book fa-2x text-muted"></i>
-                                    </div>
-                                @endif
+    <img src="{{ asset('storage/' . $ebook->cover_image) }}" 
+         class="card-img-top" 
+         alt="{{ $ebook->title }}" 
+         style="width: 100%; height: 100%; object-fit: cover; image-rendering: -webkit-optimize-contrast; image-rendering: crisp-edges;">
+@else
+    <div class="bg-light d-flex align-items-center justify-content-center" style="height: 150px;">
+        <i class="fas fa-book fa-2x text-muted"></i>
+    </div>
+@endif
                                 <div class="card-body d-flex flex-column">
                                     <h5 class="card-title">
                                         <a href="{{ route('frontend.ebooks.show', $ebook->slug) }}">{{ $ebook->title }}</a>
