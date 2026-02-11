@@ -47,7 +47,7 @@ Route::post('/contact', [$HC, 'contactStore'])->name('contact_store');
 Route::get('/courses', [$HC, 'courses'])->name('courses');
 Route::post('/courses', [$HC, 'getCertificate'])->name('get_certificate');
 Route::get('/roll_no', [$HC, 'roll_no'])->name('roll_no');
-Route::get('/roll_no_slip', [$HC, 'getRollNumberSlip'])->name('get_roll_no');
+Route::match(['get', 'post'], '/roll_no_slip', [$HC, 'getRollNumberSlip'])->name('get_roll_no');
 Route::get('/result', [$HC, 'result'])->name('result');
 Route::get('/result_sheet', [$HC, 'getMaksSheet'])->name('result_catd');
 Route::get('/notice', [$HC, 'notice'])->name('notice');
