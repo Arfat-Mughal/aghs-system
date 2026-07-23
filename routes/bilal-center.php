@@ -43,9 +43,9 @@ Route::prefix('bilal-center')->name('bilal-center.')->group(function () {
         Route::resource('categories', CategoryController::class)->only(['store', 'update', 'destroy']);
         Route::resource('bike-models', BikeModelController::class)->only(['store', 'update', 'destroy']);
         Route::resource('suppliers', SupplierController::class)->only(['index', 'store', 'update', 'destroy']);
-    });
 
-    // Public show — registered after the PIN-gated "create"/"edit" routes above so those
-    // more specific segments are matched first.
-    Route::get('products/{product}', [ProductController::class, 'show'])->name('products.show');
+        // Product detail requires the PIN too. Registered last within this group so
+        // "products/create" above still matches before this wildcard does.
+        Route::get('products/{product}', [ProductController::class, 'show'])->name('products.show');
+    });
 });
