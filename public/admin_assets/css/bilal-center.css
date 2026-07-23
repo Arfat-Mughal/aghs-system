@@ -42,6 +42,26 @@ body {
     color: #fff !important;
 }
 
+.bc-navbar .nav-link {
+    white-space: nowrap;
+}
+
+.bc-navbar .dropdown-menu {
+    border: 1px solid var(--bc-border);
+    border-radius: .5rem;
+    box-shadow: 0 4px 16px rgba(16, 24, 40, .12);
+    margin-top: .25rem;
+}
+
+.bc-navbar .dropdown-item {
+    font-size: .9rem;
+    padding: .5rem 1rem;
+}
+
+.bc-navbar .dropdown-item:active {
+    background: var(--bc-primary);
+}
+
 .bc-content {
     padding: 2rem 0 4rem;
     max-width: 1200px;
