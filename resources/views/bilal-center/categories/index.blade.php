@@ -21,6 +21,7 @@
         </div>
     </div>
 
+    <div class="table-responsive">
     <table id="table" class="table table-bordered bg-white">
         <thead>
             <tr>
@@ -49,6 +50,7 @@
             @endforeach
         </tbody>
     </table>
+    </div>
 
     @foreach ($categories as $category)
         <div class="modal fade" id="editModal{{ $category->id }}" tabindex="-1" role="dialog">

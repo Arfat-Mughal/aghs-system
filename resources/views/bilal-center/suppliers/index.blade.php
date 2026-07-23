@@ -21,6 +21,7 @@
         </div>
     </div>
 
+    <div class="table-responsive">
     <table id="table" class="table table-bordered bg-white">
         <thead>
             <tr>
@@ -53,6 +54,7 @@
             @endforeach
         </tbody>
     </table>
+    </div>
 
     @foreach ($suppliers as $supplier)
         <div class="modal fade" id="editModal{{ $supplier->id }}" tabindex="-1" role="dialog">

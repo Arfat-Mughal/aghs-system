@@ -16,7 +16,10 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark bc-navbar">
         <div class="container-fluid">
             <a class="navbar-brand" href="{{ route('bilal-center.products.index') }}">Bilal Center</a>
-            <div class="collapse navbar-collapse">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bcNavbarLinks">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="bcNavbarLinks">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item"><a class="nav-link" href="{{ route('bilal-center.products.index') }}">Products</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('bilal-center.brands.index') }}">Brands</a></li>
