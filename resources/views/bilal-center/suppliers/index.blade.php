@@ -95,8 +95,8 @@
                         <div class="form-group">
                             <label>Status</label>
                             <select name="status" class="form-control">
-                                <option value="Active" @selected($supplier->status === 'Active')>Active</option>
-                                <option value="Inactive" @selected($supplier->status === 'Inactive')>Inactive</option>
+                                <option value="Active" {{ $supplier->status === 'Active' ? 'selected' : '' }}>Active</option>
+                                <option value="Inactive" {{ $supplier->status === 'Inactive' ? 'selected' : '' }}>Inactive</option>
                             </select>
                         </div>
                         <div class="modal-footer">

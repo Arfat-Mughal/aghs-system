@@ -88,8 +88,8 @@
                         <div class="form-group">
                             <label>Status</label>
                             <select name="status" class="form-control">
-                                <option value="Active" @selected($brand->status === 'Active')>Active</option>
-                                <option value="Inactive" @selected($brand->status === 'Inactive')>Inactive</option>
+                                <option value="Active" {{ $brand->status === 'Active' ? 'selected' : '' }}>Active</option>
+                                <option value="Inactive" {{ $brand->status === 'Inactive' ? 'selected' : '' }}>Inactive</option>
                             </select>
                         </div>
                         <div class="modal-footer">

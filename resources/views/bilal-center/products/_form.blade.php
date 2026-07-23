@@ -31,7 +31,7 @@
         <select name="brand_id" class="form-control @error('brand_id') is-invalid @enderror">
             <option value="">-- None --</option>
             @foreach ($brands as $brand)
-                <option value="{{ $brand->id }}" @selected(old('brand_id', $product->brand_id ?? '') == $brand->id)>{{ $brand->name }}</option>
+                <option value="{{ $brand->id }}" {{ old('brand_id', $product->brand_id ?? '') == $brand->id ? 'selected' : '' }}>{{ $brand->name }}</option>
             @endforeach
         </select>
         @error('brand_id') <span class="invalid-feedback">{{ $message }}</span> @enderror
@@ -41,7 +41,7 @@
         <select name="category_id" class="form-control @error('category_id') is-invalid @enderror">
             <option value="">-- None --</option>
             @foreach ($categories as $category)
-                <option value="{{ $category->id }}" @selected(old('category_id', $product->category_id ?? '') == $category->id)>{{ $category->name }}</option>
+                <option value="{{ $category->id }}" {{ old('category_id', $product->category_id ?? '') == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
             @endforeach
         </select>
         @error('category_id') <span class="invalid-feedback">{{ $message }}</span> @enderror
@@ -142,7 +142,7 @@
             <label>Unit</label>
             <select name="unit" class="form-control @error('unit') is-invalid @enderror">
                 @foreach (['Piece', 'Pair', 'Set', 'Box', 'Liter'] as $unit)
-                    <option value="{{ $unit }}" @selected(old('unit', $product->unit ?? 'Piece') === $unit)>{{ $unit }}</option>
+                    <option value="{{ $unit }}" {{ old('unit', $product->unit ?? 'Piece') === $unit ? 'selected' : '' }}>{{ $unit }}</option>
                 @endforeach
             </select>
             @error('unit') <span class="invalid-feedback">{{ $message }}</span> @enderror
@@ -151,7 +151,7 @@
             <label>Status</label>
             <select name="status" class="form-control @error('status') is-invalid @enderror">
                 @foreach (['Active', 'Inactive', 'Out of Stock', 'Discontinued'] as $status)
-                    <option value="{{ $status }}" @selected(old('status', $product->status ?? 'Active') === $status)>{{ $status }}</option>
+                    <option value="{{ $status }}" {{ old('status', $product->status ?? 'Active') === $status ? 'selected' : '' }}>{{ $status }}</option>
                 @endforeach
             </select>
             @error('status') <span class="invalid-feedback">{{ $message }}</span> @enderror
@@ -170,7 +170,7 @@
         <select name="supplier_id" class="form-control @error('supplier_id') is-invalid @enderror">
             <option value="">-- None --</option>
             @foreach ($suppliers as $supplier)
-                <option value="{{ $supplier->id }}" @selected(old('supplier_id', $product->supplier_id ?? '') == $supplier->id)>{{ $supplier->name }}</option>
+                <option value="{{ $supplier->id }}" {{ old('supplier_id', $product->supplier_id ?? '') == $supplier->id ? 'selected' : '' }}>{{ $supplier->name }}</option>
             @endforeach
         </select>
         @error('supplier_id') <span class="invalid-feedback">{{ $message }}</span> @enderror
@@ -181,7 +181,7 @@
         @php $selectedBikeModels = isset($product) ? $product->bikeModels->pluck('id')->toArray() : []; @endphp
         <select name="bike_model_ids[]" class="form-control" multiple size="6">
             @foreach ($bikeModels as $bikeModel)
-                <option value="{{ $bikeModel->id }}" @selected(in_array($bikeModel->id, old('bike_model_ids', $selectedBikeModels)))>
+                <option value="{{ $bikeModel->id }}" {{ in_array($bikeModel->id, old('bike_model_ids', $selectedBikeModels)) ? 'selected' : '' }}>
                     {{ $bikeModel->company }} {{ $bikeModel->model }} ({{ $bikeModel->year_from }}-{{ $bikeModel->year_to ?? 'present' }})
                 </option>
             @endforeach

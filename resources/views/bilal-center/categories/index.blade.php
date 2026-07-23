@@ -89,7 +89,7 @@
                                 <option value="">-- No parent (top level) --</option>
                                 @foreach ($categories as $option)
                                     @if ($option->id !== $category->id)
-                                        <option value="{{ $option->id }}" @selected($category->parent_id === $option->id)>{{ $option->name }}</option>
+                                        <option value="{{ $option->id }}" {{ $category->parent_id === $option->id ? 'selected' : '' }}>{{ $option->name }}</option>
                                     @endif
                                 @endforeach
                             </select>
