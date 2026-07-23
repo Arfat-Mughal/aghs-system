@@ -42,7 +42,20 @@ class Product extends Model
             if (empty($product->barcode)) {
                 $product->barcode = BarcodeService::generate();
             }
+
+            if (empty($product->sku)) {
+                $product->sku = static::generateSku();
+            }
         });
+    }
+
+    protected static function generateSku(): string
+    {
+        do {
+            $sku = 'PRD-' . str_pad((string) random_int(0, 999999), 6, '0', STR_PAD_LEFT);
+        } while (static::withTrashed()->where('sku', $sku)->exists());
+
+        return $sku;
     }
 
     public function brand()

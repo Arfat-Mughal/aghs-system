@@ -48,7 +48,7 @@
                             </td>
                             <td class="text-right">
                                 <button class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#editModal{{ $brand->id }}">
-                                    <i class="fas fa-pen"></i>
+                                    <i class="fas fa-edit"></i>
                                 </button>
                                 <form action="{{ route('bilal-center.brands.destroy', $brand) }}" method="POST" class="d-inline"
                                     onsubmit="return confirm('Delete this brand?')">

@@ -46,7 +46,7 @@
                             <td>{{ $bikeModel->year_to ?? 'Present' }}</td>
                             <td class="text-right">
                                 <button class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#editModal{{ $bikeModel->id }}">
-                                    <i class="fas fa-pen"></i>
+                                    <i class="fas fa-edit"></i>
                                 </button>
                                 <form action="{{ route('bilal-center.bike-models.destroy', $bikeModel) }}" method="POST" class="d-inline"
                                     onsubmit="return confirm('Delete this bike model?')">

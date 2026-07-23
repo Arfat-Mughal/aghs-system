@@ -5,7 +5,7 @@
 @section('content')
     <div class="bc-page-header">
         <div>
-            <h1><i class="fas fa-pen mr-2 text-muted"></i>Edit Product</h1>
+            <h1><i class="fas fa-edit mr-2 text-muted"></i>Edit Product</h1>
             <div class="bc-subtitle">{{ $product->name_en }}</div>
         </div>
         <a href="{{ route('bilal-center.products.index') }}" class="btn btn-outline-secondary btn-sm">

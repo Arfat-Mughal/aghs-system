@@ -51,7 +51,7 @@
                             </td>
                             <td class="text-right">
                                 <button class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#editModal{{ $supplier->id }}">
-                                    <i class="fas fa-pen"></i>
+                                    <i class="fas fa-edit"></i>
                                 </button>
                                 <form action="{{ route('bilal-center.suppliers.destroy', $supplier) }}" method="POST" class="d-inline"
                                     onsubmit="return confirm('Delete this supplier?')">

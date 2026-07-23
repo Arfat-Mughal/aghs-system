@@ -26,7 +26,7 @@
                 <i class="fas fa-arrow-left mr-1"></i>Back
             </a>
             <a href="{{ route('bilal-center.products.edit', $product) }}" class="btn btn-bc-primary btn-sm">
-                <i class="fas fa-pen mr-1"></i>Edit
+                <i class="fas fa-edit mr-1"></i>Edit
             </a>
         </div>
     </div>

@@ -50,7 +50,7 @@
                             <td>{{ optional($category->parent)->name }}</td>
                             <td class="text-right">
                                 <button class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#editModal{{ $category->id }}">
-                                    <i class="fas fa-pen"></i>
+                                    <i class="fas fa-edit"></i>
                                 </button>
                                 <form action="{{ route('bilal-center.categories.destroy', $category) }}" method="POST" class="d-inline"
                                     onsubmit="return confirm('Delete this category?')">

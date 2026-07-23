@@ -74,7 +74,7 @@
                                 </td>
                                 <td class="text-right">
                                     <a href="{{ route('bilal-center.products.edit', $product) }}" class="btn btn-sm btn-outline-primary">
-                                        <i class="fas fa-pen"></i>
+                                        <i class="fas fa-edit"></i>
                                     </a>
                                     <button type="submit" form="delete-product-{{ $product->id }}" class="btn btn-sm btn-outline-danger">
                                         <i class="fas fa-trash"></i>

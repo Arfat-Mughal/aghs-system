@@ -147,8 +147,8 @@ class ProductController extends Controller
     {
         $productId = $product->id ?? 'NULL';
 
-        return $request->validate([
-            'sku' => "required|string|max:255|unique:bilal_center.bc_products,sku,{$productId},id",
+        $data = $request->validate([
+            'sku' => "nullable|string|max:255|unique:bilal_center.bc_products,sku,{$productId},id",
             'barcode' => "nullable|string|max:255|unique:bilal_center.bc_products,barcode,{$productId},id",
             'oem_number' => 'nullable|string|max:255',
             'shop_code' => "nullable|string|max:255|unique:bilal_center.bc_products,shop_code,{$productId},id",
@@ -156,18 +156,33 @@ class ProductController extends Controller
             'name_ur' => 'nullable|string|max:255',
             'description' => 'nullable|string',
             'internal_notes' => 'nullable|string',
-            'purchase_price' => 'required|numeric|min:0',
+            'purchase_price' => 'nullable|numeric|min:0',
             'selling_price' => 'required|numeric|min:0',
-            'stock' => 'required|integer|min:0',
+            'stock' => 'nullable|integer|min:0',
             'minimum_stock' => 'nullable|integer|min:0',
-            'unit' => 'required|string|max:255',
+            'unit' => 'nullable|string|max:255',
             'location' => 'nullable|string|max:255',
             'search_keywords' => 'nullable|string|max:1000',
             'brand_id' => 'nullable|exists:bilal_center.bc_brands,id',
             'category_id' => 'nullable|exists:bilal_center.bc_categories,id',
             'supplier_id' => 'nullable|exists:bilal_center.bc_suppliers,id',
-            'status' => 'required|in:Active,Inactive,Out of Stock,Discontinued',
+            'status' => 'nullable|in:Active,Inactive,Out of Stock,Discontinued',
         ]);
+
+        // Quick-add fields default quietly instead of forcing the shopkeeper to fill them in.
+        $data['purchase_price'] = $data['purchase_price'] ?? 0;
+        $data['stock'] = $data['stock'] ?? 0;
+        $data['minimum_stock'] = $data['minimum_stock'] ?? 0;
+        $data['unit'] = ($data['unit'] ?? '') ?: 'Piece';
+        $data['status'] = ($data['status'] ?? '') ?: 'Active';
+
+        // SKU is NOT NULL in the DB and auto-generated on create; on update, leave an
+        // existing SKU untouched rather than trying to null it out if the field is blank.
+        if ($product && empty($data['sku'])) {
+            unset($data['sku']);
+        }
+
+        return $data;
     }
 
     protected function syncRelated(Request $request, Product $product): void
