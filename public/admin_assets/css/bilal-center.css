@@ -118,7 +118,7 @@ body {
     max-width: 420px;
 }
 
-.bc-search i {
+.bc-search .bc-search-icon {
     position: absolute;
     left: .9rem;
     top: 50%;

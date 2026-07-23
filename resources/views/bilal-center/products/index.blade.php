@@ -22,7 +22,7 @@
         <div class="bc-toolbar">
             <form action="{{ route('bilal-center.products.index') }}" method="GET" class="bc-search d-flex">
                 <div class="position-relative flex-grow-1">
-                    <i class="fas fa-search"></i>
+                    <i class="fas fa-search bc-search-icon"></i>
                     <input type="text" name="q" value="{{ $q }}" class="form-control"
                         placeholder="Search name, SKU, barcode, OEM, alias...">
                 </div>
