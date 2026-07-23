@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BilalCenter\BikeModelController;
 use App\Http\Controllers\BilalCenter\BrandController;
+use App\Http\Controllers\BilalCenter\BrowseController;
 use App\Http\Controllers\BilalCenter\CategoryController;
 use App\Http\Controllers\BilalCenter\PinController;
 use App\Http\Controllers\BilalCenter\ProductController;
@@ -22,6 +23,11 @@ Route::prefix('bilal-center')->name('bilal-center.')->group(function () {
     Route::get('brands', [BrandController::class, 'index'])->name('brands.index');
     Route::get('categories', [CategoryController::class, 'index'])->name('categories.index');
     Route::get('bike-models', [BikeModelController::class, 'index'])->name('bike-models.index');
+
+    Route::get('browse/categories', [BrowseController::class, 'categories'])->name('browse.categories');
+    Route::get('browse/categories/{category}', [BrowseController::class, 'categoryProducts'])->name('browse.category-products');
+    Route::get('browse/bike-models', [BrowseController::class, 'bikeModels'])->name('browse.bike-models');
+    Route::get('browse/bike-models/{bikeModel}', [BrowseController::class, 'bikeModelProducts'])->name('browse.bike-model-products');
 
     // Mutations & printing — PIN-gated. "products/create" and "products/{product}/edit" MUST be
     // registered before the public "products/{product}" show route below, otherwise the show

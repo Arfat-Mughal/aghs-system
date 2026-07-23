@@ -29,4 +29,19 @@ class Category extends Model
     {
         return $this->hasMany(Product::class, 'category_id');
     }
+
+    /**
+     * This category's id plus every descendant category id (any nesting depth),
+     * so "browse category" pages can include child-category products too.
+     */
+    public function selfAndDescendantIds(): array
+    {
+        $ids = [$this->id];
+
+        foreach ($this->children as $child) {
+            $ids = array_merge($ids, $child->selfAndDescendantIds());
+        }
+
+        return $ids;
+    }
 }

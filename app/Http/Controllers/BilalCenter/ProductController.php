@@ -51,7 +51,50 @@ class ProductController extends Controller
 
         $products = $query->paginate(20)->withQueryString();
 
-        return view('bilal-center.products.index', compact('products', 'q'));
+        $fuzzyMatches = collect();
+
+        if ($q !== '' && $products->total() === 0) {
+            $fuzzyMatches = $this->fuzzySearch($q);
+        }
+
+        return view('bilal-center.products.index', compact('products', 'q', 'fuzzyMatches'));
+    }
+
+    /**
+     * Fallback for typos (e.g. "Cluch" -> "Clutch"): only runs when the exact/LIKE
+     * search above found nothing, and scans the (small, single-shop) catalog scoring
+     * each product's name/aliases by Levenshtein edit-distance to the typed term.
+     */
+    protected function fuzzySearch(string $q): \Illuminate\Support\Collection
+    {
+        $needle = strtolower($q);
+        $maxDistance = max(2, (int) floor(strlen($needle) * 0.4));
+
+        return Product::with(['brand', 'category', 'aliases'])
+            ->where('status', '!=', 'Discontinued')
+            ->get()
+            ->map(function (Product $product) use ($needle) {
+                // Compare against the full name/alias (catches multi-word typos like
+                // "Sparkk Plag") and against each individual word (catches a single
+                // mistyped word inside a longer product name, e.g. "Klutch" -> "Clutch Plate").
+                $candidates = array_merge(
+                    [$product->name_en],
+                    explode(' ', $product->name_en),
+                    $product->aliases->flatMap(fn ($alias) => array_merge([$alias->alias], explode(' ', $alias->alias)))->all()
+                );
+
+                $distance = collect($candidates)
+                    ->map(fn ($candidate) => levenshtein($needle, strtolower(trim($candidate))))
+                    ->min();
+
+                $product->fuzzy_distance = $distance;
+
+                return $product;
+            })
+            ->filter(fn (Product $product) => $product->fuzzy_distance <= $maxDistance)
+            ->sortBy('fuzzy_distance')
+            ->take(10)
+            ->values();
     }
 
     public function show(Product $product)

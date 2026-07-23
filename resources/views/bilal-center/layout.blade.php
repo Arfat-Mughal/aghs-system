@@ -21,9 +21,11 @@
             <div class="collapse navbar-collapse" id="bcNavbarLinks">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item"><a class="nav-link" href="{{ route('bilal-center.products.index') }}"><i class="fas fa-box mr-1"></i>Products</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('bilal-center.browse.categories') }}"><i class="fas fa-sitemap mr-1"></i>Browse Categories</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('bilal-center.browse.bike-models') }}"><i class="fas fa-motorcycle mr-1"></i>Browse Bike Models</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('bilal-center.brands.index') }}"><i class="fas fa-tags mr-1"></i>Brands</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('bilal-center.categories.index') }}"><i class="fas fa-sitemap mr-1"></i>Categories</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('bilal-center.bike-models.index') }}"><i class="fas fa-motorcycle mr-1"></i>Bike Models</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('bilal-center.categories.index') }}"><i class="fas fa-cog mr-1"></i>Manage Categories</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('bilal-center.bike-models.index') }}"><i class="fas fa-cog mr-1"></i>Manage Bike Models</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('bilal-center.suppliers.index') }}"><i class="fas fa-truck mr-1"></i>Suppliers</a></li>
                 </ul>
             </div>

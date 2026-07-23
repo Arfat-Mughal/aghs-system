@@ -20,10 +20,16 @@
 
     <div class="bc-card">
         <div class="bc-toolbar">
-            <form action="{{ route('bilal-center.products.index') }}" method="GET" class="bc-search">
-                <i class="fas fa-search"></i>
-                <input type="text" name="q" value="{{ $q }}" class="form-control"
-                    placeholder="Search name, SKU, barcode, OEM, alias...">
+            <form action="{{ route('bilal-center.products.index') }}" method="GET" class="bc-search d-flex">
+                <div class="position-relative flex-grow-1">
+                    <i class="fas fa-search"></i>
+                    <input type="text" name="q" value="{{ $q }}" class="form-control"
+                        placeholder="Search name, SKU, barcode, OEM, alias...">
+                </div>
+                <button type="button" class="btn btn-outline-secondary ml-2" data-toggle="modal"
+                    data-target="#barcodeScanModal" title="Scan barcode">
+                    <i class="fas fa-camera"></i>
+                </button>
             </form>
             <button type="submit" form="print-barcodes-form" class="btn btn-outline-secondary btn-sm">
                 <i class="fas fa-print mr-1"></i>Print Selected Barcodes
@@ -35,9 +41,6 @@
                 <thead>
                     <tr>
                         <th style="width:2.5rem"></th>
-                        <th>Shop Code</th>
-                        <th>SKU</th>
-                        <th>Barcode</th>
                         <th>Name (EN)</th>
                         <th>Name (UR)</th>
                         <th>Brand</th>
@@ -51,9 +54,6 @@
                     @forelse ($products as $product)
                         <tr>
                             <td><input type="checkbox" name="product_ids[]" value="{{ $product->id }}" form="print-barcodes-form"></td>
-                            <td class="text-muted">{{ $product->shop_code }}</td>
-                            <td><code>{{ $product->sku }}</code></td>
-                            <td class="text-muted">{{ $product->barcode }}</td>
                             <td>
                                 <a href="{{ route('bilal-center.products.show', $product) }}" class="font-weight-600">
                                     {{ $product->name_en }}
@@ -93,6 +93,36 @@
         </div>
     </div>
 
+    @if ($fuzzyMatches->isNotEmpty())
+        <div class="bc-card">
+            <div class="bc-card-body">
+                <div class="text-muted small mb-2"><i class="fas fa-lightbulb mr-1"></i>Did you mean:</div>
+                <div>
+                    @foreach ($fuzzyMatches as $product)
+                        <a href="{{ route('bilal-center.products.show', $product) }}" class="btn btn-sm btn-outline-secondary mr-2 mb-2">
+                            {{ $product->name_en }}
+                        </a>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    @endif
+
+    <div class="modal fade" id="barcodeScanModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fas fa-camera mr-1"></i>Scan Barcode</h5>
+                    <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <div id="bcReader"></div>
+                    <p class="text-muted small mt-2 mb-0">Point your camera at a product barcode.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
     @foreach ($products as $product)
         <form id="delete-product-{{ $product->id }}" action="{{ route('bilal-center.products.destroy', $product) }}"
             method="POST" onsubmit="return confirm('Delete this product?')">
@@ -105,6 +135,7 @@
 @endsection
 
 @section('scripts')
+    <script src="{{ asset('admin_assets/vendor/html5-qrcode/html5-qrcode.min.js') }}"></script>
     <script>
         function bcConfirmSelection() {
             if (document.querySelectorAll('input[name="product_ids[]"]:checked').length === 0) {
@@ -113,5 +144,40 @@
             }
             return true;
         }
+
+        var bcScanner = null;
+
+        $('#barcodeScanModal').on('shown.bs.modal', function () {
+            bcScanner = new Html5Qrcode('bcReader', {
+                formatsToSupport: [
+                    Html5QrcodeSupportedFormats.EAN_13,
+                    Html5QrcodeSupportedFormats.EAN_8,
+                    Html5QrcodeSupportedFormats.CODE_128,
+                    Html5QrcodeSupportedFormats.CODE_39,
+                    Html5QrcodeSupportedFormats.UPC_A,
+                ],
+            });
+
+            bcScanner.start(
+                { facingMode: 'environment' },
+                { fps: 10, qrbox: { width: 250, height: 150 } },
+                function (decodedText) {
+                    document.querySelector('.bc-search input[name="q"]').value = decodedText;
+                    bcScanner.stop().then(function () {
+                        $('#barcodeScanModal').modal('hide');
+                        document.querySelector('.bc-search').submit();
+                    });
+                },
+                function () { /* ignore per-frame decode misses */ }
+            ).catch(function (err) {
+                alert('Could not start the camera: ' + err);
+            });
+        });
+
+        $('#barcodeScanModal').on('hidden.bs.modal', function () {
+            if (bcScanner) {
+                bcScanner.stop().catch(function () {});
+            }
+        });
     </script>
 @endsection
