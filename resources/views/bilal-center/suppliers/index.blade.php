@@ -3,57 +3,70 @@
 @section('title', 'Suppliers')
 
 @section('content')
-    <h4 class="mb-3">Suppliers</h4>
+    <div class="bc-page-header">
+        <div>
+            <h1><i class="fas fa-truck mr-2 text-muted"></i>Suppliers</h1>
+            <div class="bc-subtitle">{{ $suppliers->count() }} supplier{{ $suppliers->count() === 1 ? '' : 's' }}</div>
+        </div>
+    </div>
 
-    <div class="card mb-3">
-        <div class="card-body">
+    <div class="bc-card">
+        <div class="bc-card-body">
             <form action="{{ route('bilal-center.suppliers.store') }}" method="POST" class="form-inline">
                 @csrf
-                <input type="text" name="name" class="form-control mr-2" placeholder="Supplier name" required>
-                <input type="text" name="phone" class="form-control mr-2" placeholder="Phone">
-                <input type="text" name="address" class="form-control mr-2" placeholder="Address">
-                <select name="status" class="form-control mr-2">
+                <input type="text" name="name" class="form-control mr-2 mb-2" placeholder="Supplier name" required>
+                <input type="text" name="phone" class="form-control mr-2 mb-2" placeholder="Phone">
+                <input type="text" name="address" class="form-control mr-2 mb-2" placeholder="Address">
+                <select name="status" class="form-control mr-2 mb-2">
                     <option value="Active">Active</option>
                     <option value="Inactive">Inactive</option>
                 </select>
-                <button type="submit" class="btn btn-primary">Add Supplier</button>
+                <button type="submit" class="btn btn-bc-primary mb-2">
+                    <i class="fas fa-plus mr-1"></i>Add Supplier
+                </button>
             </form>
         </div>
     </div>
 
-    <div class="table-responsive">
-    <table id="table" class="table table-bordered bg-white">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Phone</th>
-                <th>Address</th>
-                <th>Status</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($suppliers as $supplier)
-                <tr>
-                    <td>{{ $supplier->id }}</td>
-                    <td>{{ $supplier->name }}</td>
-                    <td>{{ $supplier->phone }}</td>
-                    <td>{{ $supplier->address }}</td>
-                    <td>{{ $supplier->status }}</td>
-                    <td>
-                        <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#editModal{{ $supplier->id }}">Edit</button>
-                        <form action="{{ route('bilal-center.suppliers.destroy', $supplier) }}" method="POST" class="d-inline"
-                            onsubmit="return confirm('Delete this supplier?')">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                        </form>
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
+    <div class="bc-card">
+        <div class="table-responsive">
+            <table id="table" class="table table-hover mb-0">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Phone</th>
+                        <th>Address</th>
+                        <th>Status</th>
+                        <th class="text-right">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($suppliers as $supplier)
+                        <tr>
+                            <td class="font-weight-600">{{ $supplier->name }}</td>
+                            <td>{{ $supplier->phone }}</td>
+                            <td>{{ $supplier->address }}</td>
+                            <td>
+                                <span class="bc-badge {{ $supplier->status === 'Active' ? 'bc-badge-active' : 'bc-badge-inactive' }}">{{ $supplier->status }}</span>
+                            </td>
+                            <td class="text-right">
+                                <button class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#editModal{{ $supplier->id }}">
+                                    <i class="fas fa-pen"></i>
+                                </button>
+                                <form action="{{ route('bilal-center.suppliers.destroy', $supplier) }}" method="POST" class="d-inline"
+                                    onsubmit="return confirm('Delete this supplier?')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-outline-danger">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
 
     @foreach ($suppliers as $supplier)
@@ -88,7 +101,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Update</button>
+                            <button type="submit" class="btn btn-bc-primary">Update</button>
                         </div>
                     </form>
                 </div>
