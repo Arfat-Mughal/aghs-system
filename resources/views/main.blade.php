@@ -426,7 +426,7 @@
     <section class="ftco-gallery">
         <div class="container-wrap">
             <div class="row no-gutters">
-                <div class="col-md-3 ftco-animate">
+                <div class="col-6 col-md-3 ftco-animate">
                     <a href="{{asset('web_assets/images/boys_1.jpg')}}"
                        class="gallery image-popup img d-flex align-items-center"
                        style="background-image: url({{asset('web_assets/images/course-1.jpg')}});">
@@ -435,7 +435,7 @@
                         </div>
                     </a>
                 </div>
-                <div class="col-md-3 ftco-animate">
+                <div class="col-6 col-md-3 ftco-animate">
                     <a href="{{asset('web_assets/images/girls.jpg')}}"
                        class="gallery image-popup img d-flex align-items-center"
                        style="background-image: url({{asset('web_assets/images/image_2.jpg')}});">
@@ -444,7 +444,7 @@
                         </div>
                     </a>
                 </div>
-                <div class="col-md-3 ftco-animate">
+                <div class="col-6 col-md-3 ftco-animate">
                     <a href="{{asset('web_assets/images/pic_3.jpg')}}"
                        class="gallery image-popup img d-flex align-items-center"
                        style="background-image: url({{asset('web_assets/images/image_3.jpg')}});">
@@ -453,7 +453,7 @@
                         </div>
                     </a>
                 </div>
-                <div class="col-md-3 ftco-animate">
+                <div class="col-6 col-md-3 ftco-animate">
                     <a href="{{asset('web_assets/images/pic_4.jpg')}}"
                        class="gallery image-popup img d-flex align-items-center"
                        style="background-image: url({{asset('web_assets/images/image_4.jpg')}});">

@@ -1,1 +1,10 @@
 /* Custom styles can be added here */
+
+/* Gallery images become a 2-up grid below md (see main.blade.php); the
+   theme's fixed 350px height looks too tall/cropped at half-width, so
+   shrink it on narrow screens. */
+@media (max-width: 767.98px) {
+    .ftco-gallery .gallery {
+        height: 180px;
+    }
+}
