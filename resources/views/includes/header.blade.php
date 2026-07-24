@@ -45,6 +45,7 @@
                     </div>
                 </li>
                 <li class="nav-item"><a href="{{route('about')}}" class="nav-link">About Us</a></li>
+                <li class="nav-item"><a href="{{route('bilal-center.home')}}" class="nav-link">Self Service</a></li>
                 <li class="nav-item"><a href="{{route('contact')}}" class="nav-link">Contact Us</a></li>
                 @if (Route::has('login'))
                     @auth

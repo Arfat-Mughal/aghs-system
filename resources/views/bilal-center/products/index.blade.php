@@ -118,6 +118,10 @@
                 <div class="modal-body">
                     <div id="bcReader"></div>
                     <p class="text-muted small mt-2 mb-0">Point your camera at a product barcode.</p>
+                    <hr>
+                    <label for="bcBarcodeFile" class="d-block small text-muted mb-1">Or upload a photo of the barcode:</label>
+                    <input type="file" id="bcBarcodeFile" accept="image/*" class="form-control-file">
+                    <div id="bcFileReader" style="width:1px;height:1px;overflow:hidden;position:absolute;left:-9999px;"></div>
                 </div>
             </div>
         </div>
@@ -146,26 +150,30 @@
         }
 
         var bcScanner = null;
+        var bcFileScanner = null;
+        var bcFormats = [
+            Html5QrcodeSupportedFormats.EAN_13,
+            Html5QrcodeSupportedFormats.EAN_8,
+            Html5QrcodeSupportedFormats.CODE_128,
+            Html5QrcodeSupportedFormats.CODE_39,
+            Html5QrcodeSupportedFormats.UPC_A,
+        ];
+
+        function bcOnDecoded(decodedText) {
+            document.querySelector('.bc-search input[name="q"]').value = decodedText;
+            $('#barcodeScanModal').modal('hide');
+            document.querySelector('.bc-search').submit();
+        }
 
         $('#barcodeScanModal').on('shown.bs.modal', function () {
-            bcScanner = new Html5Qrcode('bcReader', {
-                formatsToSupport: [
-                    Html5QrcodeSupportedFormats.EAN_13,
-                    Html5QrcodeSupportedFormats.EAN_8,
-                    Html5QrcodeSupportedFormats.CODE_128,
-                    Html5QrcodeSupportedFormats.CODE_39,
-                    Html5QrcodeSupportedFormats.UPC_A,
-                ],
-            });
+            bcScanner = new Html5Qrcode('bcReader', { formatsToSupport: bcFormats });
 
             bcScanner.start(
                 { facingMode: 'environment' },
                 { fps: 10, qrbox: { width: 250, height: 150 } },
                 function (decodedText) {
-                    document.querySelector('.bc-search input[name="q"]').value = decodedText;
                     bcScanner.stop().then(function () {
-                        $('#barcodeScanModal').modal('hide');
-                        document.querySelector('.bc-search').submit();
+                        bcOnDecoded(decodedText);
                     });
                 },
                 function () { /* ignore per-frame decode misses */ }
@@ -178,6 +186,33 @@
             if (bcScanner) {
                 bcScanner.stop().catch(function () {});
             }
+            document.getElementById('bcBarcodeFile').value = '';
+        });
+
+        document.getElementById('bcBarcodeFile').addEventListener('change', function (e) {
+            var file = e.target.files[0];
+            if (!file) {
+                return;
+            }
+
+            if (!bcFileScanner) {
+                bcFileScanner = new Html5Qrcode('bcFileReader', { formatsToSupport: bcFormats });
+            }
+
+            var stopCameraThen;
+            try {
+                stopCameraThen = bcScanner ? Promise.resolve(bcScanner.stop()).catch(function () {}) : Promise.resolve();
+            } catch (e) {
+                stopCameraThen = Promise.resolve();
+            }
+
+            stopCameraThen.then(function () {
+                return bcFileScanner.scanFile(file, false);
+            }).then(function (decodedText) {
+                bcOnDecoded(decodedText);
+            }).catch(function (err) {
+                alert('Could not read a barcode from that image: ' + err);
+            });
         });
     </script>
 @endsection

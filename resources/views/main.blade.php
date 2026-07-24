@@ -466,6 +466,23 @@
         </div>
     </section>
 
+    <section class="ftco-section bg-light">
+        <div class="container">
+            <div class="row justify-content-center mb-4 pb-2">
+                <div class="col-md-8 text-center heading-section ftco-animate">
+                    <h2 class="mb-4"><span>Our</span> Sponsors</h2>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-6 text-center">
+                    <a href="https://bechly.pk/" target="_blank" rel="sponsored noopener" class="btn btn-outline-primary px-4 py-3">
+                        Bechly.pk &ndash; Pakistan ka Bazaar
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
 {{--    <section>--}}
 {{--        <div class="container">--}}
 {{--            <!-- Modal -->--}}
