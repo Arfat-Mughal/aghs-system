@@ -189,6 +189,20 @@
             document.getElementById('bcBarcodeFile').value = '';
         });
 
+        function bcWithTimeout(promise, ms) {
+            return new Promise(function (resolve) {
+                var done = false;
+                var finish = function () {
+                    if (!done) {
+                        done = true;
+                        resolve();
+                    }
+                };
+                setTimeout(finish, ms);
+                Promise.resolve(promise).then(finish, finish);
+            });
+        }
+
         document.getElementById('bcBarcodeFile').addEventListener('change', function (e) {
             var file = e.target.files[0];
             if (!file) {
@@ -201,7 +215,7 @@
 
             var stopCameraThen;
             try {
-                stopCameraThen = bcScanner ? Promise.resolve(bcScanner.stop()).catch(function () {}) : Promise.resolve();
+                stopCameraThen = bcScanner ? bcWithTimeout(bcScanner.stop(), 1500) : Promise.resolve();
             } catch (e) {
                 stopCameraThen = Promise.resolve();
             }
