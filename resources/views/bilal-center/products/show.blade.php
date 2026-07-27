@@ -25,6 +25,14 @@
             <a href="{{ route('bilal-center.products.index') }}" class="btn btn-outline-secondary btn-sm">
                 <i class="fas fa-arrow-left mr-1"></i>Back
             </a>
+            @if ($product->barcode)
+                <form action="{{ route('bilal-center.cart.add', $product) }}" method="POST" class="d-inline">
+                    @csrf
+                    <button type="submit" class="btn btn-outline-success btn-sm">
+                        <i class="fas fa-cart-plus mr-1"></i>Add to Cart
+                    </button>
+                </form>
+            @endif
             <a href="{{ route('bilal-center.products.edit', $product) }}" class="btn btn-bc-primary btn-sm">
                 <i class="fas fa-edit mr-1"></i>Edit
             </a>

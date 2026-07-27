@@ -32,9 +32,6 @@
             font-weight: bold;
             margin-top: 4px;
         }
-        .label .price {
-            font-size: 12px;
-        }
         @media print {
             .label { border: 1px dashed #999; }
         }
@@ -51,7 +48,6 @@
                     <div class="barcode-number">No barcode</div>
                 @endif
                 <div class="name">{{ $product->name_en }}</div>
-                <div class="price">Rs. {{ number_format($product->selling_price, 2) }}</div>
             </div>
         @endforeach
     </div>

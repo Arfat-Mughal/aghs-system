@@ -28,6 +28,7 @@
                             <i class="fas fa-unlock mr-1"></i>Unlock
                         </button>
                     </form>
+                    <a href="{{ route('home') }}" class="btn btn-link btn-block text-muted mt-1">Cancel</a>
                 </div>
             </div>
         </div>

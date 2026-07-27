@@ -23,6 +23,13 @@
                     <li class="nav-item"><a class="nav-link" href="{{ route('bilal-center.products.index') }}"><i class="fas fa-box mr-1"></i>Products</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('bilal-center.browse.categories') }}"><i class="fas fa-sitemap mr-1"></i>Categories</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('bilal-center.browse.bike-models') }}"><i class="fas fa-motorcycle mr-1"></i>Bike Models</a></li>
+                    @php $bcCartCount = collect(session('bilal_center.cart', []))->sum(); @endphp
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('bilal-center.cart.index') }}">
+                            <i class="fas fa-shopping-cart mr-1"></i>Cart
+                            @if ($bcCartCount) <span class="badge badge-light">{{ $bcCartCount }}</span> @endif
+                        </a>
+                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="bcManageDropdown" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">

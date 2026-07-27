@@ -26,6 +26,14 @@
                     <input type="text" name="q" value="{{ $q }}" class="form-control"
                         placeholder="Search name, SKU, barcode, OEM, alias...">
                 </div>
+                <button type="submit" class="btn btn-bc-primary ml-2" title="Search">
+                    <i class="fas fa-search mr-1"></i>Search
+                </button>
+                @if ($q !== '')
+                    <a href="{{ route('bilal-center.products.index') }}" class="btn btn-outline-secondary ml-2" title="Reset">
+                        <i class="fas fa-times mr-1"></i>Reset
+                    </a>
+                @endif
                 <button type="button" class="btn btn-outline-secondary ml-2" data-toggle="modal"
                     data-target="#barcodeScanModal" title="Scan barcode">
                     <i class="fas fa-camera"></i>
@@ -45,6 +53,7 @@
                         <th>Name (UR)</th>
                         <th>Brand</th>
                         <th>Category</th>
+                        <th class="text-right">Price</th>
                         <th class="text-right">Stock</th>
                         <th>Status</th>
                         <th class="text-right">Actions</th>
@@ -62,6 +71,7 @@
                             <td dir="rtl">{{ $product->name_ur }}</td>
                             <td>{{ optional($product->brand)->name }}</td>
                             <td>{{ optional($product->category)->name }}</td>
+                            <td class="text-right">Rs. {{ number_format($product->selling_price, 2) }}</td>
                             <td class="text-right">{{ $product->stock }}</td>
                             <td>
                                 @php
@@ -75,6 +85,14 @@
                                 <span class="bc-badge {{ $badgeClass }}">{{ $product->status }}</span>
                             </td>
                             <td class="text-right">
+                                @if ($product->barcode)
+                                    <form action="{{ route('bilal-center.cart.add', $product) }}" method="POST" class="d-inline">
+                                        @csrf
+                                        <button type="submit" class="btn btn-sm btn-outline-success" title="Add to Cart">
+                                            <i class="fas fa-cart-plus"></i>
+                                        </button>
+                                    </form>
+                                @endif
                                 <a href="{{ route('bilal-center.products.edit', $product) }}" class="btn btn-sm btn-outline-primary">
                                     <i class="fas fa-edit"></i>
                                 </a>
@@ -85,7 +103,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="11" class="text-center text-muted py-4">No products found.</td>
+                            <td colspan="12" class="text-center text-muted py-4">No products found.</td>
                         </tr>
                     @endforelse
                 </tbody>

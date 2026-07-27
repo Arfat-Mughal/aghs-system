@@ -14,8 +14,14 @@
 
     <div class="bc-card">
         <div class="bc-card-body">
-            <form action="{{ route('bilal-center.products.store') }}" method="POST">
+            <form action="{{ route('bilal-center.products.store') }}" method="POST" enctype="multipart/form-data">
                 @include('bilal-center.products._form')
+
+                <div class="form-group mt-3">
+                    <label class="font-weight-600">Photo (optional)</label>
+                    <input type="file" name="photo" accept="image/*" capture="environment" class="form-control-file">
+                    <small class="form-text text-muted">Opens the camera directly on mobile; you can also pick an existing photo.</small>
+                </div>
             </form>
         </div>
     </div>

@@ -7,6 +7,7 @@ use App\Models\BilalCenter\BikeModel;
 use App\Models\BilalCenter\Brand;
 use App\Models\BilalCenter\Category;
 use App\Models\BilalCenter\Product;
+use App\Models\BilalCenter\ProductImage;
 use App\Models\BilalCenter\Supplier;
 use App\Services\BilalCenter\BarcodeService;
 use Illuminate\Http\Request;
@@ -116,6 +117,16 @@ class ProductController extends Controller
         $product = Product::create($data);
 
         $this->syncRelated($request, $product);
+
+        if ($request->hasFile('photo')) {
+            $path = $request->file('photo')->store('bilal-center/products', 'public');
+
+            ProductImage::create([
+                'product_id' => $product->id,
+                'image' => $path,
+                'sort_order' => 1,
+            ]);
+        }
 
         Alert::success('Product Added', 'The product was created successfully.');
 
