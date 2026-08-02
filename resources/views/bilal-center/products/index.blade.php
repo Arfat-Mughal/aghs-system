@@ -39,9 +39,17 @@
                     <i class="fas fa-camera"></i>
                 </button>
             </form>
-            <button type="submit" form="print-barcodes-form" class="btn btn-outline-secondary btn-sm">
-                <i class="fas fa-print mr-1"></i>Print Selected Barcodes
-            </button>
+            <div class="d-flex" style="gap:.5rem">
+                <button type="submit" form="print-barcodes-form" class="btn btn-outline-secondary btn-sm">
+                    <i class="fas fa-print mr-1"></i>Print Selected Barcodes
+                </button>
+                <a href="{{ route('bilal-center.cart.index') }}" class="btn btn-outline-secondary btn-sm" title="Review the cart and print an invoice at checkout">
+                    <i class="fas fa-file-invoice mr-1"></i>Print Invoice
+                </a>
+                <a href="{{ route('bilal-center.products.low-stock') }}" class="btn btn-outline-warning btn-sm">
+                    <i class="fas fa-exclamation-triangle mr-1"></i>Low Stock
+                </a>
+            </div>
         </div>
 
         <div class="table-responsive">
@@ -72,7 +80,15 @@
                             <td>{{ optional($product->brand)->name }}</td>
                             <td>{{ optional($product->category)->name }}</td>
                             <td class="text-right">Rs. {{ number_format($product->selling_price, 2) }}</td>
-                            <td class="text-right">{{ $product->stock }}</td>
+                            <td class="text-right">
+                                @if ($product->stock <= max($product->minimum_stock, \App\Models\BilalCenter\Product::LOW_STOCK_FALLBACK))
+                                    <span class="text-danger font-weight-600" title="At or below minimum stock ({{ $product->minimum_stock }})">
+                                        <i class="fas fa-exclamation-triangle mr-1"></i>{{ $product->stock }}
+                                    </span>
+                                @else
+                                    {{ $product->stock }}
+                                @endif
+                            </td>
                             <td>
                                 @php
                                     $badgeClass = [

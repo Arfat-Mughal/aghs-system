@@ -14,6 +14,12 @@ class Product extends Model
     protected $connection = 'bilal_center';
     protected $table = 'bc_products';
 
+    /**
+     * Flag stock as low once it drops to this level, even for products whose
+     * minimum_stock was never set (defaults to 0).
+     */
+    const LOW_STOCK_FALLBACK = 2;
+
     protected $fillable = [
         'sku',
         'barcode',

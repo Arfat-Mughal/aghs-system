@@ -42,6 +42,7 @@ Route::prefix('bilal-center')->name('bilal-center.')->group(function () {
         // "products/{product}" show route below, otherwise the show route's wildcard
         // would swallow "create" as a product id.
         Route::post('products/print-barcodes', [ProductController::class, 'printBarcodes'])->name('products.print-barcodes');
+        Route::get('products/low-stock', [ProductController::class, 'lowStock'])->name('products.low-stock');
         Route::get('products/create', [ProductController::class, 'create'])->name('products.create');
         Route::get('products/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
         Route::post('products/{product}/generate-barcode', [ProductController::class, 'generateBarcode'])->name('products.generate-barcode');
