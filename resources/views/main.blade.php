@@ -426,7 +426,7 @@
     <section class="ftco-gallery">
         <div class="container-wrap">
             <div class="row no-gutters">
-                <div class="col-md-3 ftco-animate">
+                <div class="col-6 col-md-3 ftco-animate">
                     <a href="{{asset('web_assets/images/boys_1.jpg')}}"
                        class="gallery image-popup img d-flex align-items-center"
                        style="background-image: url({{asset('web_assets/images/course-1.jpg')}});">
@@ -435,7 +435,7 @@
                         </div>
                     </a>
                 </div>
-                <div class="col-md-3 ftco-animate">
+                <div class="col-6 col-md-3 ftco-animate">
                     <a href="{{asset('web_assets/images/girls.jpg')}}"
                        class="gallery image-popup img d-flex align-items-center"
                        style="background-image: url({{asset('web_assets/images/image_2.jpg')}});">
@@ -444,7 +444,7 @@
                         </div>
                     </a>
                 </div>
-                <div class="col-md-3 ftco-animate">
+                <div class="col-6 col-md-3 ftco-animate">
                     <a href="{{asset('web_assets/images/pic_3.jpg')}}"
                        class="gallery image-popup img d-flex align-items-center"
                        style="background-image: url({{asset('web_assets/images/image_3.jpg')}});">
@@ -453,13 +453,30 @@
                         </div>
                     </a>
                 </div>
-                <div class="col-md-3 ftco-animate">
+                <div class="col-6 col-md-3 ftco-animate">
                     <a href="{{asset('web_assets/images/pic_4.jpg')}}"
                        class="gallery image-popup img d-flex align-items-center"
                        style="background-image: url({{asset('web_assets/images/image_4.jpg')}});">
                         <div class="icon mb-4 d-flex align-items-center justify-content-center">
                             <span class="icon-instagram"></span>
                         </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ftco-section bg-light">
+        <div class="container">
+            <div class="row justify-content-center mb-4 pb-2">
+                <div class="col-md-8 text-center heading-section ftco-animate">
+                    <h2 class="mb-4"><span>Our</span> Sponsors</h2>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-6 text-center">
+                    <a href="https://bechly.pk/" target="_blank" rel="sponsored noopener" class="btn btn-outline-primary px-4 py-3">
+                        Bechly.pk &ndash; Pakistan ka Bazaar
                     </a>
                 </div>
             </div>

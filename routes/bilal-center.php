@@ -1,0 +1,65 @@
+<?php
+
+use App\Http\Controllers\BilalCenter\BikeModelController;
+use App\Http\Controllers\BilalCenter\BrandController;
+use App\Http\Controllers\BilalCenter\BrowseController;
+use App\Http\Controllers\BilalCenter\CartController;
+use App\Http\Controllers\BilalCenter\CategoryController;
+use App\Http\Controllers\BilalCenter\PinController;
+use App\Http\Controllers\BilalCenter\ProductController;
+use App\Http\Controllers\BilalCenter\ProductImageController;
+use App\Http\Controllers\BilalCenter\SupplierController;
+use Illuminate\Support\Facades\Route;
+
+Route::prefix('bilal-center')->name('bilal-center.')->group(function () {
+    Route::get('pin', [PinController::class, 'showForm'])->name('pin.form');
+    Route::post('pin', [PinController::class, 'verify'])->name('pin.verify');
+
+    // Whole module now requires the PIN — entering via "Self Service" or any direct
+    // link redirects here first.
+    Route::middleware('bilal.pin')->group(function () {
+        Route::get('/', function () {
+            return redirect()->route('bilal-center.products.index');
+        })->name('home');
+
+        Route::get('products', [ProductController::class, 'index'])->name('products.index');
+        Route::get('brands', [BrandController::class, 'index'])->name('brands.index');
+        Route::get('categories', [CategoryController::class, 'index'])->name('categories.index');
+        Route::get('bike-models', [BikeModelController::class, 'index'])->name('bike-models.index');
+
+        Route::get('browse/categories', [BrowseController::class, 'categories'])->name('browse.categories');
+        Route::get('browse/categories/{category}', [BrowseController::class, 'categoryProducts'])->name('browse.category-products');
+        Route::get('browse/bike-models', [BrowseController::class, 'bikeModels'])->name('browse.bike-models');
+        Route::get('browse/bike-models/{bikeModel}', [BrowseController::class, 'bikeModelProducts'])->name('browse.bike-model-products');
+
+        Route::get('cart', [CartController::class, 'index'])->name('cart.index');
+        Route::post('cart/{product}', [CartController::class, 'add'])->name('cart.add');
+        Route::patch('cart/{product}', [CartController::class, 'update'])->name('cart.update');
+        Route::delete('cart/{product}', [CartController::class, 'remove'])->name('cart.remove');
+        Route::post('checkout', [CartController::class, 'checkout'])->name('checkout');
+
+        // "products/create" and "products/{product}/edit" MUST be registered before the
+        // "products/{product}" show route below, otherwise the show route's wildcard
+        // would swallow "create" as a product id.
+        Route::post('products/print-barcodes', [ProductController::class, 'printBarcodes'])->name('products.print-barcodes');
+        Route::get('products/create', [ProductController::class, 'create'])->name('products.create');
+        Route::get('products/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
+        Route::post('products/{product}/generate-barcode', [ProductController::class, 'generateBarcode'])->name('products.generate-barcode');
+        Route::post('products', [ProductController::class, 'store'])->name('products.store');
+        Route::put('products/{product}', [ProductController::class, 'update'])->name('products.update');
+        Route::delete('products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
+
+        Route::post('products/{product}/images', [ProductImageController::class, 'store'])->name('products.images.store');
+        Route::put('product-images/{image}', [ProductImageController::class, 'update'])->name('products.images.update');
+        Route::delete('product-images/{image}', [ProductImageController::class, 'destroy'])->name('products.images.destroy');
+
+        Route::resource('brands', BrandController::class)->only(['store', 'update', 'destroy']);
+        Route::resource('categories', CategoryController::class)->only(['store', 'update', 'destroy']);
+        Route::resource('bike-models', BikeModelController::class)->only(['store', 'update', 'destroy']);
+        Route::resource('suppliers', SupplierController::class)->only(['index', 'store', 'update', 'destroy']);
+
+        // Registered last within this group so "products/create" above still matches
+        // before this wildcard does.
+        Route::get('products/{product}', [ProductController::class, 'show'])->name('products.show');
+    });
+});
