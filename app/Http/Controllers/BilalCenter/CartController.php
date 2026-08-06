@@ -55,9 +55,17 @@ class CartController extends Controller
             return back();
         }
 
+        if ($product->stock < 1) {
+            Alert::error('Out of Stock', $product->name_en . ' has no stock left.');
+
+            return back();
+        }
+
         $cart = session('bilal_center.cart', []);
         $cart[$product->id] = ($cart[$product->id] ?? 0) + 1;
         session(['bilal_center.cart' => $cart]);
+
+        $product->decrement('stock');
 
         Alert::success('Added to Cart', $product->name_en . ' was added to the cart.');
 
@@ -71,11 +79,28 @@ class CartController extends Controller
         ]);
 
         $cart = session('bilal_center.cart', []);
+        $currentQty = $cart[$product->id] ?? 0;
+        $newQty = (int) $request->qty;
 
-        if ((int) $request->qty === 0) {
+        // Stock already reflects reserved cart qty (decremented on add), so only
+        // the delta between old and new qty needs to move: increasing qty takes
+        // more from stock, decreasing qty gives stock back.
+        $diff = $newQty - $currentQty;
+
+        if ($diff > 0 && $diff > $product->stock) {
+            Alert::error('Not Enough Stock', 'Only ' . ($product->stock + $currentQty) . ' in stock.');
+
+            return back();
+        }
+
+        if ($diff !== 0) {
+            $product->decrement('stock', $diff);
+        }
+
+        if ($newQty === 0) {
             unset($cart[$product->id]);
         } else {
-            $cart[$product->id] = (int) $request->qty;
+            $cart[$product->id] = $newQty;
         }
 
         session(['bilal_center.cart' => $cart]);
@@ -86,6 +111,12 @@ class CartController extends Controller
     public function remove(Product $product)
     {
         $cart = session('bilal_center.cart', []);
+        $qty = $cart[$product->id] ?? 0;
+
+        if ($qty > 0) {
+            $product->increment('stock', $qty);
+        }
+
         unset($cart[$product->id]);
         session(['bilal_center.cart' => $cart]);
 
@@ -105,6 +136,9 @@ class CartController extends Controller
         $total = array_sum(array_column($lines, 'line_total'));
         $generatedAt = now();
 
+        // Stock was already decremented when items were added to the cart, so
+        // checkout/printing the invoice just finalizes the sale — it must NOT
+        // touch stock again (that would double-count the reduction).
         $html = view('bilal-center.cart.invoice', compact('lines', 'total', 'generatedAt'))->render();
 
         session()->forget('bilal_center.cart');

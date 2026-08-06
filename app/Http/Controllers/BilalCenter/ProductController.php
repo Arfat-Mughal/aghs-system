@@ -182,7 +182,7 @@ class ProductController extends Controller
             'product_ids.*' => 'exists:bilal_center.bc_products,id',
         ]);
 
-        $products = Product::whereIn('id', $request->product_ids)->get();
+        $products = Product::whereIn('id', $request->product_ids)->with('brand')->get();
 
         return view('bilal-center.products.print-barcodes', compact('products'));
     }
