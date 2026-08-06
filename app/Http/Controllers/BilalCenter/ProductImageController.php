@@ -13,14 +13,26 @@ class ProductImageController extends Controller
     public function store(Request $request, Product $product)
     {
         $request->validate([
-            'images' => 'required|array',
+            'camera_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'images' => 'nullable|array',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
+
+        $files = array_merge(
+            array_filter([$request->file('camera_photo')]),
+            $request->file('images', [])
+        );
+
+        if (empty($files)) {
+            Alert::error('No Photo Selected', 'Take a photo or choose at least one file to upload.');
+
+            return back();
+        }
 
         $nextSortOrder = (int) $product->images()->max('sort_order') + 1;
         $uploadDir = 'bc-product-images';
 
-        foreach ($request->file('images', []) as $index => $file) {
+        foreach ($files as $index => $file) {
             $imageName = uniqid() . '.' . $file->getClientOriginalExtension();
             $file->move(public_path($uploadDir), $imageName);
 

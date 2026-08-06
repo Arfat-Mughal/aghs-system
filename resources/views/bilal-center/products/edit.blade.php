@@ -45,14 +45,21 @@
                 <p class="text-muted small">No images uploaded yet.</p>
             @endif
 
-            <form action="{{ route('bilal-center.products.images.store', $product) }}" method="POST" enctype="multipart/form-data" class="form-inline">
+            <form action="{{ route('bilal-center.products.images.store', $product) }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                <input type="file" name="images[]" class="form-control-file mr-2 mb-2" multiple accept="image/*" capture="environment">
+                <div class="form-group mb-2">
+                    <label class="font-weight-600 d-block">Take Photo</label>
+                    <input type="file" name="camera_photo" class="form-control-file" accept="image/*" capture="environment">
+                </div>
+                <div class="form-group mb-2">
+                    <label class="font-weight-600 d-block">Or Choose Existing Photos</label>
+                    <input type="file" name="images[]" class="form-control-file" multiple accept="image/*">
+                </div>
                 <button type="submit" class="btn btn-bc-primary mb-2">
                     <i class="fas fa-upload mr-1"></i>Upload
                 </button>
             </form>
-            <small class="form-text text-muted">Opens the camera directly on mobile; you can also pick existing photos.</small>
+            <small class="form-text text-muted">The first field opens the camera directly on mobile; the second lets you pick one or more existing photos.</small>
         </div>
     </div>
 @endsection
