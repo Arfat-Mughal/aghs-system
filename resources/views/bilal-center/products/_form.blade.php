@@ -22,6 +22,11 @@
         <input type="number" name="stock" class="form-control form-control-lg @error('stock') is-invalid @enderror"
             value="{{ old('stock', $product->stock ?? 0) }}">
         @error('stock') <span class="invalid-feedback">{{ $message }}</span> @enderror
+        @if (isset($product) && $product->stock <= max($product->minimum_stock, \App\Models\BilalCenter\Product::LOW_STOCK_FALLBACK))
+            <small class="form-text text-danger">
+                <i class="fas fa-exclamation-triangle mr-1"></i>Low stock (minimum is {{ $product->minimum_stock }}).
+            </small>
+        @endif
     </div>
 </div>
 

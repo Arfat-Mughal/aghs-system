@@ -32,6 +32,10 @@
             font-weight: bold;
             margin-top: 4px;
         }
+        .label .brand {
+            font-size: 10px;
+            color: #555;
+        }
         @media print {
             .label { border: 1px dashed #999; }
         }
@@ -48,6 +52,9 @@
                     <div class="barcode-number">No barcode</div>
                 @endif
                 <div class="name">{{ $product->name_en }}</div>
+                @if ($product->brand)
+                    <div class="brand">{{ $product->brand->name }}</div>
+                @endif
             </div>
         @endforeach
     </div>

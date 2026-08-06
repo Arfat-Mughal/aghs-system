@@ -182,9 +182,38 @@ class ProductController extends Controller
             'product_ids.*' => 'exists:bilal_center.bc_products,id',
         ]);
 
-        $products = Product::whereIn('id', $request->product_ids)->get();
+        $products = Product::whereIn('id', $request->product_ids)->with('brand')->get();
 
         return view('bilal-center.products.print-barcodes', compact('products'));
+    }
+
+    public function lowStock(Request $request)
+    {
+        $query = Product::with(['brand', 'category', 'supplier'])
+            ->where(function ($w) {
+                $w->whereColumn('stock', '<=', 'minimum_stock')
+                    ->orWhere('stock', '<=', Product::LOW_STOCK_FALLBACK);
+            })
+            ->where('status', '!=', 'Discontinued');
+
+        if ($request->filled('brand_id')) {
+            $query->where('brand_id', $request->brand_id);
+        }
+
+        if ($request->filled('category_id')) {
+            $query->where('category_id', $request->category_id);
+        }
+
+        if ($request->filled('supplier_id')) {
+            $query->where('supplier_id', $request->supplier_id);
+        }
+
+        $products = $query->orderBy('name_en')->get();
+
+        return view('bilal-center.products.low-stock', array_merge(
+            $this->formData(),
+            compact('products')
+        ));
     }
 
     protected function formData(): array

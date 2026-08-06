@@ -47,11 +47,12 @@
 
             <form action="{{ route('bilal-center.products.images.store', $product) }}" method="POST" enctype="multipart/form-data" class="form-inline">
                 @csrf
-                <input type="file" name="images[]" class="form-control-file mr-2 mb-2" multiple accept="image/*">
+                <input type="file" name="images[]" class="form-control-file mr-2 mb-2" multiple accept="image/*" capture="environment">
                 <button type="submit" class="btn btn-bc-primary mb-2">
                     <i class="fas fa-upload mr-1"></i>Upload
                 </button>
             </form>
+            <small class="form-text text-muted">Opens the camera directly on mobile; you can also pick existing photos.</small>
         </div>
     </div>
 @endsection
