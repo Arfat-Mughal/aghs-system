@@ -45,7 +45,7 @@
                 <div class="row mb-4">
                     @foreach ($product->images as $image)
                         <div class="col-6 col-md-2">
-                            <img src="{{ asset('storage/' . $image->image) }}" class="img-thumbnail">
+                            <img src="{{ asset($image->image) }}" class="img-thumbnail">
                         </div>
                     @endforeach
                 </div>

@@ -119,11 +119,14 @@ class ProductController extends Controller
         $this->syncRelated($request, $product);
 
         if ($request->hasFile('photo')) {
-            $path = $request->file('photo')->store('bilal-center/products', 'public');
+            $file = $request->file('photo');
+            $uploadDir = 'bc-product-images';
+            $imageName = uniqid() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path($uploadDir), $imageName);
 
             ProductImage::create([
                 'product_id' => $product->id,
-                'image' => $path,
+                'image' => $uploadDir . '/' . $imageName,
                 'sort_order' => 1,
             ]);
         }

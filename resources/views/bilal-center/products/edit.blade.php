@@ -29,7 +29,7 @@
                 <div class="row mb-3">
                     @foreach ($product->images as $image)
                         <div class="col-6 col-md-2 mb-3 text-center">
-                            <img src="{{ asset('storage/' . $image->image) }}" class="img-thumbnail mb-1">
+                            <img src="{{ asset($image->image) }}" class="img-thumbnail mb-1">
                             <form action="{{ route('bilal-center.products.images.destroy', $image) }}" method="POST"
                                 onsubmit="return confirm('Delete this image?')">
                                 @csrf
