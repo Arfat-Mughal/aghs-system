@@ -19,7 +19,7 @@ class ProductController extends Controller
     {
         $q = trim((string) $request->get('q', ''));
 
-        $query = Product::with(['brand', 'category']);
+        $query = Product::with(['category', 'images']);
 
         if ($q !== '') {
             $like = '%' . $q . '%';
