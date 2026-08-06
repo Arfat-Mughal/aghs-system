@@ -244,3 +244,4 @@ Route::get('/setup-ebook-system', function () {
 });
 
 require __DIR__ . '/auth.php';
+require __DIR__ . '/bilal-center.php';
