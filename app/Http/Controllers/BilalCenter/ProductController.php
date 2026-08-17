@@ -233,6 +233,12 @@ class ProductController extends Controller
     {
         $productId = $product->id ?? 'NULL';
 
+        foreach (['stock', 'minimum_stock'] as $field) {
+            if ($request->filled($field)) {
+                $request->merge([$field => (int) $request->input($field)]);
+            }
+        }
+
         $data = $request->validate([
             'sku' => "nullable|string|max:255|unique:bilal_center.bc_products,sku,{$productId},id",
             'barcode' => "nullable|string|max:255|unique:bilal_center.bc_products,barcode,{$productId},id",
