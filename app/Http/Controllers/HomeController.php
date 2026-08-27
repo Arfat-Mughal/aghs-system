@@ -140,6 +140,19 @@ class HomeController extends Controller
         return view('pages.terms-of-service');
     }
 
+    public function partners()
+    {
+        SEOMeta::setTitle('AGHS-LAHORE | Our Partners');
+        SEOMeta::setDescription('Other free tools and platforms from across our network.');
+        SEOMeta::setCanonical('https://aghslahore.pk/partners');
+
+        $partners = collect(config('partners'))
+            ->reject(fn ($p) => $p['key'] === 'aghslahore')
+            ->values();
+
+        return view('pages.partners', compact('partners'));
+    }
+
     public function getRollNumberSlip(Request $request)
     {
         $student = Student::where(['name'=>$request->full_name,'grade_id'=>$request->class])->first();
