@@ -15,7 +15,6 @@ use App\Models\Student;
 use App\Models\StudentRecodeCard;
 use Illuminate\Http\Request;
 use Artesaos\SEOTools\Facades\SEOMeta;
-use Artesaos\SEOTools\Facades\OpenGraph;
 use Illuminate\Support\Carbon;
 use NumberToWords\NumberToWords;
 
@@ -32,9 +31,6 @@ class HomeController extends Controller
         SEOMeta::setTitleDefault('AL-FALAH GRAMMAR HIGH SCHOOL & ACADEMY');
         SEOMeta::setDescription('Home page');
         SEOMeta::setCanonical('https://aghslahore.pk');
-        OpenGraph::setTitle('AGHS-LAHORE | Home');
-        OpenGraph::setDescription('Home page');
-        OpenGraph::setUrl('https://aghslahore.pk');
         $banners = Banner::all('name','path');
         return view('main',compact('banners'));
     }
@@ -44,9 +40,6 @@ class HomeController extends Controller
         SEOMeta::setTitle('AGHS-LAHORE | Contacts');
         SEOMeta::setDescription('VILLAGE BHANO CHAK P/O WAGHA TEHSIL SHALIMAR CANTT LAHORE');
         SEOMeta::setCanonical('https://aghslahore.pk/contact');
-        OpenGraph::setTitle('AGHS-LAHORE | Contacts');
-        OpenGraph::setDescription('VILLAGE BHANO CHAK P/O WAGHA TEHSIL SHALIMAR CANTT LAHORE');
-        OpenGraph::setUrl('https://aghslahore.pk/contact');
         return view('pages.contact');
     }
 
@@ -103,9 +96,6 @@ class HomeController extends Controller
         SEOMeta::setTitle('AGHS-LAHORE | Roll Number Slips');
         SEOMeta::setDescription('Type your name and select class');
         SEOMeta::setCanonical('https://aghslahore.pk/roll_no');
-        OpenGraph::setTitle('AGHS-LAHORE | Roll Number Slips');
-        OpenGraph::setDescription('Type your name and select class');
-        OpenGraph::setUrl('https://aghslahore.pk/roll_no');
         return view('pages.roll_no')->with('grades',$this->grades);
     }
 
@@ -114,9 +104,6 @@ class HomeController extends Controller
         SEOMeta::setTitle('AGHS-LAHORE | Notifications');
         SEOMeta::setDescription('See All upcoming notifications');
         SEOMeta::setCanonical('https://aghslahore.pk/notice');
-        OpenGraph::setTitle('AGHS-LAHORE | Notifications');
-        OpenGraph::setDescription('See All upcoming notifications');
-        OpenGraph::setUrl('https://aghslahore.pk/notice');
         $notifications = Notifications::all();
         return view('pages.notic',compact('notifications'));
     }
@@ -126,9 +113,6 @@ class HomeController extends Controller
         SEOMeta::setTitle('AGHS-LAHORE | Result Cards');
         SEOMeta::setDescription('Type your roll number to get your result');
         SEOMeta::setCanonical('https://aghslahore.pk/result');
-        OpenGraph::setTitle('AGHS-LAHORE | Result Cards');
-        OpenGraph::setDescription('Type your roll number to get your result');
-        OpenGraph::setUrl('https://aghslahore.pk/result');
         return view('pages.result')->with('grades',$this->grades);
     }
 
@@ -137,9 +121,6 @@ class HomeController extends Controller
         SEOMeta::setTitle('AGHS-LAHORE | About Us');
         SEOMeta::setDescription('Message from the Head of School');
         SEOMeta::setCanonical('https://aghslahore.pk/about-us');
-        OpenGraph::setTitle('AGHS-LAHORE | About Us');
-        OpenGraph::setDescription('Message from the Head of School');
-        OpenGraph::setUrl('https://aghslahore.pk/about-us');
         return view('pages.about');
     }
 
@@ -148,9 +129,6 @@ class HomeController extends Controller
         SEOMeta::setTitle('AGHS-LAHORE | Privacy Policy');
         SEOMeta::setDescription('Privacy Policy - AL-FALAH GRAMMAR HIGH SCHOOL & ACADEMY');
         SEOMeta::setCanonical('https://aghslahore.pk/privacy-policy');
-        OpenGraph::setTitle('AGHS-LAHORE | Privacy Policy');
-        OpenGraph::setDescription('Privacy Policy - AL-FALAH GRAMMAR HIGH SCHOOL & ACADEMY');
-        OpenGraph::setUrl('https://aghslahore.pk/privacy-policy');
         return view('pages.privacy-policy');
     }
 
@@ -159,21 +137,19 @@ class HomeController extends Controller
         SEOMeta::setTitle('AGHS-LAHORE | Terms of Service');
         SEOMeta::setDescription('Terms of Service - AL-FALAH GRAMMAR HIGH SCHOOL & ACADEMY');
         SEOMeta::setCanonical('https://aghslahore.pk/terms-of-service');
-        OpenGraph::setTitle('AGHS-LAHORE | Terms of Service');
-        OpenGraph::setDescription('Terms of Service - AL-FALAH GRAMMAR HIGH SCHOOL & ACADEMY');
-        OpenGraph::setUrl('https://aghslahore.pk/terms-of-service');
         return view('pages.terms-of-service');
     }
 
     public function partners()
     {
         SEOMeta::setTitle('AGHS-LAHORE | Our Partners');
-        SEOMeta::setDescription('Discover the tools and platforms we recommend alongside AL-FALAH GRAMMAR HIGH SCHOOL & ACADEMY.');
+        SEOMeta::setDescription('Other free tools and platforms from across our network.');
         SEOMeta::setCanonical('https://aghslahore.pk/partners');
-        OpenGraph::setTitle('AGHS-LAHORE | Our Partners');
-        OpenGraph::setDescription('Discover the tools and platforms we recommend alongside AL-FALAH GRAMMAR HIGH SCHOOL & ACADEMY.');
-        OpenGraph::setUrl('https://aghslahore.pk/partners');
-        $partners = collect(config('partners'))->reject(fn ($p) => $p['key'] === 'aghs-system')->values();
+
+        $partners = collect(config('partners'))
+            ->reject(fn ($p) => $p['key'] === 'aghslahore')
+            ->values();
+
         return view('pages.partners', compact('partners'));
     }
 

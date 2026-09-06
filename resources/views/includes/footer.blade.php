@@ -30,7 +30,7 @@
                         <li><a href="{{route('roll_no')}}" class="text-white"><span class="ion-ios-arrow-round-forward mr-2 text-primary"></span>Roll No Slip</a></li>
                         <li><a href="{{route('result')}}" class="text-white"><span class="ion-ios-arrow-round-forward mr-2 text-primary"></span>Result</a></li>
                         <li><a href="{{route('contact')}}" class="text-white"><span class="ion-ios-arrow-round-forward mr-2 text-primary"></span>Contact Us</a></li>
-                        <li><a href="{{route('partners')}}" class="text-white"><span class="ion-ios-arrow-round-forward mr-2 text-primary"></span>Partners</a></li>
+                        <li><a href="{{route('partners')}}" class="text-white"><span class="ion-ios-arrow-round-forward mr-2 text-primary"></span>Our Partners</a></li>
                     </ul>
                 </div>
             </div>

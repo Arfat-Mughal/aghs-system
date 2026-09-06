@@ -19,34 +19,22 @@
         </div>
     </section>
 
-    <!-- Partners Section -->
     <section class="ftco-section bg-light">
         <div class="container">
-            <div class="row justify-content-center mb-5">
-                <div class="col-md-8 text-center">
-                    <div class="heading-section mb-4">
-                        <span class="subheading text-primary">Recommended Elsewhere</span>
-                        <h2 class="mb-3">Tools & Platforms We Recommend</h2>
-                        <div class="divider mx-auto mb-4">
-                            <span class="divider-line"></span>
-                        </div>
-                        <p class="text-muted">A few free tools and platforms from across our network that students, parents, and staff may find useful.</p>
-                    </div>
+            <div class="row justify-content-center mb-4">
+                <div class="col-lg-10 text-center">
+                    <h2 class="mb-3">Our Partners</h2>
+                    <p class="text-muted">A few other free tools and platforms from across our network that you might find useful.</p>
                 </div>
             </div>
-
-            <div class="row">
+            <div class="row justify-content-center">
                 @foreach ($partners as $partner)
-                    <div class="col-md-6 col-lg-4 mb-4">
-                        <div class="feature-box p-4 bg-white rounded shadow-sm h-100">
-                            <h5 class="mb-2">
-                                <i class="ion-ios-link me-2 text-primary"></i>{{ $partner['name'] }}
-                            </h5>
-                            <p class="text-muted mb-3">{{ $partner['description'] }}</p>
-                            <a href="{{ $partner['url'] }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm">
-                                Visit Site <i class="ion-ios-arrow-forward ms-1"></i>
-                            </a>
-                        </div>
+                    <div class="col-lg-10 mb-3">
+                        <a href="{{ $partner['url'] }}" target="_blank" rel="noopener noreferrer"
+                           class="d-block bg-white p-4 rounded shadow-sm text-decoration-none">
+                            <h3 class="h5 mb-2 text-dark">{{ $partner['emoji'] ?? '' }} {{ $partner['name'] }}</h3>
+                            <p class="text-muted mb-0">{{ $partner['description'] }}</p>
+                        </a>
                     </div>
                 @endforeach
             </div>

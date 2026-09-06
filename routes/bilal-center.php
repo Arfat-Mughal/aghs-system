@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('bilal-center')->name('bilal-center.')->group(function () {
     Route::get('pin', [PinController::class, 'showForm'])->name('pin.form');
     Route::post('pin', [PinController::class, 'verify'])->name('pin.verify');
+    Route::post('pin/change', [PinController::class, 'changePin'])->name('pin.change');
 
     // Whole module now requires the PIN — entering via "Self Service" or any direct
     // link redirects here first.

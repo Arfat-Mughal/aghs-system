@@ -19,7 +19,7 @@ class ProductController extends Controller
     {
         $q = trim((string) $request->get('q', ''));
 
-        $query = Product::with(['brand', 'category']);
+        $query = Product::with(['category', 'images']);
 
         if ($q !== '') {
             $like = '%' . $q . '%';
@@ -232,6 +232,12 @@ class ProductController extends Controller
     protected function validateProduct(Request $request, ?Product $product = null): array
     {
         $productId = $product->id ?? 'NULL';
+
+        foreach (['stock', 'minimum_stock'] as $field) {
+            if ($request->filled($field)) {
+                $request->merge([$field => (int) $request->input($field)]);
+            }
+        }
 
         $data = $request->validate([
             'sku' => "nullable|string|max:255|unique:bilal_center.bc_products,sku,{$productId},id",

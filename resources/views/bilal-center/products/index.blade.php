@@ -57,13 +57,12 @@
                 <thead>
                     <tr>
                         <th style="width:2.5rem"></th>
+                        <th style="width:5.5rem">Image</th>
                         <th>Name (EN)</th>
                         <th>Name (UR)</th>
-                        <th>Brand</th>
                         <th>Category</th>
                         <th class="text-right">Price</th>
                         <th class="text-right">Stock</th>
-                        <th>Status</th>
                         <th class="text-right">Actions</th>
                     </tr>
                 </thead>
@@ -72,12 +71,16 @@
                         <tr>
                             <td><input type="checkbox" name="product_ids[]" value="{{ $product->id }}" form="print-barcodes-form"></td>
                             <td>
+                                @if ($product->images->isNotEmpty())
+                                    <img src="{{ asset($product->images->first()->image) }}" class="img-thumbnail" style="width:64px;height:64px;object-fit:cover;">
+                                @endif
+                            </td>
+                            <td>
                                 <a href="{{ route('bilal-center.products.show', $product) }}" class="font-weight-600">
                                     {{ $product->name_en }}
                                 </a>
                             </td>
                             <td dir="rtl">{{ $product->name_ur }}</td>
-                            <td>{{ optional($product->brand)->name }}</td>
                             <td>{{ optional($product->category)->name }}</td>
                             <td class="text-right">Rs. {{ number_format($product->selling_price, 2) }}</td>
                             <td class="text-right">
@@ -88,17 +91,6 @@
                                 @else
                                     {{ $product->stock }}
                                 @endif
-                            </td>
-                            <td>
-                                @php
-                                    $badgeClass = [
-                                        'Active' => 'bc-badge-active',
-                                        'Inactive' => 'bc-badge-inactive',
-                                        'Out of Stock' => 'bc-badge-outofstock',
-                                        'Discontinued' => 'bc-badge-discontinued',
-                                    ][$product->status] ?? 'bc-badge-inactive';
-                                @endphp
-                                <span class="bc-badge {{ $badgeClass }}">{{ $product->status }}</span>
                             </td>
                             <td class="text-right">
                                 @if ($product->barcode)
