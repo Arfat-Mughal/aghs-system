@@ -1,0 +1,17 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Canonical production URL: force HTTPS and remove www.
+    RewriteCond %{HTTP_HOST} ^www\.aghslahore\.pk$ [NC,OR]
+    RewriteCond %{HTTPS} !=on
+    RewriteCond %{HTTP_HOST} ^(www\.)?aghslahore\.pk$ [NC]
+    RewriteRule ^ https://aghslahore.pk%{REQUEST_URI} [R=301,L]
+
+    # Serve ads.txt and robots.txt directly from the project root — never rewrite these.
+    RewriteRule ^ads\.txt$    - [L]
+    RewriteRule ^robots\.txt$ - [L]
+
+    # Route all requests into the Laravel public/ folder.
+    RewriteCond %{REQUEST_URI} !^/public/
+    RewriteRule ^(.*)$ /public/$1 [L,QSA]
+</IfModule>
