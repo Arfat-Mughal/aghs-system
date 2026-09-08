@@ -26,7 +26,7 @@ class AuthorRequest extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'bio' => 'nullable|string',
-            'image' => 'nullable|image|max:2048', // 2MB max
+            'image' => 'nullable|image|max:15360', // 15MB max; compressed on upload
         ];
     }
 
@@ -40,7 +40,7 @@ class AuthorRequest extends FormRequest
         return [
             'name.required' => 'An author name is required',
             'image.image' => 'The author image must be an image file',
-            'image.max' => 'The author image must not exceed 2MB',
+            'image.max' => 'The author image must not exceed 15MB',
         ];
     }
 }

@@ -17,3 +17,5 @@ Homestead.json
 /.vagrant
 public/student_profile
 public/bc-product-images
+
+.phpunit.result.cache

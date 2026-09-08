@@ -34,12 +34,12 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($banners as $notification)
+                        @foreach($banners as $banner)
                             <tr>
-                                <td scope="row">{{$notification->id}}</td>
-                                <td scope="row">{{$notification->name}}</td>
-                                <td><img src="{{asset($notification->path)}}" alt="{{$notification->name}}" height="40px" width="150px" class="rounded"></td>
-                                <td><a href="{{route('delete_banners',$notification->id)}}" class="btn btn-danger ml-2" role="button" aria-pressed="true">Delete</a></td>
+                                <td scope="row">{{$banner->id}}</td>
+                                <td scope="row">{{$banner->name}}</td>
+                                <td><img src="{{asset($banner->path)}}" alt="{{$banner->name}}" height="40px" width="150px" class="rounded"></td>
+                                <td><a href="{{route('delete_banners',$banner->id)}}" class="btn btn-danger ml-2" role="button" aria-pressed="true">Delete</a></td>
                             </tr>
                         @endforeach
                         </tbody>

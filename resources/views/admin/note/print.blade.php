@@ -54,7 +54,9 @@
 
 <body>
     <div class="image-container">
-        <img src="{{ asset($note->path) }}" alt="image">
+        @if(!empty($note->path))
+            <img src="{{ asset($note->path) }}" alt="image">
+        @endif
         <div class="overlay-data">
             <p>{{ now()->format('d-M-Y') }}</p>
         </div>

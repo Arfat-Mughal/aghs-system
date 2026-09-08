@@ -5,7 +5,9 @@ namespace App\Http\Controllers\BilalCenter;
 use App\Http\Controllers\Controller;
 use App\Models\BilalCenter\Product;
 use App\Models\BilalCenter\ProductImage;
+use App\Services\ImageService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class ProductImageController extends Controller
@@ -13,9 +15,9 @@ class ProductImageController extends Controller
     public function store(Request $request, Product $product)
     {
         $request->validate([
-            'camera_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'camera_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:15360',
             'images' => 'nullable|array',
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,webp|max:15360',
         ]);
 
         $files = array_merge(
@@ -30,17 +32,18 @@ class ProductImageController extends Controller
         }
 
         $nextSortOrder = (int) $product->images()->max('sort_order') + 1;
-        $uploadDir = 'bc-product-images';
+        $imageService = app(ImageService::class);
 
-        foreach ($files as $index => $file) {
-            $imageName = uniqid() . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path($uploadDir), $imageName);
+        DB::transaction(function () use ($files, $product, $nextSortOrder, $imageService) {
+            foreach (array_values($files) as $index => $file) {
+                $path = $imageService->compressToPublic($file, 'bc-product-images');
 
-            $product->images()->create([
-                'image' => $uploadDir . '/' . $imageName,
-                'sort_order' => $nextSortOrder + $index,
-            ]);
-        }
+                $product->images()->create([
+                    'image' => $path,
+                    'sort_order' => $nextSortOrder + $index,
+                ]);
+            }
+        });
 
         Alert::success('Images Uploaded', 'Product images were uploaded successfully.');
 
