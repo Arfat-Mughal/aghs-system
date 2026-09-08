@@ -38,7 +38,7 @@ jobs:
         run: npm ci
 
       - name: Build frontend assets
-        run: npm run build
+        run: npm run production
 
       - name: Deploy project files over FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.6
