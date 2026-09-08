@@ -161,7 +161,11 @@
         </form>
     @endforeach
 
-    {{ $products->links() }}
+    @if ($products->hasPages())
+        <nav class="bc-pagination d-flex justify-content-center mt-3">
+            {{ $products->onEachSide(1)->links('pagination::bootstrap-4') }}
+        </nav>
+    @endif
 @endsection
 
 @section('scripts')

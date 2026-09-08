@@ -133,3 +133,47 @@
         })
     });
 </script>
+
+<script>
+    // Global delete confirmation for the admin panel.
+    // Delegated on document so it also covers rows added by DataTables / AJAX.
+    (function () {
+        var MESSAGE = 'Are you sure you want to delete this? This action cannot be undone.';
+
+        // RESTful destroy forms: <form ...>@method('DELETE') ... </form>
+        // and any POST form whose action URL looks like a delete endpoint.
+        $(document).on('submit', 'form', function (e) {
+            var form = this;
+            var method = ($(form).find('input[name="_method"]').val() || '').toUpperCase();
+            var action = (form.getAttribute('action') || '');
+            var isDelete = method === 'DELETE' || /destroy|delete/i.test(action);
+            if (!isDelete) return;
+
+            // Leave forms that already prompt on their own alone (no double dialog).
+            if (/confirm/.test(form.getAttribute('onsubmit') || '')) return;
+
+            e.preventDefault();
+            if (window.confirm(MESSAGE)) {
+                // Native form.submit() does NOT re-fire this delegated listener.
+                form.submit();
+            }
+        });
+
+        // Delete links. Positive-match only: a btn-danger that is NOT a delete
+        // (e.g. "Print", "Print Challan", "Download") deliberately gets no dialog.
+        $(document).on('click', 'a[href*="delete"], a[href*="destroy"], a.btn-danger', function (e) {
+            var href = this.getAttribute('href') || '';
+            if (href === '' || href === '#') return;
+
+            var text = $.trim($(this).text());
+            var isDelete = /delete_|\/delete|destroy/i.test(href) || text === 'Delete';
+            if (!isDelete) return;
+
+            if (/confirm/.test(this.getAttribute('onclick') || '')) return;
+
+            if (!window.confirm(MESSAGE)) {
+                e.preventDefault();
+            }
+        });
+    })();
+</script>
