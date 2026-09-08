@@ -32,7 +32,7 @@
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active"><a href="{{route('home')}}" class="nav-link pl-0">Home</a></li>
-                <li class="nav-item"><a href="{{route('frontend.ebooks.index')}}" class="nav-link">E-Books</a></li>
+                {{-- <li class="nav-item"><a href="{{route('frontend.ebooks.index')}}" class="nav-link">E-Books</a></li> --}}
                 <li class="nav-item "><a href="{{route('notice')}}" class="nav-link pl-0">Notification</a></li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="onlineVerificationDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -45,7 +45,7 @@
                     </div>
                 </li>
                 <li class="nav-item"><a href="{{route('about')}}" class="nav-link">About Us</a></li>
-                <li class="nav-item"><a href="{{route('partners')}}" class="nav-link">Partners</a></li>
+                {{-- <li class="nav-item"><a href="{{route('partners')}}" class="nav-link">Partners</a></li> --}}
                 <li class="nav-item"><a href="{{route('contact')}}" class="nav-link">Contact Us</a></li>
                 @if (Route::has('login'))
                     @auth
