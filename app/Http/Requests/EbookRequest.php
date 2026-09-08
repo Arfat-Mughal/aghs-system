@@ -33,7 +33,7 @@ class EbookRequest extends FormRequest
             'scripture_references' => 'nullable|string|max:255',
             'reflection_questions' => 'nullable|string',
             'scripture_database_link' => 'nullable|url',
-            'cover_image' => 'nullable|image|max:2048', // 2MB max
+            'cover_image' => 'nullable|image|max:15360', // 15MB max; compressed on upload
             'genres' => 'required|array|min:1',
             'genres.*' => 'exists:genres,id',
             'meta_title' => 'nullable|string|max:255',
@@ -57,7 +57,7 @@ class EbookRequest extends FormRequest
             'genres.required' => 'At least one genre is required',
             'genres.*.exists' => 'The selected genre is invalid',
             'cover_image.image' => 'The cover image must be an image file',
-            'cover_image.max' => 'The cover image must not exceed 2MB',
+            'cover_image.max' => 'The cover image must not exceed 15MB',
         ];
     }
 }

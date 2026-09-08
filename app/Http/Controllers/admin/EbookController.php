@@ -8,6 +8,7 @@ use App\Models\Ebook;
 use App\Models\Author;
 use App\Models\Genre;
 use App\Models\EbookFile;
+use App\Services\ImageService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -79,9 +80,7 @@ class EbookController extends Controller
 
         // Handle cover image upload
         if ($request->hasFile('cover_image')) {
-            $coverImage = $request->file('cover_image');
-            $filename = time() . '_' . $coverImage->getClientOriginalName();
-            $path = $coverImage->storeAs('uploads/ebooks/covers', $filename, 'public');
+            $path = app(ImageService::class)->compressToDisk($request->file('cover_image'), 'uploads/ebooks/covers', 'public', $ebook->title);
             $ebook->update(['cover_image' => $path]);
         }
 
@@ -137,9 +136,7 @@ class EbookController extends Controller
                 Storage::disk('public')->delete($ebook->cover_image);
             }
 
-            $coverImage = $request->file('cover_image');
-            $filename = time() . '_' . $coverImage->getClientOriginalName();
-            $path = $coverImage->storeAs('uploads/ebooks/covers', $filename, 'public');
+            $path = app(ImageService::class)->compressToDisk($request->file('cover_image'), 'uploads/ebooks/covers', 'public', $ebook->title);
             $ebook->update(['cover_image' => $path]);
         }
 

@@ -10,6 +10,7 @@ use App\Models\BilalCenter\Product;
 use App\Models\BilalCenter\ProductImage;
 use App\Models\BilalCenter\Supplier;
 use App\Services\BilalCenter\BarcodeService;
+use App\Services\ImageService;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -119,14 +120,11 @@ class ProductController extends Controller
         $this->syncRelated($request, $product);
 
         if ($request->hasFile('photo')) {
-            $file = $request->file('photo');
-            $uploadDir = 'bc-product-images';
-            $imageName = uniqid() . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path($uploadDir), $imageName);
+            $path = app(ImageService::class)->compressToPublic($request->file('photo'), 'bc-product-images');
 
             ProductImage::create([
                 'product_id' => $product->id,
-                'image' => $uploadDir . '/' . $imageName,
+                'image' => $path,
                 'sort_order' => 1,
             ]);
         }

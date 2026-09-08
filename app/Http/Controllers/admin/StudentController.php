@@ -5,9 +5,9 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\Grade;
 use App\Models\Student;
+use App\Services\ImageService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Str;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class StudentController extends Controller
@@ -195,7 +195,7 @@ class StudentController extends Controller
         $request->validate([
             'name' => 'required|max:255',
             'father_name' => 'required',
-            'image' => 'required|max:2048',
+            'image' => 'required|image|max:15360',
             'roll_no' => 'required|unique:students,addmission_no',
             'dob' => 'required',
             'cnic' => 'required',
@@ -241,6 +241,7 @@ class StudentController extends Controller
             'gender' => 'required',
             'address' => 'required',
             'grade_id' => 'required',
+            'image' => 'nullable|image|max:15360',
         ]);
 
         $student = Student::find($request->id);
@@ -282,10 +283,12 @@ class StudentController extends Controller
 
     private function UserImageUpload($imageFile, $studentName, $fatherName)
     {
-        $imageName = Str::slug($studentName . '-' . $fatherName) . '-' . time() . '.' . $imageFile->getClientOriginalExtension();
-        $uploadPath = 'student_profile/';
-        $imageFile->move($uploadPath, $imageName);
-        return $uploadPath . $imageName;
+        return app(ImageService::class)->compressToPublic(
+            $imageFile,
+            'student_profile',
+            $studentName . '-' . $fatherName,
+            ['format' => 'jpg'] // embedded into dompdf PDFs; keep JPEG
+        );
     }
 
 

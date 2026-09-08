@@ -4,8 +4,8 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Notifications;
+use App\Services\ImageService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class NotificationController extends Controller
@@ -20,31 +20,19 @@ class NotificationController extends Controller
     {
         $notifications = new Notifications;
         $notifications->name = $request->title;
-        $notifications->path = $this->UserImageUpload($request->file('file'));
+        $notifications->path = app(ImageService::class)->compressToPublic($request->file('file'), 'notifications');
         $notifications->save();
         Alert::success('Notifications Added', 'Success Message');
         return redirect()->route('notifications');
     }
 
-    private function UserImageUpload($query) // Taking input image as parameter
-    {
-        $image_name = Str::random(25);
-        $ext = strtolower($query->getClientOriginalExtension()); // You can use also getClientOriginalName()
-        $image_full_name = $image_name . '.' . $ext;
-        $upload_path = 'notifications/';    //Creating Sub directory in Public folder to put image
-        $image_url = $upload_path . $image_full_name;
-        $query->move($upload_path, $image_full_name);
-
-        return $image_url; // Just return image
-    }
-
     public function delete($id)
     {
         $notification = Notifications::find($id);
-    
+
         if ($notification) {
-            if (file_exists($notification->path)) {
-                unlink($notification->path);
+            if ($notification->path && file_exists(public_path($notification->path))) {
+                unlink(public_path($notification->path));
             }
     
             $notification->delete();

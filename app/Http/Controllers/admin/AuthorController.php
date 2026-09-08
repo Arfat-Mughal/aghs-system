@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AuthorRequest;
 use App\Models\Author;
+use App\Services\ImageService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -36,9 +37,7 @@ class AuthorController extends Controller
 
         // Handle image upload
         if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $filename = time() . '_' . $image->getClientOriginalName();
-            $path = $image->storeAs('uploads/authors', $filename, 'public');
+            $path = app(ImageService::class)->compressToDisk($request->file('image'), 'uploads/authors', 'public', $author->name);
             $author->update(['image' => $path]);
         }
 
@@ -76,9 +75,7 @@ class AuthorController extends Controller
                 Storage::disk('public')->delete($author->image);
             }
 
-            $image = $request->file('image');
-            $filename = time() . '_' . $image->getClientOriginalName();
-            $path = $image->storeAs('uploads/authors', $filename, 'public');
+            $path = app(ImageService::class)->compressToDisk($request->file('image'), 'uploads/authors', 'public', $author->name);
             $author->update(['image' => $path]);
         }
 
